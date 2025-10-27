@@ -1,4 +1,4 @@
-[
+   [
     {
       "nombre": "Café expresso",
       "descripcion": "Café chico",
@@ -342,14 +342,14 @@
       "imagen": "img/mila3.jpg",
       "categoria": "💡promociones"
     },
-{
+   {
     "nombre": "Brunch Para Dos",
     "descripcion": "Dos infusiones, 2 jugos o limonadas, 2 yogures con fruta y granola, chipa tostado de jamón y queso y tostón con huevo y palta.",
     "precio": "48000",
     "imagen": "img/brunch.jpg",
       "categoria": "💡promociones"
-  },
-      {
+   },
+    {
       "nombre": "Tarta de calabaza",
       "descripcion": "Brócoli, queso sardo, muzarella, cebolla, masa integral",
       "precio": "18500",
@@ -396,7 +396,7 @@
     "descripcion": "Omelette de queso y champignones",
     "precio": "17000",
     "imagen": "img/Omecham.jpg",
-          "categoria": "🍽️Comidas"
+    "categoria": "🍽️Comidas"
   },
     {
       "nombre": "Tortilla de papa y cebolla",
@@ -447,13 +447,13 @@
       "imagen": "img/Estrachatelaens.jpg",
       "categoria": "🍽️Comidas"
     },
-  {
+   {
     "nombre": " ENSALADAS COBB SALAD",
     "descripcion": "Mix de verdes, pollo, huevo, queso azul, tomate y salsa de palta.",
     "precio": "17800",
     "imagen": "img/Cpsala.jpg",
     "categoria": "🍽️Comidas"
-  },
+   },
     {
       "nombre": "Mila SOLA de POLLO o CARNE",
       "descripcion": "Acompañadas con puré, fideos, ensalada o papas fritas",
@@ -488,7 +488,6 @@
     "precio": "23000",
     "imagen": "img/Smuk.jpg",
     "categoria": "🍽️Comidas"
-
   },
     {
       "nombre": "Filet de Merluza a la romana",
@@ -506,33 +505,32 @@
     },
     {
       "nombre": "PIZZA NAPOLITANA",
-      "descripcion": "Salsa de tomate, stracciatella, jamón y rodajas de tomate",
+      "descripcion": "Salsa de tomate, stracciatella sale fria, jamón y rodajas de tomate",
       "precio": "28000",
       "imagen": "img/20250906_150935.jpg",
       "categoria": "🍽️Comidas"
     },
     {
     "nombre": "PIZZA PARMA",
-    "descripcion": "Salsa de tomate, stracciatella, burrata, jamón crudo, albahaca.",
+    "descripcion": "Salsa de tomate, stracciatella sale fria, burrata, jamón crudo, albahaca.",
     "precio": "34000",
     "imagen": "img/20250816_135018.jpg",
       "categoria": "🍽️Comidas"
   },
   {
     "nombre": "PIZZA MARGARITA",
-    "descripcion": "Salsa de tomate, stracciatella, hojas de albahaca.",
+    "descripcion": "Salsa de tomate, stracciatella sale fria, hojas de albahaca.",
     "precio": "25500",
     "imagen": "img/20250819_125331.jpg",
   "categoria": "🍽️Comidas"
   },
   {
     "nombre": "PIZZA Champi",
-    "descripcion": "Salsa de tomate, stracciatella, hongos y cebollas salteadas.",
+    "descripcion": "Salsa de tomate, stracciatella sale fria, hongos y cebollas salteadas.",
     "precio": "30000",
     "imagen": "img/Pizachampi.jpg",
       "categoria": "🍽️Comidas"
-  },
-
+   },
     {
       "nombre": "RISOTTO de Pollo",
       "descripcion": "Con pollo, calabaza y verduras",
@@ -547,7 +545,7 @@
       "imagen": "img/Risotolangos.jpg",
       "categoria": "🍽️Comidas"
     },
-{
+   {
     "nombre": "RISOTTOS Lomo!",
     "descripcion": "con verduras lomo.",
     "precio": 28000,
@@ -561,8 +559,7 @@
       "imagen": "img/Pechuga.jpg",
       "categoria": "🍽️Comidas"
     },
-
-    {
+   {
       "nombre": "Matambre de cerdo",
       "descripcion": "Con fritas, puré, ensalada o arroz",
       "precio": "24000",
@@ -590,7 +587,7 @@
       "imagen": "img/Salmón.jpg",
       "categoria": "🍽️Comidas"
     }, 
- {
+   {
     "nombre": "Pollo (pechuga)",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": "22500",
@@ -625,7 +622,7 @@
     "imagen": "img/Blu.jpg",
       "categoria": "🍽️Comidas"
   },
-{
+ {
     "nombre": "Mila PESTO",
     "descripcion": "Milanesa de carne con ñoquis al pesto",
     "precio": "20500",
@@ -849,7 +846,7 @@
       "imagen": "img/IMG-20250815.jpg",
       "categoria": "🥟 ENTRADITAS"
     },
-{
+   {
       "nombre": "Spaghetti (salsa aparte)",
       "descripcion": "Spaghetti con salsa a elección",
       "precio": "11000",
@@ -884,7 +881,7 @@
       "imagen": "img/Sonren.jpg",
       "categoria": "🍝 PASTAS"
     },
-{
+  {
     "nombre": "salsa blanca",
     "descripcion": "Salsa blanca",
     "precio": "6000",
@@ -947,7 +944,7 @@
     "imagen": "img/218.jpg",
     "categoria": "🥫SALSAS"
   },
-{
+  {
       "nombre": "línea Coca-Cola",
       "descripcion": "Zeros y clásicas",
       "precio": "4000",
@@ -981,7 +978,6 @@
       "imagen": "img/pomelada.jpg",
       "categoria": "🥤 Bebidas y vinos"
     },
-
     {
       "nombre": "Milkshake OREO",
       "descripcion": "Helado de crema, con oreos y crema batida",
@@ -1094,7 +1090,7 @@
       "imagen": "img/20250903_124351.jpg",
       "categoria": "🥤 Bebidas y vinos"
     },
-{
+  {
     "nombre": "Jack Daniel's",
     "descripcion": "Jack Daniel's",
     "precio": "15000",
@@ -1247,6 +1243,6 @@
     "precio": "9200",
     "imagen": "img/torgrende.jpg",
     "categoria": "📋MENU del DIA/SUGERENCIAS Y NOVEDADES"
-  },
+  }
 ]
 
