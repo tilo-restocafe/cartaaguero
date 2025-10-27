@@ -169,7 +169,7 @@
     },
     {
       "nombre": "Cookies🍪",
-      "descripcion": "Cookies vainilla con chocolate, chocolate+chocolate",
+      "descripcion": "Cookies vainilla con chocolate, chocolate+chocolate c/u",
       "precio": "4800",
       "imagen": "img/20250902_085341.jpg",
       "categoria": "Cafetería☕️"
@@ -183,63 +183,63 @@
     },
     {
       "nombre": "Chipá relleno",
-      "descripcion": "Chipá relleno de queso",
+      "descripcion": "Chipá relleno de queso c/u",
       "precio": "3700",
       "imagen": "img/Chipa.jpg",
       "categoria": "Cafetería☕️"
     },
     {
       "nombre": "Scon de queso",
-      "descripcion": "Scon de queso",
+      "descripcion": "Scon de queso c/u",
       "precio": "4200",
       "imagen": "img/Sconquso.jpg",
       "categoria": "Cafetería☕️"
     },
     {
       "nombre": "Budín",
-      "descripcion": "Zanahoria y canela, limón y amapolas, chocolate y café",
+      "descripcion": "Zanahoria y canela, limón y amapolas, chocolate y café c/u",
       "precio": "5500",
       "imagen": "img/20250817_124915.jpg",
       "categoria": "Cafetería☕️"
     },
     {
       "nombre": "Alfajor de chocolate",
-      "descripcion": "Alfajor de chocolate",
+      "descripcion": "Alfajor de chocolate c/u",
       "precio": "4500",
       "imagen": "img/Alchoco.jpg",
       "categoria": "Cafetería☕️"
     },
     {
       "nombre": "Alfajor Dubái",
-      "descripcion": "Alfajor chocolate y pistacho",
+      "descripcion": "Alfajor chocolate y pistacho c/u",
       "precio": "4700",
       "imagen": "img/alfapis.jpg",
       "categoria": "Cafetería☕️"
     },
     {
       "nombre": "Alfajor de maicena",
-      "descripcion": "Alfajor de maicena (sin TACC)",
+      "descripcion": "Alfajor de maicena (sin TACC)c/u",
       "precio": "4500",
       "imagen": "img/Maicena.jpg",
       "categoria": "Cafetería☕️"
     },
     {
       "nombre": "Alfajor de almendras",
-      "descripcion": "Alfajor de almendras",
+      "descripcion": "Alfajor de almendras c/u",
       "precio": "5500",
       "imagen": "img/Almendras.jpg",
       "categoria": "Cafetería☕️"
     },
     {
       "nombre": "Mini torta",
-      "descripcion": "Mini tortas dulces",
+      "descripcion": "Mini tortas dulces c/u",
       "precio": "9200",
       "imagen": "img/Minitor.jpg",
       "categoria": "Cafetería☕️"
     },
     {
       "nombre": "Medialuna caliente de jamón y queso",
-      "descripcion": "Medialuna caliente de jamón y queso",
+      "descripcion": "Medialuna caliente de jamón y queso c/u",
       "precio": "4600",
       "imagen": "img/Lujyq.jpg",
       "categoria": "Cafetería☕️"
@@ -260,7 +260,7 @@
     },
     {
       "nombre": "Porción de tostadas",
-      "descripcion": "Porción de tostadas, blancas o de salvado con semillas",
+      "descripcion": "Porción de tostadas, blancas o de salvado con semillas 2 unidades",
       "precio": "3500",
       "imagen": "img/Tosta.jpg",
       "categoria": "Cafetería☕️"
