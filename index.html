@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tilo Café Agüero</title>
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -22,7 +24,7 @@
     }
 
     .banner {
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.85);
       padding: 10px;
       font-size: 1.3em;
       border-radius: 8px;
@@ -49,7 +51,7 @@
 
     .lang-btn.active {
       background: #a07b68;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     }
 
     .search-box {
@@ -107,10 +109,10 @@
     }
 
     .item {
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 10px;
       width: 280px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       transition: 0.2s;
     }
@@ -121,12 +123,49 @@
       object-fit: cover;
     }
 
-    .item h3 { margin: 8px; }
-    .item p { margin: 0 8px 10px; }
-    .price { font-weight: bold; margin: 0 8px 10px; display: block; }
-    .msg { padding: 20px; color: #a00; }
+    .item h3 {
+      margin: 8px;
+    }
+
+    .item p {
+      margin: 0 8px 10px;
+    }
+
+    .price {
+      font-weight: bold;
+      margin: 0 8px 10px;
+      display: block;
+    }
+
+    .msg {
+      padding: 20px;
+      color: #a00;
+    }
+
+    /* Flechita para subir */
+    #btnTop {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      font-size: 22px;
+      background: #806250;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+      transition: 0.3s;
+    }
+
+    #btnTop:hover {
+      transform: scale(1.15);
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -135,139 +174,154 @@
 
   <div class="banner">¡Bienvenidos a Tilo Café Agüero 2298!</div>
 
-  <!-- 🌍 Selector de idioma -->
+  <!-- Selector idioma -->
   <div id="languageSwitcher">
     <button id="btn-es" class="lang-btn">🇪🇸 Español</button>
     <button id="btn-en" class="lang-btn">🇬🇧 English</button>
   </div>
 
-  <!-- 🔍 Buscador -->
+  <!-- Buscador -->
   <div class="search-box">
     <input id="search" type="text" placeholder="Buscar por nombre, descripción o categoría...">
     <button id="btnSearch">Buscar</button>
   </div>
 
-  <!-- 🔘 Categorías -->
+  <!-- Categorías -->
   <div id="category-buttons"></div>
 
-  <!-- 🛒 Productos -->
+  <!-- Productos -->
   <div id="product-list"></div>
 
+  <!-- Flecha para subir -->
+  <button id="btnTop">⬆️</button>
+
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    let idiomaActual = localStorage.getItem('idioma') || 'es';
+    document.addEventListener('DOMContentLoaded', () => {
 
-    const btnEs = document.getElementById('btn-es');
-    const btnEn = document.getElementById('btn-en');
-    const categoryContainer = document.getElementById('category-buttons');
-    const productList = document.getElementById('product-list');
-    const searchInput = document.getElementById('search');
-    const btnSearch = document.getElementById('btnSearch');
+      const USER = 'cholose10';
+      const REPO = 'cartaaguero';
+      let idiomaActual = localStorage.getItem('idioma') || 'es';
 
-    let productos = [];
+      const btnEs = document.getElementById('btn-es');
+      const btnEn = document.getElementById('btn-en');
+      const categoryContainer = document.getElementById('category-buttons');
+      const productList = document.getElementById('product-list');
+      const searchInput = document.getElementById('search');
+      const btnSearch = document.getElementById('btnSearch');
+      const btnTop = document.getElementById('btnTop');
 
-    function actualizarBotones() {
-      btnEs.classList.toggle('active', idiomaActual === 'es');
-      btnEn.classList.toggle('active', idiomaActual === 'en');
-    }
+      let productos = [];
 
-    async function load() {
-      actualizarBotones();
-      const filename = idiomaActual === 'es' ? 'productos.json' : 'productos-en.json';
-
-      try {
-        // ✅ Carga directa desde el servidor (sin usar GitHub)
-        const res = await fetch(filename, { cache: "no-store" });
-        if (!res.ok) throw new Error('Error cargando ' + filename);
-        const data = await res.json();
-
-        productos = data.map(p => ({
-          nombre: idiomaActual === 'es' ? p.nombre : p.name,
-          descripcion: idiomaActual === 'es' ? p.descripcion : p.description,
-          precio: p.precio || p.price,
-          imagen: p.imagen,
-          categoria: idiomaActual === 'es' ? p.categoria : p.category
-        }));
-
-        renderCategories();
-        renderProducts('Todos');
-      } catch (err) {
-        console.error(err);
-        productList.innerHTML = '<div class="msg">⚠️ No se pudieron cargar los productos.</div>';
+      function actualizarBotones() {
+        btnEs.classList.toggle('active', idiomaActual === 'es');
+        btnEn.classList.toggle('active', idiomaActual === 'en');
       }
-    }
 
-    function renderCategories() {
-      const categorias = ['Todos', ...new Set(productos.map(p => p.categoria).filter(Boolean))];
-      categoryContainer.innerHTML = '';
-      categorias.forEach(cat => {
-        const btn = document.createElement('button');
-        btn.textContent = cat;
-        btn.addEventListener('click', () => renderProducts(cat));
-        categoryContainer.appendChild(btn);
-      });
-    }
+      async function load() {
+        actualizarBotones();
 
-    function renderProducts(categoria) {
-      productList.innerHTML = '';
-      const lista = categoria === 'Todos' ? productos : productos.filter(p => p.categoria === categoria);
-      if (lista.length === 0) {
-        productList.innerHTML = '<div class="msg">No hay productos disponibles.</div>';
-        return;
+        const filename = idiomaActual === 'es' ? 'productos.json' : 'productos-en.json';
+        const RAW_URL = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${filename}`;
+
+        try {
+          const res = await fetch(RAW_URL, { cache: "no-store" });
+          const data = await res.json();
+
+          productos = data.map(p => ({
+            nombre: idiomaActual === 'es' ? p.nombre : p.name,
+            descripcion: idiomaActual === 'es' ? p.descripcion : p.description,
+            precio: p.precio || p.price,
+            imagen: p.imagen,
+            categoria: idiomaActual === 'es' ? p.categoria : p.category
+          }));
+
+          renderCategories();
+          renderProducts('Todos');
+
+        } catch {
+          productList.innerHTML = '<div class="msg">⚠️ No se pudieron cargar los productos.</div>';
+        }
       }
-      lista.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.innerHTML = `
-          <img src="${p.imagen}" alt="${p.nombre}">
-          <h3>${p.nombre}</h3>
-          <p>${p.descripcion || ''}</p>
-          <span class="price">$${p.precio}</span>`;
-        productList.appendChild(div);
-      });
-    }
 
-    function buscar() {
-      const q = searchInput.value.toLowerCase().trim();
-      const res = productos.filter(p =>
-        p.nombre.toLowerCase().includes(q) ||
-        (p.descripcion || '').toLowerCase().includes(q) ||
-        p.categoria.toLowerCase().includes(q)
-      );
-      if (res.length === 0) {
-        productList.innerHTML = '<div class="msg">🔍 No se encontraron resultados.</div>';
-        return;
+      function renderCategories() {
+        const categorias = ['Todos', ...new Set(productos.map(p => p.categoria).filter(Boolean))];
+        categoryContainer.innerHTML = '';
+        categorias.forEach(cat => {
+          const btn = document.createElement('button');
+          btn.textContent = cat;
+          btn.addEventListener('click', () => renderProducts(cat));
+          categoryContainer.appendChild(btn);
+        });
       }
-      productList.innerHTML = '';
-      res.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.innerHTML = `
-          <img src="${p.imagen}" alt="${p.nombre}">
-          <h3>${p.nombre}</h3>
-          <p>${p.descripcion || ''}</p>
-          <span class="price">$${p.precio}</span>`;
-        productList.appendChild(div);
-      });
-    }
 
-    btnEs.addEventListener('click', () => {
-      idiomaActual = 'es';
-      localStorage.setItem('idioma', 'es');
+      function renderProducts(categoria) {
+        productList.innerHTML = '';
+        const lista = categoria === 'Todos' ? productos : productos.filter(p => p.categoria === categoria);
+
+        if (lista.length === 0) {
+          productList.innerHTML = '<div class="msg">No hay productos disponibles.</div>';
+          return;
+        }
+
+        lista.forEach(p => {
+          const div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = `
+            <img src="${p.imagen}" alt="${p.nombre}">
+            <h3>${p.nombre}</h3>
+            <p>${p.descripcion || ''}</p>
+            <span class="price">$${p.precio}</span>`;
+          productList.appendChild(div);
+        });
+      }
+
+      function buscar() {
+        const q = searchInput.value.toLowerCase().trim();
+        const res = productos.filter(p =>
+          p.nombre.toLowerCase().includes(q) ||
+          (p.descripcion || '').toLowerCase().includes(q) ||
+          p.categoria.toLowerCase().includes(q)
+        );
+
+        productList.innerHTML = '';
+        productList.scrollIntoView({ behavior: 'smooth' }); // 👈 SOLO CUANDO SE BUSCA
+
+        if (res.length === 0) {
+          productList.innerHTML = '<div class="msg">🔍 No se encontraron resultados.</div>';
+          return;
+        }
+
+        res.forEach(p => {
+          const div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = `
+            <img src="${p.imagen}" alt="${p.nombre}">
+            <h3>${p.nombre}</h3>
+            <p>${p.descripcion || ''}</p>
+            <span class="price">$${p.precio}</span>`;
+          productList.appendChild(div);
+        });
+      }
+
+      // Eventos
+      btnEs.addEventListener('click', () => { idiomaActual = 'es'; localStorage.setItem('idioma', 'es'); load(); });
+      btnEn.addEventListener('click', () => { idiomaActual = 'en'; localStorage.setItem('idioma', 'en'); load(); });
+
+      btnSearch.addEventListener('click', buscar);
+      searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') buscar(); });
+
+      // Flecha para subir
+      window.addEventListener('scroll', () => {
+        btnTop.style.display = window.scrollY > 400 ? 'block' : 'none';
+      });
+
+      btnTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
       load();
     });
-
-    btnEn.addEventListener('click', () => {
-      idiomaActual = 'en';
-      localStorage.setItem('idioma', 'en');
-      load();
-    });
-
-    btnSearch.addEventListener('click', buscar);
-    searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') buscar(); });
-
-    load();
-  });
   </script>
+
 </body>
 </html>
