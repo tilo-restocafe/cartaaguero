@@ -11,50 +11,117 @@
       background: #f7f3f0;
       color: #333;
     }
-    h1 { text-align: center; color: #806250; }
+    h1 {
+      text-align: center;
+      color: #806250;
+    }
     form {
-      background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
       transition: box-shadow 0.5s;
     }
-    form.editando { box-shadow: 0 0 15px #806250; }
-    input, textarea, datalist {
-      width: 100%; padding: 8px; margin: 6px 0;
-      border: 1px solid #ccc; border-radius: 6px;
+    form.editando {
+      box-shadow: 0 0 15px #806250;
     }
-    table { width: 100%; border-collapse: collapse; background: #fff; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background: #806250; color: white; }
-    img { max-width: 60px; border-radius: 6px; }
+    input, textarea, datalist {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #806250;
+      color: white;
+    }
+    img {
+      max-width: 60px;
+      border-radius: 6px;
+    }
     button {
-      cursor: pointer; background: #806250; color: white;
-      border: none; padding: 6px 10px; border-radius: 6px;
+      cursor: pointer;
+      background: #806250;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
       transition: background 0.3s;
     }
-    button:hover { background: #a07b68; }
-    #preview { max-width: 100px; margin-top: 5px; border-radius: 8px; display: block; }
-    #search { width: 60%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; }
-    .search-container { display: flex; gap: 10px; margin-bottom: 15px; }
-    #btnArriba {
-      position: fixed; bottom: 25px; right: 25px; background: #806250;
-      color: white; border: none; border-radius: 50%; width: 45px; height: 45px;
-      font-size: 20px; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      display: none; z-index: 100; transition: background 0.3s;
+    button:hover {
+      background: #a07b68;
     }
-    #btnArriba:hover { background: #a07b68; }
+    #preview {
+      max-width: 100px;
+      margin-top: 5px;
+      display: block;
+      border-radius: 8px;
+    }
+    #search {
+      width: 60%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .search-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    #btnArriba {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #806250;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 100;
+      transition: background 0.3s;
+    }
+    #btnArriba:hover {
+      background: #a07b68;
+    }
   </style>
 </head>
 <body>
-
   <h1>Panel de Administración - Tilo Café Agüero</h1>
 
+  <!-- TOKEN -->
+  <div style="margin-bottom:15px; background:#eee; padding:10px; border-radius:8px;">
+    <label for="token">Token de GitHub:</label><br>
+    <input type="password" id="token" placeholder="Pega tu token aquí" style="width:70%; padding:8px;">
+    <button onclick="saveToken()">Guardar Token</button>
+    <button onclick="clearToken()">Borrar Token</button>
+    <p id="tokenStatus"></p>
+  </div>
+
+  <!-- BUSCADOR -->
   <div class="search-container">
     <input type="text" id="search" placeholder="Buscar producto...">
     <button onclick="filterProducts()">🔍 Buscar</button>
   </div>
 
+  <!-- FORMULARIO -->
   <form id="form">
     <input type="hidden" id="editIndex">
-
     <label>Nombre</label>
     <input type="text" id="nombre" required>
 
@@ -69,12 +136,13 @@
     <img id="preview" src="" alt="Vista previa">
 
     <label>Categoría</label>
-    <input list="listaCategorias" type="text" id="categoria" required>
+    <input list="listaCategorias" type="text" id="categoria" placeholder="Ej: CAFETERÍA, POSTRES, etc." required>
     <datalist id="listaCategorias"></datalist>
 
     <button type="submit">Guardar</button>
   </form>
 
+  <!-- TABLA -->
   <h2 id="tablaTitulo">Productos</h2>
   <table>
     <thead>
@@ -87,125 +155,232 @@
 
   <button id="btnArriba" onclick="subir()">⬆️</button>
 
-<script>
+ <script>
   const USERNAME = "cholose10";
-  const REPO = "cartaaguero";
+  const REPO = "cartaaguero"; // ⚠️ cambiar por "cartafrench" en la otra sucursal
   const FILE_PATH = "productos.json";
   let productos = [];
+  let autoSaveTimer = null;
 
+  // 🟤 TOKEN
+  function saveToken(){
+    const t=document.getElementById('token').value.trim();
+    if(t){ 
+      localStorage.setItem('github_token',t); 
+      document.getElementById('token').value=''; 
+      document.getElementById('tokenStatus').innerText="✅ Token guardado."; 
+    }
+  }
+  function clearToken(){ 
+    localStorage.removeItem('github_token'); 
+    document.getElementById('tokenStatus').innerText="⚠️ Token borrado."; 
+  }
+  function getToken(){ return localStorage.getItem('github_token'); }
+
+  // 🟤 CARGAR PRODUCTOS
   async function loadProducts(){
-    const url = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${FILE_PATH}`;
-    const res = await fetch(url);
-    productos = await res.json();
+    const url=`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${FILE_PATH}`;
+    const res=await fetch(url);
+    productos=await res.json();
     render(productos);
     updateCategoryList();
   }
 
+  // 🟤 RENDER TABLA
   function render(lista){
     const tb=document.getElementById('tbody'); tb.innerHTML='';
-    lista.forEach((p,i)=>tb.innerHTML+=`
-      <tr>
-        <td><img src="${p.imagen}"></td>
-        <td>${p.nombre}</td>
-        <td>${p.descripcion}</td>
-        <td>${p.categoria}</td>
-        <td>$${p.precio}</td>
-        <td>
-          <button onclick="edit(${i})">Editar</button>
-          <button onclick="del(${i})">Eliminar</button>
-        </td>
-      </tr>`);
+    lista.forEach((p,i)=>{
+      tb.innerHTML+=`
+        <tr>
+          <td><img src="${p.imagen}" alt=""></td>
+          <td>${p.nombre}</td>
+          <td>${p.descripcion}</td>
+          <td>${p.categoria}</td>
+          <td>$${p.precio}</td>
+          <td>
+            <button onclick="edit(${i})">Editar</button>
+            <button onclick="del(${i})">Eliminar</button>
+          </td>
+        </tr>`;
+    });
   }
 
+  // 🟤 ACTUALIZAR CATEGORÍAS
   function updateCategoryList(){
     const cats=[...new Set(productos.map(p=>p.categoria))].sort();
     const datalist=document.getElementById('listaCategorias');
     datalist.innerHTML='';
-    cats.forEach(c=>datalist.innerHTML+=`<option value="${c}">`);
+    cats.forEach(c=>{
+      const opt=document.createElement('option');
+      opt.value=c;
+      datalist.appendChild(opt);
+    });
   }
 
+  // 🟤 BUSCADOR
+  const searchInput=document.getElementById("search");
+  searchInput.addEventListener("keypress",function(e){
+    if(e.key==="Enter"){
+      e.preventDefault();
+      filterProducts();
+    }
+  });
+
   function filterProducts(){
-    const q=document.getElementById("search").value.toLowerCase().trim();
-    render(q?productos.filter(p=>
+    const q=searchInput.value.toLowerCase().trim();
+    if(!q){ render(productos); return; }
+    const filtrados=productos.filter(p=>
       p.nombre.toLowerCase().includes(q) ||
       p.descripcion.toLowerCase().includes(q) ||
       p.categoria.toLowerCase().includes(q)
-    ):productos);
+    );
+    render(filtrados);
+    if(filtrados.length>0){
+      document.getElementById("tablaTitulo").scrollIntoView({behavior:"smooth"});
+    }
   }
 
+  // 🟤 PREVIEW
   function previewImage(){
-    document.getElementById('preview').src=document.getElementById('imagen').value.trim();
+    const src=document.getElementById('imagen').value.trim();
+    document.getElementById('preview').src=src||'';
   }
 
-  async function saveToGitHub(newContent) {
-    mostrarNotificacion("⏳ Guardando cambios...");
+  // 🟤 NOTIFICACIÓN (sin alert)
+  function mostrarNotificacion(mensaje, exito = true) {
+    const notif = document.getElementById('notificacion');
+    notif.style.background = exito ? '#806250' : '#c0392b';
+    notif.innerText = mensaje;
+    notif.style.display = 'block';
+    setTimeout(() => notif.style.display = 'none', 3000);
+  }
 
-    const response = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/dispatches`, {
-      method: "POST",
-      headers: { "Accept": "application/vnd.github+json", "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event_type: "update_productos",
-        client_payload: { content: btoa(unescape(encodeURIComponent(newContent))) }
+  // 🟤 GUARDAR EN GITHUB
+  async function saveToGitHub(newContent){
+    const TOKEN=getToken();
+    if(!TOKEN){ mostrarNotificacion("⚠️ Guardá tu token primero.", false); return; }
+    const apiUrl=`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${FILE_PATH}`;
+    const getRes=await fetch(apiUrl,{headers:{Authorization:`token ${TOKEN}`}});
+    const data=await getRes.json();
+    const updateRes=await fetch(apiUrl,{
+      method:"PUT",
+      headers:{
+        "Authorization":`token ${TOKEN}`,
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        message:"Auto guardado desde admin.html",
+        content:btoa(unescape(encodeURIComponent(newContent))),
+        sha:data.sha
       })
     });
-
-    mostrarNotificacion(response.ok 
-      ? "✅ Cambios enviados. Esperá 10-20 segundos y recargá la carta."
-      : "❌ Error al guardar.", response.ok);
+    if(updateRes.ok){ mostrarNotificacion("✅ Cambios guardados en GitHub."); }
+    else{ mostrarNotificacion("❌ Error al guardar en GitHub.", false); }
   }
 
+  // 🟤 AUTO GUARDADO
+  function autoGuardar(){
+    clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(()=>{
+      const idx=document.getElementById('editIndex').value;
+      if(idx==='') return; // solo si estamos editando
+      productos[idx]={
+        nombre:document.getElementById('nombre').value,
+        descripcion:document.getElementById('descripcion').value,
+        precio:parseFloat(document.getElementById('precio').value),
+        imagen:document.getElementById('imagen').value,
+        categoria:document.getElementById('categoria').value
+      };
+      saveToGitHub(JSON.stringify(productos,null,2));
+    },1000); // guarda 1 segundo después de dejar de escribir
+  }
+
+  // 🟤 GUARDAR PRODUCTO MANUAL
   document.getElementById('form').onsubmit=function(e){
     e.preventDefault();
     const idx=document.getElementById('editIndex').value;
     const prod={
-      nombre: nombre.value,
-      descripcion: descripcion.value,
-      precio: parseFloat(precio.value),
-      imagen: imagen.value,
-      categoria: categoria.value,
+      nombre:document.getElementById('nombre').value,
+      descripcion:document.getElementById('descripcion').value,
+      precio:parseFloat(document.getElementById('precio').value),
+      imagen:document.getElementById('imagen').value,
+      categoria:document.getElementById('categoria').value
     };
-    if(idx==='') productos.push(prod); else productos[idx]=prod;
-    this.reset(); document.getElementById('preview').src='';
-    document.getElementById('editIndex').value='';
-    render(productos); updateCategoryList();
+    if(idx===''){ productos.push(prod);} 
+    else { productos[idx]=prod; document.getElementById('editIndex').value='';}
+    render(productos);
+    updateCategoryList();
+    this.reset();
+    document.getElementById('preview').src='';
     saveToGitHub(JSON.stringify(productos,null,2));
   }
 
+  // 🟤 EDITAR
   function edit(i){
-    const p=productos[i];
-    nombre.value=p.nombre; descripcion.value=p.descripcion; precio.value=p.precio;
-    imagen.value=p.imagen; categoria.value=p.categoria; previewImage();
-    document.getElementById('editIndex').value=i;
+    const tabla=document.getElementById('tbody');
+    const filas=tabla.querySelectorAll('tr');
+    const nombreSeleccionado=filas[i].children[1].innerText.trim();
+
+    const p=productos.find(prod=>prod.nombre.trim()===nombreSeleccionado);
+    const realIndex=productos.indexOf(p);
+
+    document.getElementById('nombre').value=p.nombre;
+    document.getElementById('descripcion').value=p.descripcion;
+    document.getElementById('precio').value=p.precio;
+    document.getElementById('imagen').value=p.imagen;
+    document.getElementById('categoria').value=p.categoria;
+    document.getElementById('editIndex').value=realIndex;
+    document.getElementById('preview').src=p.imagen;
+
+    const form=document.getElementById('form');
+    form.scrollIntoView({behavior:"smooth",block:"start"});
+    form.classList.add('editando');
+    setTimeout(()=>form.classList.remove('editando'),2000);
   }
 
+  // 🟤 ELIMINAR
   function del(i){
-    if(confirm("¿Eliminar producto?")){
-      productos.splice(i,1);
-      render(productos); updateCategoryList();
+    if(confirm('¿Eliminar producto?')){
+      const tabla=document.getElementById('tbody');
+      const nombre=tabla.querySelectorAll('tr')[i].children[1].innerText.trim();
+      const realIndex=productos.findIndex(prod=>prod.nombre.trim()===nombre);
+      productos.splice(realIndex,1);
+      render(productos);
+      updateCategoryList();
       saveToGitHub(JSON.stringify(productos,null,2));
     }
   }
 
+  // 🟤 BOTÓN ARRIBA
   window.onscroll=function(){
     document.getElementById("btnArriba").style.display=window.scrollY>300?"block":"none";
   };
-  function subir(){ document.getElementById("form").scrollIntoView({behavior:"smooth"}); }
-
-  function mostrarNotificacion(msg, exito=true){
-    const n=document.getElementById('notificacion');
-    n.style.background=exito?'#806250':'#c0392b';
-    n.innerText=msg; n.style.display='block';
-    setTimeout(()=>n.style.display='none',3000);
+  function subir(){
+    document.getElementById("form").scrollIntoView({behavior:"smooth"});
   }
 
+  // 🟤 EVENTOS DE AUTO GUARDADO
+  ["nombre","descripcion","precio","imagen","categoria"].forEach(id=>{
+    document.getElementById(id).addEventListener("input",autoGuardar);
+  });
+
+  // 🟤 INICIO
   loadProducts();
+  if(getToken()){ document.getElementById('tokenStatus').innerText="🔐 Token cargado."; }
 </script>
 
+<!-- 🔔 Notificación -->
 <div id="notificacion" style="
-  position: fixed; bottom: 25px; right: 25px; background: #806250;
-  color: white; padding: 12px 18px; border-radius: 10px;
-  display: none; z-index: 200; font-weight: bold; font-size: 15px;">
-</div>
-
-</body>
-</html>
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #806250;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 200;
+  font-weight: bold;
+  font-size: 15px;
+"></div>
