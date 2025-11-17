@@ -65,7 +65,7 @@
   {
     "nombre": "Té con leche",
     "descripcion": "Té Inti Zen",
-    "precio": "4200",
+    "precio": 4300,
     "imagen": "img/te.jpg",
     "categoria": "Cafetería☕️"
   },
