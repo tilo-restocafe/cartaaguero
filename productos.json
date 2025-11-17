@@ -72,7 +72,7 @@
   {
     "nombre": "Submarino",
     "descripcion": "Leche espumada y barra de chocolate",
-    "precio": "4900",
+    "precio": 5000,
     "imagen": "img/Submarino.jpg",
     "categoria": "Cafetería☕️"
   },
