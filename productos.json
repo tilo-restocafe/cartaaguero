@@ -58,7 +58,7 @@
   {
     "nombre": "Café CARAMEL",
     "descripcion": "Caramelo, café, leche espumada",
-    "precio": "5650",
+    "precio": 5,
     "imagen": "img/20250903_144413.jpg",
     "categoria": "Cafetería☕️"
   },
