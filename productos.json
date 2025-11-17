@@ -366,7 +366,7 @@
   {
     "nombre": "Burritos de Langostinos",
     "descripcion": "(caliente): Tortilla de trigo con langostinos y verduras en salsa Teriyaki",
-    "precio": "23500",
+    "precio": 24500,
     "imagen": "img/Jangostino.jpg",
     "categoria": "🍽️Comidas"
   },
