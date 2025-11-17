@@ -51,7 +51,7 @@
   {
     "nombre": "Café MOKA",
     "descripcion": "Cacao intenso, café, leche espumada",
-    "precio": "5650",
+    "precio": 5,
     "imagen": "img/Moka.jpg",
     "categoria": "Cafetería☕️"
   },
