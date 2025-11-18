@@ -765,7 +765,7 @@
   {
     "nombre": "Sandwich de lomito clásico",
     "descripcion": "Lechuga, tomate, jamón y queso, con papas fritas",
-    "precio": "24000",
+    "precio": 25000,
     "imagen": "img/20250914_130533.jpg",
     "categoria": "🥪 Sandwiches"
   },
