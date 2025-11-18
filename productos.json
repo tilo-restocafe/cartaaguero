@@ -583,7 +583,7 @@
   {
     "nombre": "Salmón rosado",
     "descripcion": "Con fritas, puré, ensalada o arroz",
-    "precio": "34500",
+    "precio": 3500,
     "imagen": "img/Salmón.jpg",
     "categoria": "🍽️Comidas"
   },
