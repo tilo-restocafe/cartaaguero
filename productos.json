@@ -737,7 +737,7 @@
   {
     "nombre": "Jamón crudo, stracciatella y tomate",
     "descripcion": "Jamón crudo, stracciatella y tomate",
-    "precio": "19000",
+    "precio": 20000,
     "imagen": "img/20250820_143727.jpg",
     "categoria": "🥪 Sandwiches"
   },
