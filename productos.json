@@ -772,7 +772,7 @@
   {
     "nombre": "Sandwich de lomito bacon",
     "descripcion": "Queso cheddar, panceta y tomate, con papas fritas",
-    "precio": "26000",
+    "precio": 27000,
     "imagen": "img/Lomitobac.jpg",
     "categoria": "🥪 Sandwiches"
   },
