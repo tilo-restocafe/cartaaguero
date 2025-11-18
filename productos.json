@@ -750,8 +750,8 @@
   },
   {
     "nombre": "Chipá tostado",
-    "descripcion": "Jamón y queso $15.000, cheddar y jamón $16.000",
-    "precio": "15000",
+    "descripcion": "Jamón y queso $1.000, cheddar y jamón $16.000",
+    "precio": 15000,
     "imagen": "img/Chipatostado.jpg",
     "categoria": "🥪 Sandwiches"
   },
