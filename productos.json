@@ -352,7 +352,7 @@
   {
     "nombre": "Tarta de calabaza",
     "descripcion": "Brócoli, queso sardo, muzarella, cebolla, masa integral",
-    "precio": "18500",
+    "precio": 19000,
     "imagen": "img/calboso.jpg",
     "categoria": "🍽️Comidas"
   },
