@@ -560,9 +560,9 @@
     "categoria": "🍽️Comidas"
   },
   {
-    "nombre": "Matambre de cerdo",
+    "nombre": "Matambre de cerdo gril",
     "descripcion": "Con fritas, puré, ensalada o arroz",
-    "precio": "24000",
+    "precio": 24000,
     "imagen": "img/Matam.jpg",
     "categoria": "🍽️Comidas"
   },
