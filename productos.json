@@ -485,7 +485,7 @@
   {
     "nombre": "Mila SMOKE",
     "descripcion": "Salsa de tomate, mermelada de bacon, cheddar Acompañadas con puré, fideos, ensalada o papas fritas",
-    "precio": "23000",
+    "precio": 23500,
     "imagen": "img/Smuk.jpg",
     "categoria": "🍽️Comidas"
   },
