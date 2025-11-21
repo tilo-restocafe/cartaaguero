@@ -625,7 +625,7 @@
   {
     "nombre": "Mila PESTO",
     "descripcion": "Milanesa de carne con ñoquis al pesto",
-    "precio": "20500",
+    "precio": 2,
     "imagen": "img/Milapesto.jpg",
     "categoria": "🍽️Comidas"
   },
