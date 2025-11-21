@@ -436,7 +436,7 @@
   {
     "nombre": "Ensalada CAESAR con langostinos",
     "descripcion": "Mix de verdes, croutons, langostinos rebozados, parmesano y aderezo Caesar",
-    "precio": "19500",
+    "precio": 20000,
     "imagen": "img/Caesarlangis.jpg",
     "categoria": "🍽️Comidas"
   },
