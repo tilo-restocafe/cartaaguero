@@ -574,9 +574,9 @@
     "categoria": "🍽️Comidas"
   },
   {
-    "nombre": "Bife de lomo",
+    "nombre": "Bife de lomo gril",
     "descripcion": "Con fritas, puré, ensalada o arroz",
-    "precio": "33000",
+    "precio": 33000,
     "imagen": "img/IMG-20250816-WA0008.jpg",
     "categoria": "🍽️Comidas"
   },
