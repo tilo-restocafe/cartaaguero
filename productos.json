@@ -541,7 +541,7 @@
   {
     "nombre": "RISOTTO Langostinos",
     "descripcion": "Con verduras, nueces y almendras",
-    "precio": "26000",
+    "precio": 26500,
     "imagen": "img/Risotolangos.jpg",
     "categoria": "🍽️Comidas"
   },
