@@ -415,7 +415,7 @@
   {
     "nombre": "Ensalada FRESCA",
     "descripcion": "Rúcula, manzana verde, pepino, tomates cherries, nueces, regianito",
-    "precio": "19200",
+    "precio": 1900,
     "imagen": "img/Fresca.jpg",
     "categoria": "🍽️Comidas"
   },
