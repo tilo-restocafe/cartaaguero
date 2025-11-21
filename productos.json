@@ -422,7 +422,7 @@
   {
     "nombre": "Ensalada CAESAR con pollo",
     "descripcion": "Mix de verdes, croutones, pollo, parmesano y aderezo Caesar",
-    "precio": "17000",
+    "precio": 17500,
     "imagen": "img/20250819_121751.jpg",
     "categoria": "🍽️Comidas"
   },
