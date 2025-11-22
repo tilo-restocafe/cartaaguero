@@ -1192,7 +1192,7 @@
   {
     "nombre": "HOT BANANA",
     "descripcion": "Base de tarta de queso con bananas flambeadas y salsa de dulce de leche",
-    "precio": "14700",
+    "precio": 14400,
     "imagen": "img/Hotbana.jpg",
     "categoria": "🍮POSTRES"
   },
