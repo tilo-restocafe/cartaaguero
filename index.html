@@ -148,8 +148,31 @@
       background: #6b4e3d;
       transform: scale(1.1);
     }
+
+    /* 📱 RESPONSIVE: Ajuste automático según pantalla */
+    @media (max-width: 900px) {
+      .item {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .item {
+        width: 90%;
+      }
+
+      .search-box input {
+        width: 70%;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .item { width: 95%; }
+      header img { height: 180px; }
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -171,6 +194,7 @@
 
   <div id="category-buttons"></div>
   <div id="product-list"></div>
+
   <button id="btnUp">⬆️</button>
 
 <script>
@@ -209,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function load() {
     actualizarBotones();
 
-    let filename = "productos.json";     // español
+    let filename = "productos.json";
     if (idiomaActual === "en") filename = "productos-en.json";
     if (idiomaActual === "pt") filename = "productos-port.json";
 
@@ -222,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
 
       productos = data.map(p => ({
-        // ✔ Traducciones según idioma  
         nombre:
           idiomaActual === "es" ? (p.nombre || p.nome) :
           idiomaActual === "en" ? (p.name || p.nome) :
