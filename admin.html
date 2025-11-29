@@ -1,182 +1,165 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Carta Digital</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Carta Digital</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        h1 {
-            text-align: center;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: white;
-        }
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
 
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
+    th {
+      background: #222;
+      color: white;
+    }
 
-        th {
-            background: #333;
-            color: white;
-        }
+    tr:hover {
+      background: #f1f1f1;
+    }
 
-        td[contenteditable="true"] {
-            background: #fff7cc;
-            border-radius: 4px;
-        }
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
 
-        .btn-guardar {
-            padding: 6px 12px;
-            border: none;
-            background: #28a745;
-            color: white;
-            cursor: pointer;
-            border-radius: 4px;
-        }
+    .guardar {
+      background: #28a745;
+      color: white;
+    }
 
-        .btn-eliminar {
-            padding: 6px 12px;
-            border: none;
-            background: #dc3545;
-            color: white;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-    </style>
+    .editar {
+      background: #007bff;
+      color: white;
+    }
+  </style>
 </head>
-
 <body>
 
-    <h1>Administrador de Productos</h1>
+<h1>Administrador de Productos</h1>
 
-    <table id="tablaProductos">
-        <thead>
-            <tr>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Categoría</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="productosBody"></tbody>
-    </table>
+<table id="tablaProductos">
+  <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Categoría</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-    <script>
-        // CONFIGURACIÓN GITHUB  
-        const OWNER = "sequispe";
-        const REPO = "cartaaguero";
-        const FILE_PATH = "productos.json";
-        const TOKEN = "TOKEN_GITHUB"; // 🔴 CAMBIAR POR TU TOKEN
+<script>
+// ==================== CONFIG ====================
+const repoUser = "sequispe";
+const repoName = "cartaaguero";
+const filePath = "productos.json";
 
-        let productos = [];
-        let shaActual = "";
+const apiBase = `https://api.github.com/repos/${repoUser}/${repoName}`;
 
-        // Cargar productos.json desde GitHub
-        async function cargarProductos() {
-            const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
+// ==================== CARGAR PRODUCTOS ====================
+async function cargarProductos() {
+  const res = await fetch(`https://raw.githubusercontent.com/${repoUser}/${repoName}/main/${filePath}`);
+  const data = await res.json();
+  renderTabla(data);
+}
 
-            const res = await fetch(url);
-            const data = await res.json();
+let productosGlobal = [];
 
-            shaActual = data.sha;
-            productos = JSON.parse(atob(data.content));
+// ==================== MOSTRAR TABLA ====================
+function renderTabla(productos) {
+  productosGlobal = productos;
+  const tbody = document.querySelector("#tablaProductos tbody");
+  tbody.innerHTML = "";
 
-            renderTabla();
-        }
+  productos.forEach((p, index) => {
+    const tr = document.createElement("tr");
 
-        // Render tabla editable
-        function renderTabla() {
-            const tbody = document.getElementById("productosBody");
-            tbody.innerHTML = "";
+    tr.innerHTML = `
+      <td><input type="text" value="${p.imagen}" data-campo="imagen"></td>
+      <td><input type="text" value="${p.nombre}" data-campo="nombre"></td>
+      <td><input type="text" value="${p.descripcion}" data-campo="descripcion"></td>
+      <td><input type="text" value="${p.categoria}" data-campo="categoria"></td>
+      <td><input type="number" value="${p.precio}" data-campo="precio"></td>
+      <td>
+        <button class="guardar" onclick="guardarProducto(${index}, this)">Guardar</button>
+      </td>
+    `;
 
-            productos.forEach((p, index) => {
-                const fila = document.createElement("tr");
+    tbody.appendChild(tr);
+  });
+}
 
-                fila.innerHTML = `
-                    <td contenteditable="true">${p.imagen}</td>
-                    <td contenteditable="true">${p.nombre}</td>
-                    <td contenteditable="true">${p.descripcion}</td>
-                    <td contenteditable="true">${p.precio}</td>
-                    <td contenteditable="true">${p.categoria}</td>
-                    <td>
-                        <button class="btn-guardar" onclick="guardarProducto(${index})">Guardar</button>
-                        <button class="btn-eliminar" onclick="eliminarProducto(${index})">Eliminar</button>
-                    </td>
-                `;
+// ==================== GUARDAR CAMBIOS ====================
+async function guardarProducto(index, boton) {
+  boton.disabled = true;
+  boton.textContent = "Guardando...";
 
-                tbody.appendChild(fila);
-            });
-        }
+  const fila = boton.parentNode.parentNode;
+  const inputs = fila.querySelectorAll("input");
 
-        // Guardar un producto editado
-        async function guardarProducto(i) {
-            const fila = document.querySelectorAll("#productosBody tr")[i];
-            const celdas = fila.querySelectorAll("td");
+  inputs.forEach(input => {
+    const campo = input.getAttribute("data-campo");
+    productosGlobal[index][campo] = (campo === "precio")
+        ? Number(input.value)
+        : input.value;
+  });
 
-            productos[i] = {
-                imagen: celdas[0].innerText.trim(),
-                nombre: celdas[1].innerText.trim(),
-                descripcion: celdas[2].innerText.trim(),
-                precio: Number(celdas[3].innerText.trim()),
-                categoria: celdas[4].innerText.trim()
-            };
+  await subirAGithub(productosGlobal);
 
-            await subirAGitHub();
-            alert("Producto actualizado ✔");
-        }
+  boton.disabled = false;
+  boton.textContent = "Guardar";
+}
 
-        // Eliminar producto
-        async function eliminarProducto(i) {
-            if (!confirm("¿Eliminar este producto?")) return;
+// ==================== SUBIR A GITHUB ====================
+async function subirAGithub(jsonData) {
+  const fileUrl = `${apiBase}/contents/${filePath}`;
 
-            productos.splice(i, 1);
-            await subirAGitHub();
-            renderTabla();
-        }
+  const fileInfo = await fetch(fileUrl).then(r => r.json());
 
-        // Subir productos.json a GitHub
-        async function subirAGitHub() {
-            const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
+  await fetch(fileUrl, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ghp_tu_token_aqui`   // ⚠️ PONÉ TU TOKEN
+    },
+    body: JSON.stringify({
+      message: "Actualización desde admin (edición en tabla)",
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(jsonData, null, 2)))),
+      sha: fileInfo.sha
+    })
+  });
+}
 
-            const nuevoContenido = btoa(JSON.stringify(productos, null, 2));
-
-            const res = await fetch(url, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${TOKEN}`
-                },
-                body: JSON.stringify({
-                    message: "Actualización desde admin",
-                    content: nuevoContenido,
-                    sha: shaActual
-                })
-            });
-
-            const data = await res.json();
-            shaActual = data.content.sha;
-        }
-
-        // Iniciar
-        cargarProductos();
-    </script>
+cargarProductos();
+</script>
 
 </body>
 </html>
