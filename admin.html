@@ -178,7 +178,7 @@ async function guardarFila(index){
     return;
   }
   const ok = await saveToGitHub(JSON.stringify(productos,null,2));
-  if(ok){ animarFila(index); alert('Fila guardada'); }
+  if(ok){ animarFila(index); mostrarToast('✔ Cambios guardados'); }
 }
 
 async function saveToGitHub(content){
@@ -205,8 +205,22 @@ function previewImage(){ const prev=document.getElementById('preview'); if(prev)
 function filterProducts(){ const t=document.getElementById('search').value.toLowerCase(); render(productos.filter(p=> (p.nombre||'').toLowerCase().includes(t) || (p.descripcion||'').toLowerCase().includes(t) || (p.categoria||'').toLowerCase().includes(t))); }
 
 loadProducts();
+// --- TOAST MESSAGE ---
+function mostrarToast(msg){
+  const t=document.createElement('div');
+  t.innerText=msg;
+  t.style.position='fixed'; t.style.bottom='20px'; t.style.right='20px';
+  t.style.background='#4caf50'; t.style.color='#fff';
+  t.style.padding='12px 18px'; t.style.borderRadius='8px';
+  t.style.boxShadow='0 0 10px rgba(0,0,0,0.3)';
+  t.style.zIndex='9999'; t.style.opacity='0'; t.style.transition='opacity .3s';
+  document.body.appendChild(t);
+  requestAnimationFrame(()=> t.style.opacity='1');
+  setTimeout(()=>{ t.style.opacity='0'; setTimeout(()=>t.remove(),300); },1800);
+}
+
 </script>
-<img id="hoverPreview" />
+<img id="hoverPreview"" />
 
 <script>
 // --- VALIDACIONES SIMPLES ---
