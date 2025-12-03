@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (idiomaActual === "pt") filename = "productos-port.json";
 
     /* 🚀 URL SIN BLOQUEO (jsDelivr) */
-    const RAW_URL = `https://cdn.jsdelivr.net/gh/${USER}/${REPO}/${filename}`;
+    const RAW_URL = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${filename}`;
 
     try {
       const res = await fetch(RAW_URL, { cache: "no-store" });
