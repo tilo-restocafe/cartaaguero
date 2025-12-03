@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "nombre": "Café expresso",
     "descripcion": "Café chico",
     "precio": 34000,
@@ -7,6 +8,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 2,
     "nombre": "Café expresso jarrito",
     "descripcion": "Café americano",
     "precio": 36000,
@@ -14,6 +16,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 3,
     "nombre": "Café descafeinado",
     "descripcion": "Café descafeinado",
     "precio": 3900,
@@ -21,6 +24,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 4,
     "nombre": "Café con leche tradicional",
     "descripcion": "Café con leche tradicional",
     "precio": 4400,
@@ -28,6 +32,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 5,
     "nombre": "Café expresso Doble",
     "descripcion": "Café expresso Doble",
     "precio": 5200,
@@ -35,6 +40,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 6,
     "nombre": "Capuccino",
     "descripcion": "Café, leche, canela y cacao",
     "precio": 5400,
@@ -42,6 +48,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 7,
     "nombre": "Capuccino italiana",
     "descripcion": "Capuccino italiana",
     "precio": 5500,
@@ -49,6 +56,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 8,
     "nombre": "Café MOKA",
     "descripcion": "Cacao intenso, café, leche espumada",
     "precio": 5950,
@@ -56,6 +64,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 9,
     "nombre": "Café CARAMEL",
     "descripcion": "Caramelo, café, leche espumada",
     "precio": 5950,
@@ -63,6 +72,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 10,
     "nombre": "Té con leche",
     "descripcion": "Té Inti Zen",
     "precio": 4400,
@@ -70,6 +80,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 11,
     "nombre": "Submarino",
     "descripcion": "Leche espumada y barra de chocolate",
     "precio": 5200,
@@ -77,6 +88,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 12,
     "nombre": "Leche caliente o fría",
     "descripcion": "Leche descremada",
     "precio": 3000,
@@ -84,6 +96,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 13,
     "nombre": "CAFE TILO",
     "descripcion": "Café, Baileys, leche evaporada y chocolate rallado",
     "precio": 7500,
@@ -91,6 +104,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 14,
     "nombre": "ICE COFFE🥶",
     "descripcion": "Doble shot con hielo❄️",
     "precio": 5200,
@@ -98,6 +112,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 15,
     "nombre": "LATTE ICE COFFE🥶",
     "descripcion": "Leche fría con doble shot de café y hielo❄️",
     "precio": 5200,
@@ -105,6 +120,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 16,
     "nombre": "FRAPPUCCINO con Leche y OREO🥶",
     "descripcion": "Base de leche ❄️",
     "precio": 7100,
@@ -112,6 +128,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 17,
     "nombre": "FRAPPUCCINO OREO🥶",
     "descripcion": "Base de café❄️",
     "precio": 7100,
@@ -119,6 +136,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 18,
     "nombre": "Crema",
     "descripcion": "Crema de leche",
     "precio": 350,
@@ -126,6 +144,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 19,
     "nombre": "Leche de almendras",
     "descripcion": "Chico $350 - Grande $450",
     "precio": 0,
@@ -133,20 +152,23 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 20,
     "nombre": "Saborizante vainilla o avellanas",
     "descripcion": "Saborizante vainilla o avellanas",
-    "precio": "350",
+    "precio": 350,
     "imagen": "img/medialunas.jpg",
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 21,
     "nombre": "Medialunas",
     "descripcion": "Medialunas 100% manteca",
-    "precio": "2300",
+    "precio": 2300,
     "imagen": "img/Luna.jpg",
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 22,
     "nombre": "Factura",
     "descripcion": "Pasteleras o membrillo",
     "precio": "2300",
@@ -154,6 +176,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 23,
     "nombre": "Cinamon Roll (rol de canela)",
     "descripcion": "Roll de canela",
     "precio": "4500",
@@ -161,6 +184,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 24,
     "nombre": "Pan de chocolate",
     "descripcion": "Masa de croissant con chocolate belga",
     "precio": "4800",
@@ -168,6 +192,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 25,
     "nombre": "Cookies🍪",
     "descripcion": "Cookies vainilla con chocolate, chocolate+chocolate c/u",
     "precio": "4800",
@@ -175,6 +200,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 26,
     "nombre": "Brownie con nueces blancas",
     "descripcion": "Brownie sin TACC",
     "precio": "6700",
@@ -182,6 +208,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 27,
     "nombre": "Chipá relleno",
     "descripcion": "Chipá relleno de queso c/u",
     "precio": "3700",
@@ -189,6 +216,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 28,
     "nombre": "Scon de queso",
     "descripcion": "Scon de queso c/u",
     "precio": "4200",
@@ -196,6 +224,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 29,
     "nombre": "Budín",
     "descripcion": "Zanahoria y canela, limón y amapolas, chocolate y café c/u",
     "precio": "5500",
@@ -203,6 +232,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 30,
     "nombre": "Alfajor de chocolate",
     "descripcion": "Alfajor de chocolate c/u",
     "precio": "4500",
@@ -210,6 +240,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 31,
     "nombre": "Alfajor Dubái",
     "descripcion": "Alfajor chocolate y pistacho c/u",
     "precio": "4700",
@@ -217,6 +248,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 32,
     "nombre": "Alfajor de maicena",
     "descripcion": "Alfajor de maicena (sin TACC)c/u",
     "precio": "4500",
@@ -224,13 +256,15 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 33,
     "nombre": "Alfajor de almendras",
-    "descripcion": "Alfajor de almendras c/u",
+    "descripcion": "Alfajor de maicena (sin TACC)c/u",
     "precio": "5500",
-    "imagen": "img/Almendras.jpg",
+    "imagen": "img/Maicena.jpg",
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 34,
     "nombre": "Mini torta",
     "descripcion": "Mini tortas dulces c/u",
     "precio": "9200",
@@ -238,6 +272,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 35,
     "nombre": "Medialuna caliente de jamón y queso",
     "descripcion": "Medialuna caliente de jamón y queso c/u",
     "precio": "4600",
@@ -245,6 +280,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 36,
     "nombre": "Plato con frutas de estación",
     "descripcion": "Plato con frutas de estación",
     "precio": "8200",
@@ -252,6 +288,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 37,
     "nombre": "Yogurt",
     "descripcion": "Yogurt $5.000 | Yogurt con granola $8.000 | Yogurt Forte (con frutas y granola) $12.000",
     "precio": 12000,
@@ -259,6 +296,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 38,
     "nombre": "Porción de tostadas",
     "descripcion": "Porción de tostadas, blancas o de salvado con semillas 2 unidades",
     "precio": "3500",
@@ -266,6 +304,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 39,
     "nombre": "Porción de mermelada",
     "descripcion": "Porción de mermelada, manteca, queso blanco, miel o aderezo",
     "precio": "2500",
@@ -273,6 +312,7 @@
     "categoria": "Cafetería☕️"
   },
   {
+    "id": 40,
     "nombre": "Medialunas",
     "descripcion": "3 medialunas caseras",
     "precio": 9500,
@@ -280,6 +320,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 41,
     "nombre": "TOSTADAS🍞",
     "descripcion": "Pan negro o blanco con queso crema y mermelada casera",
     "precio": 9700,
@@ -287,6 +328,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 42,
     "nombre": "OMELETTE DE CLARAS",
     "descripcion": "Omelette con queso y tomate (con FRITOLIN) y frutas de estación",
     "precio": 15000,
@@ -294,6 +336,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 43,
     "nombre": "AVOCADO",
     "descripcion": "Tostada con huevos revueltos, crema de palta y semillas",
     "precio": 14700,
@@ -301,6 +344,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 44,
     "nombre": "REVUELTO",
     "descripcion": "Huevos revueltos con jamón y queso, una tostada para acompañar",
     "precio": 13400,
@@ -308,6 +352,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 45,
     "nombre": "PROTEICO",
     "descripcion": "Pancake 100% harina de almendras, queso crema y fruta de estación más dip de miel",
     "precio": 15000,
@@ -315,6 +360,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 46,
     "nombre": "FRENCH TOAST DULCE",
     "descripcion": "Tostadas marinadas en huevo, con canela y azúcar, queso crema, frutas de estación y dip de miel",
     "precio": 14400,
@@ -322,6 +368,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 47,
     "nombre": "FRENCH TOAST SALADO",
     "descripcion": "Tostadas marinadas en huevo, con canela y azúcar, con bacon, palta y huevo revuelto",
     "precio": 15000,
@@ -329,6 +376,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 48,
     "nombre": "AMIGOS Y FAMILLAS PASTA",
     "descripcion": "Fuente de ñoquis o tallarines (bolognesa, crema, fileto o rosa). Podés combinar.",
     "precio": 49000,
@@ -336,6 +384,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 49,
     "nombre": "AMIGOS Y FAMILLA MILANESA PARA 3",
     "descripcion": "Ternera napolitana, smoke, suiza (puede ser 1/2 y 1/2) con fritas",
     "precio": 61000,
@@ -343,6 +392,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 50,
     "nombre": "Brunch Para Dos",
     "descripcion": "Dos infusiones, 2 jugos o limonadas, 2 yogures con fruta y granola, chipa tostado de jamón y queso y tostón con huevo y palta.",
     "precio": "48000",
@@ -350,6 +400,7 @@
     "categoria": "💡promociones"
   },
   {
+    "id": 51,
     "nombre": "Tarta de calabaza",
     "descripcion": "Brócoli, queso sardo, muzarella, cebolla, masa integral",
     "precio": 19000,
@@ -357,6 +408,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 52,
     "nombre": "Tarta de POLLO",
     "descripcion": "Pechuga de pollo, puerro, queso sardo, cebolla, masa integral",
     "precio": 19000,
@@ -364,6 +416,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 53,
     "nombre": "Burritos de Langostinos",
     "descripcion": "(caliente): Tortilla de trigo con langostinos y verduras en salsa Teriyaki",
     "precio": 24500,
@@ -371,6 +424,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 54,
     "nombre": "Burritos CESAR de POLLO",
     "descripcion": "(fría): Tortilla de trigo, mix de lechugas, clásico aderezo César, pechuga, queso parmesano y croutons",
     "precio": 21000,
@@ -378,6 +432,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 55,
     "nombre": "Burritos COMO MEXICANO",
     "descripcion": "(caliente): Tortilla de trigo con salsa de pollo, relleno de lomo, vegetales y cheddar",
     "precio": 25000,
@@ -385,6 +440,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 56,
     "nombre": "Omelette de jamón y queso",
     "descripcion": "Omelette de jamón y queso",
     "precio": "15000",
@@ -392,6 +448,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 57,
     "nombre": "Omelette de queso y champignones",
     "descripcion": "Omelette de queso y champignones",
     "precio": "17000",
@@ -399,6 +456,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 58,
     "nombre": "Tortilla de papa y cebolla",
     "descripcion": "Tortilla de papa y cebolla",
     "precio": "15500",
@@ -406,6 +464,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 59,
     "nombre": "Tortilla de espinaca",
     "descripcion": "Tortilla de espinaca",
     "precio": "15700",
@@ -413,6 +472,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 60,
     "nombre": "Ensalada FRESCA",
     "descripcion": "Rúcula, manzana verde, pepino, tomates cherries, nueces, regianito",
     "precio": 19700,
@@ -420,6 +480,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 61,
     "nombre": "Ensalada CAESAR con pollo",
     "descripcion": "Mix de verdes, croutones, pollo, parmesano y aderezo Caesar",
     "precio": 17500,
@@ -427,6 +488,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 62,
     "nombre": "Ensalada CAESAR con pollo crujiente",
     "descripcion": "Mix de verdes, croutons, pollo crujiente, parmesano y aderezo Caesar",
     "precio": 18500,
@@ -434,6 +496,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 63,
     "nombre": "Ensalada CAESAR con langostinos",
     "descripcion": "Mix de verdes, croutons, langostinos rebozados, parmesano y aderezo Caesar",
     "precio": 20000,
@@ -441,6 +504,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 64,
     "nombre": "Ensalada STRACCIATELLA mozzarella italiana",
     "descripcion": "Mix de verdes, tomates cherries, jamón crudo, mozzarella, tiras de tortilla",
     "precio": 28500,
@@ -448,6 +512,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 65,
     "nombre": " ENSALADAS COBB SALAD",
     "descripcion": "Mix de verdes, pollo, huevo, queso azul, tomate y salsa de palta.",
     "precio": 18200,
@@ -455,6 +520,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 66,
     "nombre": "Mila SOLA de POLLO o CARNE",
     "descripcion": "Acompañadas con puré, fideos, ensalada o papas fritas",
     "precio": 20500,
@@ -462,6 +528,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 67,
     "nombre": "Mila ESPINACA carne o pollo",
     "descripcion": "Crema de espinaca y queso gratinado. Acompañadas con puré, fideos, ensalada o papas fritas",
     "precio": 22500,
@@ -469,6 +536,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 68,
     "nombre": "Mila SUIZA",
     "descripcion": "Salsa blanca y queso gratinado. Acompañadas con puré, fideos, ensalada o papas fritas",
     "precio": 22500,
@@ -476,6 +544,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 69,
     "nombre": "Mila NAPOLITANA",
     "descripcion": "Salsa de tomate, jamón y queso. Acompañadas con puré, fideos, ensalada o papas fritas",
     "precio": 22500,
@@ -483,6 +552,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 70,
     "nombre": "Mila SMOKE",
     "descripcion": "Salsa de tomate, mermelada de bacon, cheddar Acompañadas con puré, fideos, ensalada o papas fritas",
     "precio": 23500,
@@ -490,6 +560,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 71,
     "nombre": "Filet de Merluza a la romana",
     "descripcion": "Con puré mixto",
     "precio": "18500",
@@ -497,6 +568,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 72,
     "nombre": "Revuelto de Gramajo",
     "descripcion": "Papas fritas, panceta, cebolla, morrón, arvejas y huevo frito",
     "precio": "18000",
@@ -504,6 +576,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 73,
     "nombre": "PIZZA NAPOLITANA",
     "descripcion": "Salsa de tomate, stracciatella sale fria, jamón y rodajas de tomate",
     "precio": "28000",
@@ -511,6 +584,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 74,
     "nombre": "PIZZA PARMA",
     "descripcion": "Salsa de tomate, stracciatella sale fria, burrata, jamón crudo, albahaca.",
     "precio": "34000",
@@ -518,6 +592,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 75,
     "nombre": "PIZZA MARGARITA",
     "descripcion": "Salsa de tomate, stracciatella sale fria, hojas de albahaca.",
     "precio": "25500",
@@ -525,6 +600,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 76,
     "nombre": "PIZZA Champi",
     "descripcion": "Salsa de tomate, stracciatella sale fria, hongos y cebollas salteadas.",
     "precio": "30000",
@@ -532,6 +608,15 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 77,
+    "nombre": "PIZZA MUZA",
+    "descripcion": "piza 4 porciones con muzarela salsa de tomate y oregano",
+    "precio": 25500,
+    "imagen": "img/Piza.jpg",
+    "categoria": "🍽️Comidas"
+  },
+  {
+    "id": 78,
     "nombre": "RISOTTO de Pollo",
     "descripcion": "Con pollo, calabaza y verduras",
     "precio": "24000",
@@ -539,6 +624,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 79,
     "nombre": "RISOTTO Langostinos",
     "descripcion": "Con verduras, nueces y almendras",
     "precio": 26500,
@@ -546,6 +632,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 80,
     "nombre": "RISOTTOS Lomo!",
     "descripcion": "con verduras lomo.",
     "precio": 28500,
@@ -553,13 +640,15 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 81,
     "nombre": "Pollo pechuga gril",
     "descripcion": "Con fritas, puré, ensalada o arroz",
-    "precio": 21000,
+    "precio": "15000",
     "imagen": "img/Pechuga.jpg",
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 82,
     "nombre": "Matambre de cerdo gril",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": 24500,
@@ -567,6 +656,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 83,
     "nombre": "Bife de chorizo gril",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": 30500,
@@ -574,6 +664,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 84,
     "nombre": "Bife de lomo gril",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": 33500,
@@ -581,6 +672,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 85,
     "nombre": "Salmón rosado gril",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": 35000,
@@ -588,6 +680,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 86,
     "nombre": "Pollo (pechuga gril  ) ",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": 23000,
@@ -595,6 +688,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 87,
     "nombre": "Matambre de cerdo gril",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": 26500,
@@ -602,6 +696,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 88,
     "nombre": "Bife de chorizo",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": "32000",
@@ -609,6 +704,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 89,
     "nombre": "Bife de lomo",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": 32500,
@@ -616,6 +712,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 90,
     "nombre": "Salmón rosado (gril)",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": 37000,
@@ -623,6 +720,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 91,
     "nombre": "Mila PESTO",
     "descripcion": "Milanesa de carne con ñoquis al pesto",
     "precio": 21000,
@@ -630,6 +728,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 92,
     "nombre": "Pollo N.Y",
     "descripcion": "Pollo ahumado, mix de queso, verdeo, tomate and papas fritas",
     "precio": 24000,
@@ -637,6 +736,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 93,
     "nombre": "Pollo al CHAMPI",
     "descripcion": "En salsa de hongos con papas fritas",
     "precio": "24500",
@@ -644,6 +744,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 94,
     "nombre": "Pollo TERIYAKI",
     "descripcion": "Pechuga en salsa dulce con arroz salteado y verduras",
     "precio": "23500",
@@ -651,6 +752,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 95,
     "nombre": "Salmón AZUL",
     "descripcion": "Salmón rosado grillado en salsa crema de queso azul con papas españolas",
     "precio": 38000,
@@ -658,6 +760,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 96,
     "nombre": "Matambrito a la PIZZA",
     "descripcion": "De cerdo, muzarella, tomate y orégano con papas fritas",
     "precio": 28500,
@@ -665,13 +768,15 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 97,
     "nombre": "Matambrito a la RIOJANA",
-    "descripcion": "De cerdo, cebollitas, morrones, arvejas y huevo frito, con papas fritas",
+    "descripcion": "De cerdo, cebollitas, morrones, arvejas y huevo frito, con papas españolas",
     "precio": "28500",
     "imagen": "img/Matrio.jpg",
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 98,
     "nombre": "Lomo CACIO E PEPE",
     "descripcion": "Bife de lomo grillado con spaghetti en pimienta y queso",
     "precio": 36000,
@@ -679,6 +784,7 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 99,
     "nombre": "Lomo AL CHAMPI",
     "descripcion": "Bife de lomo grillado en salsa de hongos con papas fritas",
     "precio": 37000,
@@ -686,41 +792,39 @@
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 100,
     "nombre": "BROCHETTE de Lomo",
-    "descripcion": "Con papas fritas (para 2 personas)",
+    "descripcion": "Con papas fritas (para 2 personas) ",
     "precio": "70000",
     "imagen": "img/Brochette.jpg",
     "categoria": "🍽️Comidas"
   },
   {
-    "nombre": "BROCHETTE de Pollo",
+    "id": 101,
+    "nombre": "BROCHETTE de POLLO",
     "descripcion": "Con papas fritas (para 2 personas)",
     "precio": "50000",
     "imagen": "img/20250817_135608.jpg",
     "categoria": "🍽️Comidas"
   },
   {
-    "nombre": "👶MENU KIDS NUGGETS",
-    "descripcion": "De pollo con papas o puré",
-    "precio": "18000",
-    "imagen": "img/Nages.jpg",
-    "categoria": "🍽️Comidas"
-  },
-  {
+    "id": 102,
     "nombre": "👶MENU KIDS Spaghetti o ñoquis",
-    "descripcion": "Fileto o crema",
+    "descripcion": "Fileto o Crema",
     "precio": "18000",
     "imagen": "img/Ñoquiskit.jpg",
     "categoria": "🍽️Comidas"
   },
-  {
+{
+    "id": 103,
     "nombre": "👶MENU KIDS Milanesa",
-    "descripcion": "De carne con papas o puré",
+    " descripcion ": "De carne con papas fritas o puré",
     "precio": "18000",
     "imagen": "img/Menukit.jpg",
     "categoria": "🍽️Comidas"
   },
   {
+    "id": 104,
     "nombre": "Jamón cocido, queso y tomate",
     "descripcion": "Pan ciabatta o árabe",
     "precio": 14000,
@@ -728,6 +832,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 105,
     "nombre": "Tostado mixto",
     "descripcion": "4 triángulos de jamón y queso",
     "precio": 15000,
@@ -735,6 +840,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 106,
     "nombre": "Jamón crudo, stracciatella y tomate",
     "descripcion": "Jamón crudo, stracciatella y tomate",
     "precio": 20000,
@@ -742,6 +848,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 107,
     "nombre": "Pavita, queso y tomate",
     "descripcion": "Pan ciabatta o árabe",
     "precio": 17000,
@@ -749,6 +856,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 108,
     "nombre": "Chipá tostado",
     "descripcion": "Jamón y queso $16.000, cheddar y jamón $17.000",
     "precio": 16000,
@@ -756,6 +864,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 109,
     "nombre": "Sandwich de lomito solo queso",
     "descripcion": "Simple (solo queso) con papas fritas",
     "precio": 22000,
@@ -763,6 +872,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 110,
     "nombre": "Sandwich de lomito clásico",
     "descripcion": "Lechuga, tomate, jamón y queso, con papas fritas",
     "precio": 25000,
@@ -770,6 +880,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 111,
     "nombre": "Sandwich de lomito bacon",
     "descripcion": "Queso cheddar, panceta y tomate, con papas fritas",
     "precio": 27000,
@@ -777,6 +888,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 112,
     "nombre": "Burger simple",
     "descripcion": "Simple (solo queso) con papas fritas",
     "precio": "15000",
@@ -784,6 +896,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 113,
     "nombre": "Burger clásico",
     "descripcion": "Lechuga, tomate, jamón y queso",
     "precio": "17000",
@@ -791,6 +904,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 114,
     "nombre": "Burger bacon",
     "descripcion": "Queso cheddar, panceta y tomate",
     "precio": "19000",
@@ -798,6 +912,7 @@
     "categoria": "🥪 Sandwiches"
   },
   {
+    "id": 115,
     "nombre": "Empanadas",
     "descripcion": "Carne o jamón y queso",
     "precio": "3000",
@@ -805,6 +920,7 @@
     "categoria": "🥟 ENTRADITAS"
   },
   {
+    "id": 116,
     "nombre": "Rabas a la romana",
     "descripcion": "Rabas a la romana",
     "precio": "24000",
@@ -812,6 +928,7 @@
     "categoria": "🥟 ENTRADITAS"
   },
   {
+    "id": 117,
     "nombre": "Mozzarellas rebozadas",
     "descripcion": "Mozzarellas rebozadas",
     "precio": "17000",
@@ -819,6 +936,7 @@
     "categoria": "🥟 ENTRADITAS"
   },
   {
+    "id": 118,
     "nombre": "Nachos",
     "descripcion": "Nachos de carne con cheddar y palta",
     "precio": "18500",
@@ -826,6 +944,7 @@
     "categoria": "🥟 ENTRADITAS"
   },
   {
+    "id": 119,
     "nombre": "Farinata recomendado",
     "descripcion": "Fainá con stracciatella, jamón crudo, tomates y albahaca",
     "precio": "21000",
@@ -833,6 +952,7 @@
     "categoria": "🥟 ENTRADITAS"
   },
   {
+    "id": 120,
     "nombre": "PICADITA FRIA (para 2 personas)",
     "descripcion": "Jamón crudo, jamón cocido, queso roquefort, queso tybo, tomates cherries, frutos secos",
     "precio": "55000",
@@ -840,6 +960,7 @@
     "categoria": "🥟 ENTRADITAS"
   },
   {
+    "id": 121,
     "nombre": "PICADITA CALIENTE (para 2 personas)",
     "descripcion": "Pollo rebozado, bastones de muzarella, rabas y papas fritas. Incluye dos porrones de Stella",
     "precio": "45000",
@@ -847,6 +968,7 @@
     "categoria": "🥟 ENTRADITAS"
   },
   {
+    "id": 122,
     "nombre": "Spaghetti (salsa aparte)",
     "descripcion": "Spaghetti con salsa a elección",
     "precio": "11000",
@@ -854,6 +976,7 @@
     "categoria": "🍝 PASTAS"
   },
   {
+    "id": 123,
     "nombre": "Ñoquis al huevo (salsa aparte)",
     "descripcion": "Ñoquis al huevo con salsa a elección",
     "precio": "11000",
@@ -861,6 +984,7 @@
     "categoria": "🍝 PASTAS"
   },
   {
+    "id": 124,
     "nombre": "Ravioles de verdura, pollo y jamón (salsa aparte)",
     "descripcion": "Rellenos de verdura, pollo y jamón",
     "precio": "13000",
@@ -868,6 +992,7 @@
     "categoria": "🍝 PASTAS"
   },
   {
+    "id": 125,
     "nombre": "Ravioles de verdura y ricota (salsa aparte)",
     "descripcion": "Rellenos de verdura y ricota",
     "precio": "13000",
@@ -875,6 +1000,7 @@
     "categoria": "🍝 PASTAS"
   },
   {
+    "id": 126,
     "nombre": "Sorrentinos de muzzarella y jamón (salsa aparte)",
     "descripcion": "Sorrentinos rellenos de muzzarella y jamón",
     "precio": "15000",
@@ -882,6 +1008,7 @@
     "categoria": "🍝 PASTAS"
   },
   {
+    "id": 127,
     "nombre": "salsa blanca",
     "descripcion": "Salsa blanca",
     "precio": "6000",
@@ -889,6 +1016,7 @@
     "categoria": "🥫SALSAS"
   },
   {
+    "id": 128,
     "nombre": "fileto",
     "descripcion": "fileto",
     "precio": "6000",
@@ -896,55 +1024,55 @@
     "categoria": "🥫SALSAS"
   },
   {
+    "id": 129,
     "nombre": "Alfredo Pollo",
     "descripcion": "salsa blanca con Pollo",
-    "precio": "7500",
-    "imagen": "img/Frepollo.jpg",
-    "categoria": "🥫SALSAS"
-  },
-  {
-    "nombre": "Alfredo langostinos",
-    "descripcion": "salsa blanca con langostinos",
-    "precio": "9500",
-    "imagen": "img/Frelang.jpg",
-    "categoria": "🥫SALSAS"
-  },
-  {
-    "nombre": "Boloñesa",
-    "descripcion": "salsa con carne",
     "precio": "7700",
     "imagen": "img/Bolo.jpg",
     "categoria": "🥫SALSAS"
   },
   {
-    "nombre": "Pesto con nuez",
-    "descripcion": "nuez, ajo y perejil",
+    "id": 130,
+    "nombre": "Alfredo langostinos",
+    "descripcion": "salsa blanca con langostinos",
     "precio": "6800",
     "imagen": "img/IMG-20250816-WA0011.jpg",
     "categoria": "🥫SALSAS"
   },
   {
-    "nombre": "Carbonara",
-    "descripcion": "Crema, panceta y verdeo",
+    "id": 131,
+    "nombre": "Boloñesa",
+    "descripcion": "salsa con carne",
     "precio": "7700",
     "imagen": "img/Carbonara.jpg",
     "categoria": "🥫SALSAS"
   },
   {
-    "nombre": "caccio e pepe",
-    "descripcion": "manteca, pimienta y parmesano",
+    "id": 132,
+    "nombre": "Pesto con nuez",
+    "descripcion": "nuez, ajo y perejil",
     "precio": "7000",
     "imagen": "img/204218.jpg",
     "categoria": "🥫SALSAS"
   },
   {
-    "nombre": "SALSA VARIAS",
-    "descripcion": "MANTECA, OLIVA, AJO Y PARMESANO",
+    "id": 133,
+    "nombre": "Carbonara",
+    "descripcion": "Crema, panceta y verdeo",
     "precio": "6000",
     "imagen": "img/218.jpg",
     "categoria": "🥫SALSAS"
   },
   {
+    "id": 134,
+    "nombre": "caccio e pepe",
+    "descripcion": "manteca, pimienta y parmesano",
+    "precio": "6000",
+    "imagen": "img/218.jpg",
+    "categoria": "🥫SALSAS"
+  },
+  {
+    "id": 135,
     "nombre": "línea Coca-Cola",
     "descripcion": "Zeros y clásicas",
     "precio": "4200",
@@ -952,6 +1080,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 136,
     "nombre": "Agua local filtrada y mineralizada",
     "descripcion": "Agua fría, natural y con gas",
     "precio": "3700",
@@ -959,6 +1088,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 137,
     "nombre": "Adicional con limón",
     "descripcion": "Adicional con limón",
     "precio": "400",
@@ -966,6 +1096,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 138,
     "nombre": "Jugo exprimido de naranja",
     "descripcion": "Exprimido de naranja natural",
     "precio": "6700",
@@ -973,6 +1104,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 139,
     "nombre": "Pomelada",
     "descripcion": "Pomelo  natural",
     "precio": "7200",
@@ -980,6 +1112,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 140,
     "nombre": "Milkshake OREO",
     "descripcion": "Helado de crema, con oreos y crema batida",
     "precio": "9000",
@@ -987,6 +1120,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 141,
     "nombre": "Licuados",
     "descripcion": "Con frutas de estación (base de agua, leche o exprimido)",
     "precio": "7500",
@@ -994,6 +1128,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 142,
     "nombre": "Limonada a la menta con jengibre",
     "descripcion": "Limonada natural con menta y jengibre",
     "precio": "6700",
@@ -1001,6 +1136,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 143,
     "nombre": "Limonada",
     "descripcion": "Limonada simple",
     "precio": "6400",
@@ -1008,6 +1144,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 144,
     "nombre": "STELLA ARTOIS (0cc - Porrón)",
     "descripcion": "Cerveza Stella Artois 330cc",
     "precio": 7400,
@@ -1015,6 +1152,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 145,
     "nombre": "CORONA (Porrón)",
     "descripcion": "Cerveza Corona 330cc",
     "precio": "7700",
@@ -1022,6 +1160,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 146,
     "nombre": "STELLA 1 LITRO",
     "descripcion": "Cerveza Stella Artois 1 L",
     "precio": "17000",
@@ -1029,6 +1168,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 147,
     "nombre": "Trumpeter Malbec",
     "descripcion": "Trumpeter Malbec (750 cc)",
     "precio": "25000",
@@ -1036,6 +1176,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 148,
     "nombre": "Trumpeter Cabernet",
     "descripcion": "Trumpeter Cabernet (750 cc)",
     "precio": "25000",
@@ -1043,6 +1184,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 149,
     "nombre": "Rutini Malbec-Cabernet Franc",
     "descripcion": "Rutini Malbec-Cabernet Franc (750 cc)",
     "precio": "36000",
@@ -1050,6 +1192,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 150,
     "nombre": "Portillo Malbec",
     "descripcion": "Portillo Malbec (750 cc)",
     "precio": "19000",
@@ -1057,6 +1200,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 151,
     "nombre": "Salentein Reserva Cabernet Sauvignon",
     "descripcion": "Salentein Reserva Cabernet Sauvignon (750 cc)",
     "precio": "30000",
@@ -1064,6 +1208,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 152,
     "nombre": "Trumpeter Sauvignon Blanc",
     "descripcion": "Trumpeter Sauvignon Blanc (750 cc)",
     "precio": "25000",
@@ -1071,6 +1216,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 153,
     "nombre": "Portillo Chardonnay",
     "descripcion": "Portillo Chardonnay (750 cc)",
     "precio": "19000",
@@ -1078,6 +1224,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 154,
     "nombre": "Portillo Rosé Malbec",
     "descripcion": "Portillo Rosé Malbec (Vino fresco y fácil de beber)",
     "precio": "19000",
@@ -1085,6 +1232,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 155,
     "nombre": "Copa de vino",
     "descripcion": "Blancos o tintos",
     "precio": "8000",
@@ -1092,6 +1240,7 @@
     "categoria": "🥤 Bebidas y vinos"
   },
   {
+    "id": 156,
     "nombre": "Jack Daniel's",
     "descripcion": "Jack Daniel's",
     "precio": "15000",
@@ -1099,6 +1248,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 157,
     "nombre": "Johnny Walker Black",
     "descripcion": "Johnny Walker Black",
     "precio": "15000",
@@ -1106,6 +1256,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 158,
     "nombre": "Johnny Walker Red",
     "descripcion": "Johnny Walker Red",
     "precio": "13000",
@@ -1113,6 +1264,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 159,
     "nombre": "Licor Baileys",
     "descripcion": "Licor Baileys",
     "precio": "12000",
@@ -1120,6 +1272,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 160,
     "nombre": "Fernet con Coca-Cola",
     "descripcion": "Fernet con Coca-Cola",
     "precio": "12000",
@@ -1127,6 +1280,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 161,
     "nombre": "Gin Tonic Beefeater",
     "descripcion": "Gin Tonic Beefeater",
     "precio": "12000",
@@ -1134,6 +1288,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 162,
     "nombre": "Batido Gancia",
     "descripcion": "Batido Gancia",
     "precio": "9500",
@@ -1141,6 +1296,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 163,
     "nombre": "Aperol con naranja",
     "descripcion": "Aperol con naranja",
     "precio": "9500",
@@ -1148,6 +1304,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 164,
     "nombre": "Aperol Spritz",
     "descripcion": "Aperol Spritz",
     "precio": "13000",
@@ -1155,6 +1312,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 165,
     "nombre": "HAPPY HOUR",
     "descripcion": "Aperol Spritz $13000 o naranja $9500, Gin Tonic $12000 o Fernet con Coca $12000. Todos los días de 18 a 20:30.",
     "precio": "0",
@@ -1162,6 +1320,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 166,
     "nombre": "Champagne Chandon",
     "descripcion": "Champagne Chandon (187cc)",
     "precio": "15000",
@@ -1169,6 +1328,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 167,
     "nombre": "Champagne Salentein Brut Nature",
     "descripcion": "Champagne Salentein Brut Nature",
     "precio": "32000",
@@ -1176,6 +1336,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 168,
     "nombre": "Champagne Blanc de Blancs (Salentein)",
     "descripcion": "Champagne Blanc de Blancs (Salentein)",
     "precio": "40000",
@@ -1183,6 +1344,7 @@
     "categoria": "🍹TRAGOS"
   },
   {
+    "id": 169,
     "nombre": "Panqueque de dulce de leche",
     "descripcion": "Panqueque de dulce de leche",
     "precio": "13500",
@@ -1190,6 +1352,7 @@
     "categoria": "🍮POSTRES"
   },
   {
+    "id": 170,
     "nombre": "HOT BANANA",
     "descripcion": "Base de tarta de queso con bananas flambeadas y salsa de dulce de leche",
     "precio": 14400,
@@ -1197,6 +1360,7 @@
     "categoria": "🍮POSTRES"
   },
   {
+    "id": 171,
     "nombre": "Flan casero",
     "descripcion": "Con crema y dulce de leche $11 solo 8000",
     "precio": 11000,
@@ -1204,6 +1368,7 @@
     "categoria": "🍮POSTRES"
   },
   {
+    "id": 172,
     "nombre": "Ensalada de frutas",
     "descripcion": "Con bocha de helado $14000 solo $11000",
     "precio": 14000,
@@ -1211,6 +1376,7 @@
     "categoria": "🍮POSTRES"
   },
   {
+    "id": 173,
     "nombre": "Helado",
     "descripcion": "Bochas dos: dulce de leche, chocolate, americano",
     "precio": 8500,
@@ -1218,6 +1384,7 @@
     "categoria": "🍮POSTRES"
   },
   {
+    "id": 174,
     "nombre": "APPLE HOT",
     "descripcion": "Apple crumble tibio con helado de vainilla y almendras tostadas",
     "precio": "14700",
@@ -1225,6 +1392,7 @@
     "categoria": "🍮POSTRES"
   },
   {
+    "id": 175,
     "nombre": "BROWNIE TIBIO",
     "descripcion": "Brownie tibio con helado y salsa de chocolate",
     "precio": "12500",
@@ -1232,6 +1400,7 @@
     "categoria": "🍮POSTRES"
   },
   {
+    "id": 176,
     "nombre": "MENU del DIA o SUGERENCIAS",
     "descripcion": "Menú del día: plato + bebida + postre o café. La sugerencia solo incluye el plato.",
     "precio": "0",
@@ -1239,17 +1408,11 @@
     "categoria": "📋MENU del DIA/SUGERENCIAS Y NOVEDADES"
   },
   {
+    "id": 177,
     "nombre": "tortas nuevas",
     "descripcion": "Sugerencia nueva por porción.",
     "precio": "9200",
     "imagen": "img/torgrende.jpg",
     "categoria": "📋MENU del DIA/SUGERENCIAS Y NOVEDADES"
-  },
-  {
-    "nombre": "PIZZA MUZA",
-    "descripcion": "piza 4 porciones con muzarela salsa de tomate y oregano",
-    "precio": 25500,
-    "imagen": "img/Piza.jpg",
-    "categoria": "🍽️Comidas"
   }
 ]
