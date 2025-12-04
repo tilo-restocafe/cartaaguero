@@ -1418,7 +1418,7 @@
   {
     "nombre": "MENU del DIA o SUGERENCIAS",
     "descripcion": "Menú del día: plato + bebida + postre o café. La sugerencia solo incluye el plato.",
-    "precio": "0",
+    "precio": "1000",
     "imagen": "",
     "categoria": "📋MENU del DIA/SUGERENCIAS Y NOVEDADES",
     "id": "prod0178"
