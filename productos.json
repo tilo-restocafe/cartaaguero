@@ -346,7 +346,7 @@
   {
     "nombre": "REVUELTO",
     "descripcion": "Huevos revueltos con jamón y queso, una tostada para acompañar",
-    "precio": "13400",
+    "precio": "14000",
     "imagen": "img/Resultado.jpg",
     "categoria": "💡promociones",
     "id": "prod0044"
@@ -354,7 +354,7 @@
   {
     "nombre": "PROTEICO",
     "descripcion": "Pancake 100% harina de almendras, queso crema y fruta de estación más dip de miel",
-    "precio": "15000",
+    "precio": "16000",
     "imagen": "img/20250815_132946.jpg",
     "categoria": "💡promociones",
     "id": "prod0045"
@@ -362,7 +362,7 @@
   {
     "nombre": "FRENCH TOAST DULCE",
     "descripcion": "Tostadas marinadas en huevo, con canela y azúcar, queso crema, frutas de estación y dip de miel",
-    "precio": "14400",
+    "precio": "15000",
     "imagen": "img/20250819_113846.jpg",
     "categoria": "💡promociones",
     "id": "prod0046"
@@ -370,7 +370,7 @@
   {
     "nombre": "FRENCH TOAST SALADO",
     "descripcion": "Tostadas marinadas en huevo, con canela y azúcar, con bacon, palta y huevo revuelto",
-    "precio": "15000",
+    "precio": "16000",
     "imagen": "img/20250819_113925.jpg",
     "categoria": "💡promociones",
     "id": "prod0047"
