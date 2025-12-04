@@ -799,8 +799,7 @@
     "description": "With French fries (for 2 people)",
     "price": "71000",
     "imagen": "img/Brochette.jpg",
-    "category": "🍽️Meals",
-    "precio": "71000"
+    "category": "🍽️Meals"
   },
   {
     "id": "prod0101",
@@ -1064,7 +1063,8 @@
     "description": "Walnut, garlic and parsley",
     "price": "6800",
     "imagen": "img/IMG-20250816-WA0011.jpg",
-    "category": "🥫Sauces"
+    "category": "🥫Sauces",
+    "precio": "6800"
   },
   {
     "id": "prod0134",
