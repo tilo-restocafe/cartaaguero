@@ -4,7 +4,7 @@
     "name": "Espresso Coffee",
     "description": "Small coffee",
     "price": "34000",
-    "image": "img/cafe.jpg",
+    "imagen": "img/cafe.jpg",
     "category": "Coffee Shop ☕️"
   },
   {
@@ -12,7 +12,7 @@
     "name": "Espresso Coffee (jarrito)",
     "description": "Americano coffee",
     "price": "36000",
-    "image": "img/Americano.jpg",
+    "imagen": "img/Americano.jpg",
     "category": "Coffee Shop ☕️"
   },
   {
