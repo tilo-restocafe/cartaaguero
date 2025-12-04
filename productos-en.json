@@ -23,8 +23,7 @@
     "description": "Decaffeinated coffee",
     "price": "3900",
     "imagen": "img/20250813_094842.jpg",
-    "category": "Coffee Shop ☕️",
-    "precio": "3900"
+    "category": "Coffee Shop ☕️"
   },
   {
     "id": "prod0004",
@@ -752,7 +751,8 @@
     "description": "Chicken breast in sweet sauce with sautéed rice and vegetables",
     "price": "23500",
     "imagen": "img/Tari.jpg",
-    "category": "🍽️Meals"
+    "category": "🍽️Meals",
+    "precio": "23500"
   },
   {
     "id": "prod0095",
