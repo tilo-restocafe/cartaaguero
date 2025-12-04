@@ -67,14 +67,21 @@
 
 <script>
 const USERNAME="cholose10", REPO="cartaaguero";
-const MAIN_JSON="productos.json";
-const EN_JSON="productos-en.json";
-const PT_JSON="productos-port.json";
+const MAIN_JSON="productos.json";       // español → precio
+const EN_JSON="productos-en.json";      // inglés → price
+const PT_JSON="productos-port.json";    // portugués → preco
 
 let productos=[];
 
-function saveToken(){ const t=document.getElementById('token').value; localStorage.setItem('github_token',t); document.getElementById('tokenStatus').innerText='Token guardado'; }
-function clearToken(){ localStorage.removeItem('github_token'); document.getElementById('tokenStatus').innerText='Token borrado'; }
+function saveToken(){ 
+  const t=document.getElementById('token').value;
+  localStorage.setItem('github_token',t);
+  document.getElementById('tokenStatus').innerText='Token guardado'; 
+}
+function clearToken(){ 
+  localStorage.removeItem('github_token');
+  document.getElementById('tokenStatus').innerText='Token borrado'; 
+}
 function getToken(){ return localStorage.getItem('github_token'); }
 
 async function loadProducts(){
@@ -82,12 +89,15 @@ async function loadProducts(){
     const r=await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${MAIN_JSON}`);
     productos=await r.json();
     render(productos);
-  }catch(e){ console.error(e); productos=[]; render(productos);} }
+  }catch(e){ console.error(e); productos=[]; render(productos);}
+}
 
 function render(lista){
-  const tb=document.getElementById('tbody'); tb.innerHTML='';
+  const tb=document.getElementById('tbody'); 
+  tb.innerHTML='';
   lista.forEach((p,i)=>{
-    tb.innerHTML+=`<tr>
+    tb.innerHTML+=`
+    <tr>
       <td><img src="${p.imagen||''}" style="max-width:60px;"></td>
       <td><input value="${escapeHtml(p.nombre||'')}" oninput="editField(${i},'nombre',this.value)"></td>
       <td><textarea oninput="editField(${i},'descripcion',this.value)">${escapeHtml(p.descripcion||'')}</textarea></td>
@@ -98,50 +108,90 @@ function render(lista){
   });
 }
 
-function escapeHtml(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
-function editField(i,c,v){ productos[i][campo=c] = v; }
+function escapeHtml(t){ 
+  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); 
+}
+
+function editField(i,campo,valor){ 
+  productos[i][campo] = valor; 
+}
 
 async function guardarFila(i){
   const ok = await saveToGitHub(MAIN_JSON, productos);
   if(!ok){ alert("Error guardando"); return; }
+
   await syncPrice(productos[i].id, productos[i].precio);
-  alert("Guardado (ES + EN + PT)");
+
+  alert("Guardado (ES → EN + PT)");
 }
 
-async function syncPrice(id,precio){ if(!id) return;
-  await updatePriceInJSON(EN_JSON,id,precio);
-  await updatePriceInJSON(PT_JSON,id,precio);
+async function syncPrice(id,precio){ 
+  if(!id) return;
+  await updatePriceInJSON(EN_JSON, id, precio, "price");
+  await updatePriceInJSON(PT_JSON, id, precio, "preco");
 }
 
-async function updatePriceInJSON(file,id,precio){
+async function updatePriceInJSON(file,id,precio,campo){
   try{
     const r=await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${file}`);
     let arr=await r.json();
     const ix=arr.findIndex(x=>x.id===id);
-    if(ix>=0) arr[ix].precio = precio;
+
+    if(ix>=0){
+      arr[ix][campo] = precio;
+    }
+
     await saveToGitHub(file,arr);
+
   }catch(e){ console.error(e); }
 }
 
 async function saveToGitHub(file,content){
   try{
-    const token=getToken(); if(!token){ alert("Falta token"); return false; }
+    const token=getToken(); 
+    if(!token){ alert("Falta token"); return false; }
+
     const sha=await getSHA(file);
 
-    const r=await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${file}`,{ method:'PUT', headers:{"Content-Type":"application/json","Authorization":"token "+token}, body:JSON.stringify({ message:"update", content:btoa(unescape(encodeURIComponent(JSON.stringify(content,null,2)))), sha }) });
+    const r=await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${file}`,{
+      method:'PUT',
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"token "+token
+      },
+      body:JSON.stringify({
+        message:"update",
+        content:btoa(unescape(encodeURIComponent(JSON.stringify(content,null,2)))),
+        sha
+      })
+    });
+
     return r.ok;
+
   }catch(e){ console.error(e); return false; }
 }
 
 async function getSHA(file){
   const r=await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${file}`);
-  const j=await r.json(); return j.sha;
+  const j=await r.json(); 
+  return j.sha;
 }
 
-function toggleForm(){ const f=document.getElementById('form'); f.style.display=f.style.display==='none'?'block':'none'; }
-function previewImage(){ document.getElementById('preview').src=document.getElementById('imagen').value; }
-function filterProducts(){ const t=document.getElementById('search').value.toLowerCase(); render(productos.filter(p=> (p.nombre||'').toLowerCase().includes(t))); }
+function toggleForm(){ 
+  const f=document.getElementById('form'); 
+  f.style.display=f.style.display==='none'?'block':'none'; 
+}
+
+function previewImage(){ 
+  document.getElementById('preview').src=document.getElementById('imagen').value; 
+}
+
+function filterProducts(){ 
+  const t=document.getElementById('search').value.toLowerCase(); 
+  render(productos.filter(p=> (p.nombre||'').toLowerCase().includes(t))); 
+}
 
 loadProducts();
 </script>
-</body></html>
+</body>
+</html>
