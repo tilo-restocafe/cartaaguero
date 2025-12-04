@@ -567,8 +567,7 @@
     "description": "Served with mixed mashed potatoes",
     "price": "18500",
     "imagen": "img/20250816_135027.jpg",
-    "category": "🍽️Meals",
-    "precio": "18500"
+    "category": "🍽️Meals"
   },
   {
     "id": "prod0072",
@@ -800,7 +799,8 @@
     "description": "With French fries (for 2 people)",
     "price": "71000",
     "imagen": "img/Brochette.jpg",
-    "category": "🍽️Meals"
+    "category": "🍽️Meals",
+    "precio": "71000"
   },
   {
     "id": "prod0101",
