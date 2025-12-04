@@ -35,6 +35,7 @@
   <input id="search" placeholder="Buscar..." oninput="filterProducts()">
 
   <button id="toggleForm" onclick="toggleForm()">+ Agregar producto</button>
+<button id="agregarVarios" onclick="toggleMultiForm()" style="margin-left:10px; background:#5c8a50;">➕ Agregar VARIOS</button>
 
   <form id="form">
     <input type="hidden" id="editIndex">
@@ -56,6 +57,15 @@
 
     <button type="button" onclick="guardarFormulario()">Guardar</button>
   </form>
+
+<!-- FORMULARIO MÚLTIPLE -->
+<form id="multiForm" style="display:none; background:#fff; padding:15px; border-radius:10px; margin-bottom:20px;">
+  <h3>Cargar varios productos</h3>
+  <p>Agregá un producto por línea con este formato:</p>
+  <p><b>nombre | descripcion | precio | imagen | categoria</b></p>
+  <textarea id="multiInput" placeholder="Ej:\nCafé expresso | Café chico | 3400 | img/cafe.jpg | Cafetería" style="height:180px;"></textarea>
+  <button type="button" onclick="procesarMulti()">Guardar varios</button>
+</form>
 
   <table>
     <thead><tr>
@@ -79,32 +89,36 @@ function clearToken(){ localStorage.removeItem('github_token'); document.getElem
 function getToken(){ return localStorage.getItem('github_token'); }
 
 async function loadProducts(){
-  const url=`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${MAIN_JSON}`;
-  const r=await fetch(url);
-  productos=await r.json();
-  render(productos);
+  try{
+    const url=`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${MAIN_JSON}`;
+    const r=await fetch(url);
+    productos=await r.json();
+    render(productos);
+  }catch(e){ console.error('Error cargando productos',e); productos=[]; render(productos); }
 }
 
 function render(lista){
   const tb=document.getElementById('tbody'); tb.innerHTML='';
   lista.forEach((p,i)=>{
-    tb.innerHTML+=`
-      <tr>
-        <td><img src="${p.imagen}" class="mini-img" style="max-width:60px;"></td>
-        <td><input value="${p.nombre}" oninput="editField(${i},'nombre',this.value)"></td>
-        <td><textarea oninput="editField(${i},'descripcion',this.value)">${p.descripcion}</textarea></td>
-        <td><input value="${p.categoria}" oninput="editField(${i},'categoria',this.value)"></td>
-        <td><input type="text" value="${p.precio}" oninput="editField(${i},'precio',this.value)"></td>
-        <td>
-          <button onclick="guardarFila(${i})">Guardar</button>
-        </td>
+    tb.innerHTML+=`\
+      <tr>\
+        <td><img src="${p.imagen||''}" class="mini-img" style="max-width:60px;"></td>\
+        <td><input value="${escapeHtml(p.nombre||'')}" oninput="editField(${i},'nombre',this.value)"></td>\
+        <td><textarea oninput="editField(${i},'descripcion',this.value)">${escapeHtml(p.descripcion||'')}</textarea></td>\
+        <td><input value="${escapeHtml(p.categoria||'')}" oninput="editField(${i},'categoria',this.value)"></td>\
+        <td><input type="text" value="${p.precio||''}" oninput="editField(${i},'precio',this.value)"></td>\
+        <td>\
+          <button onclick="guardarFila(${i})">Guardar</button>\
+        </td>\
       </tr>`;
   });
 }
 
+function escapeHtml(text){ return String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
 function editField(i,campo,valor){
-  if(campo==="precio") productos[i][campo] = valor;
-  else productos[i][campo] = valor;
+  productos[i] = productos[i] || {};
+  productos[i][campo] = valor;
 }
 
 async function guardarFila(i){
@@ -122,26 +136,32 @@ async function guardarFila(i){
 }
 
 async function syncPrice(id, precio){
+  // si falta id, nada que hacer
+  if(!id) return;
   await updatePriceInJSON(EN_JSON, id, precio);
   await updatePriceInJSON(PT_JSON, id, precio);
 }
 
 async function updatePriceInJSON(file, id, precio){
-  const url=`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${file}`;
-  const r=await fetch(url);
-  let arr = await r.json();
+  try{
+    const url=`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${file}`;
+    const r=await fetch(url);
+    if(!r.ok) { console.warn('No existe archivo',file); return; }
+    let arr = await r.json();
 
-  const index = arr.findIndex(x=>x.id===id);
-  if(index>=0){ arr[index].precio = precio; }
+    const index = arr.findIndex(x=>x.id===id);
+    if(index>=0){ arr[index].precio = precio; }
 
-  await saveToGitHub(file, arr);
+    await saveToGitHub(file, arr);
+  }catch(e){ console.error('Error updatePriceInJSON',file,e); }
 }
 
 async function saveToGitHub(fileName, content){
   try{
     const token=getToken(); if(!token){ alert("Falta token"); return false; }
 
-    const sha = await getSHA(fileName);
+    let sha = null;
+    try{ sha = await getSHA(fileName); }catch(e){ console.warn('No se pudo obtener SHA, el archivo puede no existir. Se creará uno nuevo.'); }
 
     const res = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${fileName}`,{
       method:'PUT',
@@ -149,27 +169,131 @@ async function saveToGitHub(fileName, content){
       body:JSON.stringify({
         message:'update',
         content:btoa(unescape(encodeURIComponent(JSON.stringify(content,null,2)))),
-        sha
+        ...(sha?{sha}:{})
       })
     });
 
+    if(!res.ok){ const t = await res.text(); console.error('GitHub API error',t); }
     return res.ok;
   }catch(e){ console.error(e); return false; }
 }
 
 async function getSHA(file){
   const r=await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${file}`);
-  const j=await r.json(); return j.sha;
+  const j=await r.json(); if(!r.ok) throw new Error('No SHA'); return j.sha;
 }
 
+// Inicializar carga
 loadProducts();
 
+function toggleMultiForm(){
+  const f=document.getElementById('multiForm');
+  f.style.display = f.style.display==='none'? 'block':'none';
+}
+
+// Fix: use a valid regex to split lines (handle CRLF and multiple blank lines)
+async function procesarMulti(){
+  const txt=document.getElementById('multiInput').value.trim();
+  if(!txt){ alert('No hay datos'); return; }
+
+  const lineas = txt.split(/\r?\n+/);
+  let nuevos=[];
+
+  for(const linea of lineas){
+    if(!linea.trim()) continue;
+    const partes=linea.split('|').map(x=>x.trim());
+    if(partes.length!==5){ alert('Línea con formato incorrecto: '+ linea); return; }
+
+    const [nombre, descripcion, precio, imagen, categoria] = partes;
+
+    // generar ID automático (busca último número disponible en productos existentes)
+    const maxId = productos.reduce((m,it)=>{ const match = (it.id||'').match(/prod(\d+)/); return match? Math.max(m, parseInt(match[1],10)) : m; }, 0);
+    const newIndex = maxId + nuevos.length + 1;
+    const id = 'prod' + String(newIndex).padStart(4,'0');
+
+    nuevos.push({ nombre, descripcion, precio, imagen, categoria, id });
+  }
+
+  // Agregar al array principal
+  productos = productos.concat(nuevos);
+
+  // Guardar en ES
+  const ok = await saveToGitHub(MAIN_JSON, productos);
+  if(!ok){ alert('Error guardando en ES'); return; }
+
+  // Sincronizar precios en EN/PT
+  for(const p of nuevos){
+    await syncPrice(p.id, p.precio);
+  }
+
+  alert('✔ Productos cargados correctamente');
+  document.getElementById('multiInput').value='';
+  loadProducts();
+}
+
 async function guardarTodosLosPrecios(){
-  if(!confirm("¿Guardar TODOS los precios en EN y PT?")) return;
+  if(!confirm("¿Guardar TODOS los precios? Esto actualizará ES, EN y PT.")) return;
+
+  // 1) Guardar productos.json (ES)
+  const ok = await saveToGitHub(MAIN_JSON, productos);
+  if(!ok){ alert("❌ Error guardando en ES"); return; }
+
+  // 2) Sincronizar todos los precios en EN y PT
   for(const p of productos){
     await syncPrice(p.id, p.precio);
   }
+
+  alert("✔ Todos los precios guardados en ES y sincronizados en EN/PT");
+}
   alert("✔ Todos los precios sincronizados correctamente en EN y PT");
+}
+
+// --- funciones adicionales para el formulario simple ---
+function toggleForm(){
+  const f = document.getElementById('form');
+  f.style.display = f.style.display==='none' || f.style.display===''? 'block':'none';
+}
+
+function previewImage(){
+  const src = document.getElementById('imagen').value;
+  const img = document.getElementById('preview');
+  if(!src){ img.style.display='none'; img.src=''; return; }
+  img.style.display='block'; img.src = src;
+}
+
+async function guardarFormulario(){
+  const nombre = document.getElementById('nombre').value.trim();
+  const descripcion = document.getElementById('descripcion').value.trim();
+  const precio = document.getElementById('precio').value.trim();
+  const imagen = document.getElementById('imagen').value.trim();
+  const categoria = document.getElementById('categoria').value.trim();
+
+  if(!nombre){ alert('Falta nombre'); return; }
+
+  // generar id
+  const maxId = productos.reduce((m,it)=>{ const match = (it.id||'').match(/prod(\d+)/); return match? Math.max(m, parseInt(match[1],10)) : m; }, 0);
+  const id = 'prod' + String(maxId + 1).padStart(4,'0');
+
+  const nuevo = { nombre, descripcion, precio, imagen, categoria, id };
+  productos.push(nuevo);
+
+  const ok = await saveToGitHub(MAIN_JSON, productos);
+  if(!ok){ alert('Error guardando ES'); return; }
+
+  // sincronizar precio
+  await syncPrice(nuevo.id, nuevo.precio);
+
+  alert('Producto agregado correctamente');
+  document.getElementById('form').reset();
+  document.getElementById('preview').src='';
+  loadProducts();
+}
+
+// simple filter
+function filterProducts(){
+  const q = document.getElementById('search').value.toLowerCase();
+  const filtered = productos.filter(p=> (p.nombre||'').toLowerCase().includes(q) || (p.descripcion||'').toLowerCase().includes(q) || (p.categoria||'').toLowerCase().includes(q));
+  render(filtered);
 }
 </script>
 <img id="hoverPreview" />
