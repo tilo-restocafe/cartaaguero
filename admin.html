@@ -24,6 +24,8 @@
 <body>
   <h1>Panel de Administración</h1>
 
+<button id="btnGuardarGlobal" onclick="guardarCambiosGlobales()" style="position:absolute; top:20px; right:20px; background:#4CAF50; color:white; padding:10px 15px; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">💾 Guardar TODOS los cambios</button>
+
   <div>
     <label>Token:</label>
     <input type="password" id="token" placeholder="Pegar token">
@@ -121,22 +123,18 @@ function editField(i,campo,valor){
   productos[i][campo] = valor;
 }
 
+// Guardar por fila (se mantiene por compatibilidad, pero recomendamos usar el guardado global)
 async function guardarFila(i){
-  const p=productos[i];
-
-  // 1) guardar cambios SOLO en productos.json (ES)
-  const ok = await saveToGitHub(MAIN_JSON, productos);
-
-  if(!ok){ alert("Error guardando ES"); return; }
-
-  // 2) sincronizar SOLO el precio en EN y PT
-  await syncPrice(p.id, p.precio);
-
-  alert("Cambios guardados correctamente (ES + precios EN/PT)");
+  alert('Ahora el guardado es global 👉 Usá el botón "Guardar TODOS los cambios" arriba a la derecha.');
+  // Si en algún caso quiere activar guardado por fila, descomentar y ajustar:
+  // const p = productos[i];
+  // const ok = await saveToGitHub(MAIN_JSON, productos);
+  // if(!ok){ alert("Error guardando ES"); return; }
+  // await syncPrice(p.id, p.precio);
+  // alert("Cambios guardados correctamente (ES + precios EN/PT)");
 }
 
 async function syncPrice(id, precio){
-  // si falta id, nada que hacer
   if(!id) return;
   await updatePriceInJSON(EN_JSON, id, precio);
   await updatePriceInJSON(PT_JSON, id, precio);
@@ -231,6 +229,19 @@ async function procesarMulti(){
   loadProducts();
 }
 
+async function guardarCambiosGlobales(){
+  if(!confirm('¿Guardar TODOS los cambios realizados en la tabla?')) return;
+
+  // Guardar ES completo
+  const ok = await saveToGitHub(MAIN_JSON, productos);
+  if(!ok){ alert('❌ Error guardando el archivo principal (ES)'); return; }
+
+  // Actualizar SOLO precios en EN y PT
+  for(const p of productos){ await syncPrice(p.id, p.precio); }
+
+  alert('✔ Todos los cambios guardados correctamente (ES completo + precios EN/PT)');
+}
+
 async function guardarTodosLosPrecios(){
   if(!confirm("¿Guardar TODOS los precios? Esto actualizará ES, EN y PT.")) return;
 
@@ -244,8 +255,6 @@ async function guardarTodosLosPrecios(){
   }
 
   alert("✔ Todos los precios guardados en ES y sincronizados en EN/PT");
-}
-  alert("✔ Todos los precios sincronizados correctamente en EN y PT");
 }
 
 // --- funciones adicionales para el formulario simple ---
