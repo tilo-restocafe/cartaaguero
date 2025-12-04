@@ -4,22 +4,117 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Carta - Tilo Café Agüero</title>
+
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f7f3f0; color:#333; }
-    h1 { text-align:center; color:#806250; }
-    #toggleForm { background:#806250; color:white; padding:10px 15px; border-radius:6px; cursor:pointer; margin-bottom:15px; }
-    form { display:none; background:#fff; padding:15px; border-radius:10px; margin-bottom:20px; }
-    input, textarea { width:100%; padding:8px; margin:7px 0; border-radius:6px; border:1px solid #ccc; }
-    table { width:100%; border-collapse:collapse; background:white; }
-    th,td { border:1px solid #ddd; padding:8px; }
-    th { background:#806250; color:white; }
-    button { background:#806250; color:white; border:none; padding:6px 10px; border-radius:6px; cursor:pointer; }
-    .btn-delete { background:#c0392b; }
-    #preview { max-width:100px; margin-top:5px; border-radius:6px; }
-    #hoverPreview { position: fixed; top: 0; left: 0; width: 220px; display:none; border:2px solid #806250; border-radius:10px; background:#fff; z-index:9999; box-shadow:0 0 10px rgba(0,0,0,0.3); padding:6px; }
-    td input, td textarea { width:95%; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f3f0;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #806250;
+    }
+
+    #topBar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 15px;
+    }
+
+    #guardarTodos {
+      padding: 10px 15px;
+      background: #a07b68;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #toggleForm {
+      background: #806250;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    form {
+      display: none;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 7px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      background: #806250;
+      color: white;
+    }
+
+    button {
+      background: #806250;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-delete {
+      background: #c0392b;
+    }
+
+    #preview {
+      max-width: 100px;
+      margin-top: 5px;
+      border-radius: 6px;
+    }
+
+    #hoverPreview {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      display: none;
+      border: 2px solid #806250;
+      border-radius: 10px;
+      background: #fff;
+      z-index: 9999;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      padding: 6px;
+    }
+
+    td input, td textarea {
+      width: 95%;
+    }
   </style>
 </head>
+
 <body>
   <h1>Panel de Administración</h1>
 
@@ -33,10 +128,16 @@
 
   <input id="search" placeholder="Buscar..." oninput="filterProducts()">
 
+  <!-- BOTÓN ARRIBA A LA DERECHA -->
+  <div id="topBar">
+    <button id="guardarTodos" onclick="guardarTodosLosPrecios()">💾 Guardar TODOS los cambios</button>
+  </div>
+
   <button id="toggleForm" onclick="toggleForm()">+ Agregar producto</button>
 
   <form id="form">
     <input type="hidden" id="editIndex">
+
     <label>Nombre</label>
     <input id="nombre">
 
@@ -57,33 +158,33 @@
   </form>
 
   <table>
-    <thead><tr>
-      <th>Imagen</th><th>Nombre</th><th>Descripción</th><th>Categoría</th><th>Precio</th><th>Acciones</th>
-    </tr></thead>
+    <thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
     <tbody id="tbody"></tbody>
   </table>
 
-  <button id="guardarTodos" onclick="guardarTodosLosPrecios()" style="margin-top:15px; padding:10px 15px; background:#a07b68; color:white; border:none; border-radius:8px; cursor:pointer; float:right;">💾 Guardar TODOS los cambios</button>
-
 <script>
 const USERNAME="cholose10", REPO="cartaaguero";
-const MAIN_JSON="productos.json";       // español → precio
-const EN_JSON="productos-en.json";      // inglés → price
-const PT_JSON="productos-port.json";    // portugués → preco
+const MAIN_JSON="productos.json";
+const EN_JSON="productos-en.json";
+const PT_JSON="productos-port.json";
 
 let productos=[];
 
-function saveToken(){ 
-  const t=document.getElementById('token').value;
-  localStorage.setItem('github_token',t);
-  document.getElementById('tokenStatus').innerText='Token guardado'; 
-}
-function clearToken(){ 
-  localStorage.removeItem('github_token');
-  document.getElementById('tokenStatus').innerText='Token borrado'; 
-}
+// TOKEN
+function saveToken(){ const t=document.getElementById('token').value; localStorage.setItem('github_token',t); document.getElementById('tokenStatus').innerText='Token guardado'; }
+function clearToken(){ localStorage.removeItem('github_token'); document.getElementById('tokenStatus').innerText='Token borrado'; }
 function getToken(){ return localStorage.getItem('github_token'); }
 
+// CARGA
 async function loadProducts(){
   try{
     const r=await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${MAIN_JSON}`);
@@ -93,7 +194,7 @@ async function loadProducts(){
 }
 
 function render(lista){
-  const tb=document.getElementById('tbody'); 
+  const tb=document.getElementById('tbody');
   tb.innerHTML='';
   lista.forEach((p,i)=>{
     tb.innerHTML+=`
@@ -108,47 +209,40 @@ function render(lista){
   });
 }
 
-function escapeHtml(t){ 
-  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); 
-}
+function escapeHtml(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function editField(i,c,v){ productos[i][c] = v; }
 
-function editField(i,campo,valor){ 
-  productos[i][campo] = valor; 
-}
-
+// GUARDAR FILA
 async function guardarFila(i){
-  const ok = await saveToGitHub(MAIN_JSON, productos);
+  const ok=await saveToGitHub(MAIN_JSON,productos);
   if(!ok){ alert("Error guardando"); return; }
-
+  
   await syncPrice(productos[i].id, productos[i].precio);
 
-  alert("Guardado (ES → EN + PT)");
+  alert("Guardado (ES + EN + PT)");
 }
 
-async function syncPrice(id,precio){ 
+// SINCRONIZAR PRECIOS
+async function syncPrice(id,precio){
   if(!id) return;
-  await updatePriceInJSON(EN_JSON, id, precio, "price");
-  await updatePriceInJSON(PT_JSON, id, precio, "preco");
+  await updatePriceInJSON(EN_JSON,id,precio,"price");
+  await updatePriceInJSON(PT_JSON,id,precio,"preco");
 }
 
-async function updatePriceInJSON(file,id,precio,campo){
+async function updatePriceInJSON(file,id,precio,field){
   try{
     const r=await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${file}`);
     let arr=await r.json();
     const ix=arr.findIndex(x=>x.id===id);
-
-    if(ix>=0){
-      arr[ix][campo] = precio;
-    }
-
+    if(ix>=0) arr[ix][field] = precio;
     await saveToGitHub(file,arr);
-
   }catch(e){ console.error(e); }
 }
 
+// GUARDAR ARCHIVO EN GITHUB
 async function saveToGitHub(file,content){
   try{
-    const token=getToken(); 
+    const token=getToken();
     if(!token){ alert("Falta token"); return false; }
 
     const sha=await getSHA(file);
@@ -167,31 +261,29 @@ async function saveToGitHub(file,content){
     });
 
     return r.ok;
-
   }catch(e){ console.error(e); return false; }
 }
 
 async function getSHA(file){
   const r=await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${file}`);
-  const j=await r.json(); 
+  const j=await r.json();
   return j.sha;
 }
 
-function toggleForm(){ 
-  const f=document.getElementById('form'); 
-  f.style.display=f.style.display==='none'?'block':'none'; 
+function toggleForm(){
+  const f=document.getElementById('form');
+  f.style.display = f.style.display==='none' ? 'block' : 'none';
 }
 
-function previewImage(){ 
-  document.getElementById('preview').src=document.getElementById('imagen').value; 
-}
+function previewImage(){ document.getElementById('preview').src=document.getElementById('imagen').value; }
 
-function filterProducts(){ 
-  const t=document.getElementById('search').value.toLowerCase(); 
-  render(productos.filter(p=> (p.nombre||'').toLowerCase().includes(t))); 
+function filterProducts(){
+  const t=document.getElementById('search').value.toLowerCase();
+  render(productos.filter(p=> (p.nombre||'').toLowerCase().includes(t)));
 }
 
 loadProducts();
 </script>
+
 </body>
 </html>
