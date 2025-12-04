@@ -1063,8 +1063,7 @@
     "description": "Walnut, garlic and parsley",
     "price": "6800",
     "imagen": "img/IMG-20250816-WA0011.jpg",
-    "category": "🥫Sauces",
-    "precio": "6800"
+    "category": "🥫Sauces"
   },
   {
     "id": "prod0134",
@@ -1312,7 +1311,8 @@
     "description": "Gancia Shake",
     "price": "9500",
     "imagen": "img/Gancia.jpg",
-    "category": "🍹Drinks"
+    "category": "🍹Drinks",
+    "precio": "9500"
   },
   {
     "id": "prod0165",
