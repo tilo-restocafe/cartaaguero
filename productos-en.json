@@ -343,7 +343,8 @@
     "description": "Toast with scrambled eggs, avocado cream and seeds",
     "price": "14700",
     "imagen": "img/20250806_094923.jpg",
-    "category": "💡Promotions"
+    "category": "💡Promotions",
+    "precio": "16000"
   },
   {
     "id": "prod0044",
