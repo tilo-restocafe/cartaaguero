@@ -1418,7 +1418,7 @@
   {
     "nome": "Menu do dia ou sugestões",
     "descricao": "Menu do dia: prato + bebida + sobremesa ou café. A sugestão inclui apenas o prato.",
-    "preco": "000",
+    "preco": "1000",
     "imagem": "",
     "categoria": "📋Menu do dia/Sugestões e novidades",
     "id": "prod0178"
