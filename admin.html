@@ -1,542 +1,288 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin Carta - Tilo Café Agüero</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tilo Café - Admin</title>
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;margin:18px;background:#f7f3f0;color:#333}
-    h1{text-align:center;color:#806250;margin-bottom:10px}
-    .topRow{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
-    .controls{display:flex;gap:8px;align-items:center}
-    input[type="text"], input[type="password"], textarea{padding:8px;border-radius:6px;border:1px solid #ccc;width:100%;box-sizing:border-box}
-    button{background:#806250;color:#fff;border:none;padding:8px 10px;border-radius:6px;cursor:pointer}
-    button.secondary{background:#5c8a50}
-    button.danger{background:#c0392b}
-    form{background:#fff;padding:12px;border-radius:10px;margin-bottom:12px;display:none}
-    table{width:100%;border-collapse:collapse;background:#fff}
-    th,td{border:1px solid #ddd;padding:8px;vertical-align:top}
-    th{background:#806250;color:#fff}
-    img.mini{max-width:60px;border-radius:6px}
-    #guardarTodos{position:fixed;top:18px;right:18px;z-index:1200;padding:10px 14px;background:#a07b68;color:#fff;border-radius:8px}
-    .small{font-size:13px;color:#666}
-    .rowActions{display:flex;gap:6px}
-    .previewImg{max-width:120px;margin-top:8px;border-radius:6px}
-    textarea#multiInput{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;box-sizing:border-box}
-    @media(max-width:720px){ .topRow{flex-direction:column;align-items:flex-start} table{font-size:13px} }
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+    main {
+      padding: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th {
+      background: #444;
+      color: #fff;
+      padding: 8px;
+      text-align: left;
+    }
+    td {
+      border-bottom: 1px solid #ccc;
+      padding: 6px;
+    }
+    td img {
+      width: 60px;
+      height: auto;
+      border-radius: 4px;
+    }
+    button {
+      background: #008cba;
+      border: none;
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 2px;
+    }
+    button:hover {
+      background: #0074a1;
+    }
+    .danger {
+      background: #c0392b;
+    }
+    .danger:hover {
+      background: #a52f23;
+    }
+    .success {
+      background: #27ae60;
+    }
+    .success:hover {
+      background: #1f8a4d;
+    }
+
+    /* FORM */
+    #formAgregar {
+      margin-top: 2rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+    }
+    #formAgregar input,
+    #formAgregar select {
+      display: block;
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    /* TOAST VERDE */
+    #toastOK {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #2ecc71;
+      color: white;
+      padding: 12px 18px;
+      font-weight: bold;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Administrador Tilo Café</h1>
+  </header>
 
-  <h1>Panel de Administración - Tilo Café Agüero</h1>
+  <!-- TOAST -->
+  <div id="toastOK">Cambios guardados correctamente</div>
 
-  <div class="topRow">
-    <div style="flex:1">
-      <div style="margin-bottom:6px"><span class="small">Repositorio:</span> <b>cholose10 / cartaaguero</b></div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <label style="min-width:40px">Token:</label>
-        <input type="password" id="token" placeholder="Pegar token de GitHub (repo contents)" style="max-width:420px">
-        <button onclick="saveToken()">Guardar</button>
-        <button onclick="clearToken()">Borrar</button>
-        <span class="small" id="tokenStatus" style="margin-left:8px">No guardado</span>
-      </div>
-    </div>
+  <main>
+    <button onclick="guardarTodosLosPrecios()" class="success">💾 Guardar TODOS los cambios</button>
 
-    <div class="controls">
-      <input id="search" placeholder="Buscar..." oninput="filterProducts()" style="min-width:180px;max-width:360px">
-      <button id="toggleFormBtn" onclick="toggleForm()">+ Agregar producto</button>
-      <button class="secondary" onclick="toggleMultiForm()">➕ Agregar VARIOS</button>
-    </div>
-  </div>
+    <table id="tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Guardar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyProductos"></tbody>
+    </table>
 
-  <!-- BOTÓN FIJO para guardar todo -->
-  <button id="guardarTodos" onclick="guardarTodosLosPrecios()">💾 Guardar TODOS los cambios</button>
+    <h2>Agregar producto nuevo</h2>
+    <form id="formAgregar">
+      <input type="text" id="newNombre" placeholder="Nombre ES">
+      <input type="text" id="newDescripcion" placeholder="Descripción ES">
+      <input type="text" id="newCategoria" placeholder="Categoría">
+      <input type="number" id="newPrecio" placeholder="Precio">
+      <input type="text" id="newImg" placeholder="Nombre de imagen (ej: latte.jpg)">
+      <button type="button" onclick="agregarProducto()">Agregar producto</button>
+    </form>
+  </main>
 
-  <!-- FORMULARIO SIMPLE AGREGAR / EDITAR -->
-  <form id="form">
-    <input type="hidden" id="editIndex">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div>
-        <label>Nombre</label>
-        <input id="nombre" type="text">
-      </div>
-      <div>
-        <label>Precio</label>
-        <input id="precio" type="text" placeholder="Ej: 3400 (sin $)">
-      </div>
+<script>
+// -------------------- TOAST --------------------
+function showToastOK(msg = "Cambios guardados correctamente") {
+  const t = document.getElementById("toastOK");
+  t.textContent = msg;
+  t.style.opacity = "1";
+  setTimeout(() => { t.style.opacity = "0"; }, 3000);
+}
 
-      <div style="grid-column:1/3">
-        <label>Descripción</label>
-        <textarea id="descripcion" rows="3"></textarea>
-      </div>
+// -------------------- GLOBAL --------------------
+let productosES = [];
+let productosEN = [];
+let productosPT = [];
+const MAIN = "productos.json";
+const ENG = "productos_en.json";
+const PT = "productos_pt.json";
 
-      <div>
-        <label>Imagen (ruta o URL)</label>
-        <input id="imagen" type="text" oninput="previewImage()">
-        <img id="preview" class="previewImg" style="display:none">
-      </div>
+// -------------------- CARGA INICIAL --------------------
+async function loadJSON(file) {
+  const r = await fetch(file + "?v=" + Date.now());
+  return await r.json();
+}
 
-      <div>
-        <label>Categoría</label>
-        <input id="categoria" type="text" placeholder="Ej: Cafetería">
-      </div>
-    </div>
+async function cargarTodo() {
+  productosES = await loadJSON(MAIN);
+  productosEN = await loadJSON(ENG);
+  productosPT = await loadJSON(PT);
+  renderTabla();
+}
 
-    <div style="margin-top:10px;display:flex;gap:8px">
-      <button type="button" onclick="guardarFormulario()">Guardar</button>
-      <button type="button" onclick="cancelForm()" style="background:#999">Cancelar</button>
-    </div>
-  </form>
+cargarTodo();
 
-  <!-- FORMULARIO MÚLTIPLE -->
-  <form id="multiForm" style="display:none">
-    <h3>Agregar varios productos</h3>
-    <p class="small">Un producto por línea con formato: <b>nombre | descripcion | precio | imagen | categoria</b></p>
-    <textarea id="multiInput" rows="8" placeholder="Ej: Café expresso | Café chico | 3400 | img/cafe.jpg | Cafetería"></textarea>
-    <div style="margin-top:8px;display:flex;gap:8px">
-      <button type="button" onclick="procesarMulti()">Guardar varios</button>
-      <button type="button" onclick="toggleMultiForm()" style="background:#999">Cerrar</button>
-    </div>
-  </form>
+// -------------------- RENDER TABLA --------------------
+function renderTabla() {
+  const tbody = document.getElementById("tbodyProductos");
+  tbody.innerHTML = "";
 
-  <table aria-label="Productos">
-    <thead>
-      <tr><th style="width:80px">Imagen</th><th>Nombre</th><th>Descripción</th><th>Categoría</th><th style="width:100px">Precio (ES)</th><th style="width:180px">Acciones</th></tr>
-    </thead>
-    <tbody id="tbody"></tbody>
-  </table>
+  productosES.forEach((p, i) => {
+    const tr = document.createElement("tr");
 
-  <script>
-  /**********************************************************
-   * Config (editar si hiciera falta)
-   **********************************************************/
-  const USERNAME = "cholose10";
-  const REPO = "cartaaguero";
-  const MAIN_JSON = "productos.json";
-  const EN_JSON = "productos-en.json";
-  const PT_JSON = "productos-port.json"; // nombre que usás
-  let productos = [];
+    tr.innerHTML = `
+      <td>${p.id}</td>
+      <td><img src="img/${p.img}" /></td>
+      <td><input id="name${i}" value="${p.nombre}"></td>
+      <td><input id="desc${i}" value="${p.descripcion}"></td>
+      <td><input id="cat${i}" value="${p.categoria}"></td>
+      <td><input id="price${i}" type="number" value="${p.precio}"></td>
+      <td><button onclick="guardarFila(${i})">💾</button></td>
+      <td><button class="danger" onclick="borrar(${i})">🗑</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
 
-  /**********************************************************
-   * Token (localStorage)
-   **********************************************************/
-  function saveToken(){
-    const t = document.getElementById('token').value.trim();
-    if(!t){ alert('Pegá tu token primero'); return; }
-    localStorage.setItem('github_token', t);
-    document.getElementById('tokenStatus').innerText = 'Token guardado';
-  }
-  function clearToken(){
-    localStorage.removeItem('github_token');
-    document.getElementById('tokenStatus').innerText = 'Token borrado';
-  }
-  function getToken(){ return localStorage.getItem('github_token'); }
+// -------------------- GUARDAR FILA --------------------
+async function guardarFila(i) {
+  const p = productosES[i];
 
-  // mostrar estado token al cargar
-  (function initTokenStatus(){
-    const t = getToken();
-    if(t) document.getElementById('tokenStatus').innerText = 'Token guardado';
-  })();
+  p.nombre = document.getElementById("name" + i).value;
+  p.descripcion = document.getElementById("desc" + i).value;
+  p.categoria = document.getElementById("cat" + i).value;
+  p.precio = Number(document.getElementById("price" + i).value);
 
-  /**********************************************************
-   * Cargar JSON principal
-   **********************************************************/
-  async function loadProducts(){
-    try{
-      const r = await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${MAIN_JSON}`);
-      if(!r.ok) throw new Error(`No se pudo cargar ${MAIN_JSON} (${r.status})`);
-      productos = await r.json();
-      if(!Array.isArray(productos)) productos = [];
-      render(productos);
-    }catch(e){
-      console.warn(e);
-      productos = [];
-      render(productos);
-      alert("No se pudo cargar productos.json. Revisa que exista en el repo y sea público, o pegá token si es privado.");
-    }
-  }
+  let en = productosEN.find(e => e.id === p.id);
+  let pt = productosPT.find(e => e.id === p.id);
 
-  /**********************************************************
-   * Render: construyo filas con DOM (más seguro)
-   **********************************************************/
-  function render(lista){
-    const tb = document.getElementById('tbody');
-    tb.innerHTML = '';
-    lista.forEach((p, i) => {
-      const tr = document.createElement('tr');
+  if (en) en.precio = p.precio;
+  if (pt) pt.precio = p.precio;
 
-      // imagen
-      const tdImg = document.createElement('td');
-      const img = document.createElement('img');
-      img.className = 'mini';
-      img.src = p.imagen || '';
-      img.alt = p.nombre || '';
-      img.onerror = () => { img.src = ''; img.style.display = 'none'; };
-      tdImg.appendChild(img);
-      tr.appendChild(tdImg);
+  await saveAllJSON();
+  showToastOK("Fila guardada");
+}
 
-      // nombre (editable inline)
-      const tdNombre = document.createElement('td');
-      const nombreInput = document.createElement('input');
-      nombreInput.type = 'text';
-      nombreInput.value = p.nombre || '';
-      nombreInput.oninput = (e) => { productos[i].nombre = e.target.value; };
-      tdNombre.appendChild(nombreInput);
-      tr.appendChild(tdNombre);
+// -------------------- BORRAR FILA --------------------
+async function borrar(i) {
+  if (!confirm("¿Seguro que deseas borrar este producto?")) return;
 
-      // descripcion
-      const tdDesc = document.createElement('td');
-      const descTA = document.createElement('textarea');
-      descTA.rows = 2;
-      descTA.value = p.descripcion || '';
-      descTA.oninput = (e) => { productos[i].descripcion = e.target.value; };
-      tdDesc.appendChild(descTA);
-      tr.appendChild(tdDesc);
+  const id = productosES[i].id;
 
-      // categoria
-      const tdCat = document.createElement('td');
-      const catInput = document.createElement('input');
-      catInput.type = 'text';
-      catInput.value = p.categoria || '';
-      catInput.oninput = (e) => { productos[i].categoria = e.target.value; };
-      tdCat.appendChild(catInput);
-      tr.appendChild(tdCat);
+  productosES = productosES.filter(p => p.id !== id);
+  productosEN = productosEN.filter(p => p.id !== id);
+  productosPT = productosPT.filter(p => p.id !== id);
 
-      // precio
-      const tdPrecio = document.createElement('td');
-      const precioInput = document.createElement('input');
-      precioInput.type = 'text';
-      precioInput.value = p.precio || '';
-      precioInput.oninput = (e) => { productos[i].precio = e.target.value; };
-      tdPrecio.appendChild(precioInput);
-      tr.appendChild(tdPrecio);
+  renderTabla();
+  await saveAllJSON();
+  showToastOK("Producto eliminado");
+}
 
-      // acciones
-      const tdAcc = document.createElement('td');
-      tdAcc.className = 'rowActions';
+// -------------------- GUARDAR TODOS --------------------
+async function guardarTodosLosPrecios() {
+  await saveAllJSON();
+  showToastOK("Todos los cambios guardados");
+}
 
-      const btnGuardar = document.createElement('button');
-      btnGuardar.textContent = 'Guardar';
-      btnGuardar.onclick = () => guardarFila(i);
-      tdAcc.appendChild(btnGuardar);
+// -------------------- AGREGAR PRODUCTO --------------------
+function generarID() {
+  let nums = productosES.map(p => Number(p.id.replace("id", "")));
+  let max = Math.max(...nums);
+  let next = (max + 1).toString().padStart(4, "0");
+  return "id" + next;
+}
 
-      const btnEdit = document.createElement('button');
-      btnEdit.textContent = 'Editar';
-      btnEdit.style.background = '#2d87d6';
-      btnEdit.onclick = () => loadIntoForm(i);
-      tdAcc.appendChild(btnEdit);
+async function agregarProducto() {
+  const nombre = newNombre.value;
+  const descripcion = newDescripcion.value;
+  const categoria = newCategoria.value;
+  const precio = Number(newPrecio.value);
+  const img = newImg.value;
 
-      const btnDelete = document.createElement('button');
-      btnDelete.textContent = 'Eliminar';
-      btnDelete.className = 'danger';
-      btnDelete.onclick = () => eliminarProducto(i);
-      tdAcc.appendChild(btnDelete);
+  const nuevo = {
+    id: generarID(),
+    nombre, descripcion, categoria, precio, img
+  };
 
-      tr.appendChild(tdAcc);
-      tb.appendChild(tr);
-    });
-  }
+  productosES.push({ ...nuevo });
+  productosEN.push({ ...nuevo });
+  productosPT.push({ ...nuevo });
 
-  /**********************************************************
-   * Editar / Agregar formulario
-   **********************************************************/
-  function toggleForm(){ 
-    const f = document.getElementById('form'); 
-    f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none';
-  }
-  function cancelForm(){
-    document.getElementById('editIndex').value = '';
-    document.getElementById('nombre').value = '';
-    document.getElementById('descripcion').value = '';
-    document.getElementById('precio').value = '';
-    document.getElementById('imagen').value = '';
-    document.getElementById('categoria').value = '';
-    document.getElementById('preview').style.display = 'none';
-    document.getElementById('form').style.display = 'none';
-  }
-  function previewImage(){
-    const v = document.getElementById('imagen').value.trim();
-    const img = document.getElementById('preview');
-    if(!v){ img.style.display='none'; img.src=''; return; }
-    img.src = v;
-    img.style.display = 'block';
-    img.onerror = ()=>{ img.style.display='none'; };
-  }
+  renderTabla();
+  await saveAllJSON();
+  showToastOK("Producto agregado");
+}
 
-  function loadIntoForm(index){
-    const p = productos[index];
-    if(!p) return;
-    document.getElementById('editIndex').value = index;
-    document.getElementById('nombre').value = p.nombre || '';
-    document.getElementById('descripcion').value = p.descripcion || '';
-    document.getElementById('precio').value = p.precio || '';
-    document.getElementById('imagen').value = p.imagen || '';
-    document.getElementById('categoria').value = p.categoria || '';
-    previewImage();
-    document.getElementById('form').style.display = 'block';
-  }
+// -------------------- GUARDAR JSON EN GITHUB --------------------
+async function saveAllJSON() {
+  await Promise.all([
+    uploadJSON(MAIN, productosES),
+    uploadJSON(ENG, productosEN),
+    uploadJSON(PT, productosPT)
+  ]);
+}
 
-  function validarProductoObj(obj){
-    if(!obj.nombre) return "Falta nombre";
-    if(!obj.precio) return "Falta precio";
-    // no forzamos formato de precio, lo dejas tú; podríamos limpiar más tarde
-    return null;
-  }
-
-  function guardarFormulario(){
-    const nombre = document.getElementById('nombre').value.trim();
-    const descripcion = document.getElementById('descripcion').value.trim();
-    const precio = document.getElementById('precio').value.trim();
-    const imagen = document.getElementById('imagen').value.trim();
-    const categoria = document.getElementById('categoria').value.trim();
-    const editIndex = document.getElementById('editIndex').value;
-
-    const obj = { nombre, descripcion, precio, imagen, categoria };
-
-    const err = validarProductoObj(obj);
-    if(err){ alert(err); return; }
-
-    if(editIndex !== ''){
-      // editar existente
-      const idx = Number(editIndex);
-      productos[idx] = { ...productos[idx], ...obj };
-      // si no tiene id, crear
-      if(!productos[idx].id) productos[idx].id = 'prod' + Date.now();
-    } else {
-      // nuevo
-      const id = 'prod' + Date.now();
-      productos.push({ id, ...obj });
-    }
-
-    render(productos);
-    document.getElementById('form').style.display = 'none';
-  }
-
-  function toggleMultiForm(){
-    const f = document.getElementById('multiForm');
-    f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none';
-  }
-
-  function procesarMulti(){
-    const raw = document.getElementById('multiInput').value.trim();
-    if(!raw){ alert('Nada para procesar'); return; }
-    const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
-    for(const ln of lines){
-      const parts = ln.split('|').map(p => p.trim());
-      // nombre | descripcion | precio | imagen | categoria
-      const nombre = parts[0] || 'Sin nombre';
-      const descripcion = parts[1] || '';
-      const precio = parts[2] || '';
-      const imagen = parts[3] || '';
-      const categoria = parts[4] || '';
-      const id = 'prod' + Date.now() + Math.floor(Math.random()*900);
-      productos.push({ id, nombre, descripcion, precio, imagen, categoria });
-    }
-    document.getElementById('multiInput').value = '';
-    render(productos);
-    alert('Productos agregados localmente. Presioná "Guardar TODOS los cambios" para subirlos a GitHub.');
-  }
-
-  /**********************************************************
-   * Eliminar producto (local y luego save si querés)
-   **********************************************************/
-  function eliminarProducto(i){
-    if(!confirm('Eliminar producto?')) return;
-    productos.splice(i,1);
-    render(productos);
-  }
-
-  /**********************************************************
-   * Guardar fila (especifica) -> guarda MAIN_JSON + sincroniza precios
-   **********************************************************/
-  async function guardarFila(i){
-    try{
-      // Validación mínima
-      const p = productos[i];
-      if(!p) throw new Error('Producto no encontrado');
-      if(!p.id) p.id = 'prod' + Date.now();
-
-      const okMain = await saveToGitHub(MAIN_JSON, productos);
-      if(!okMain){ alert("❌ Error guardando español (productos.json). Revisa token/permisos en consola."); return; }
-
-      // sincronizar precio en EN y PT
-      if(p.id){
-        await syncPrice(p.id, p.precio);
-      }
-
-      alert('✅ Guardado (ES + sincronizado precios EN/PT).');
-      // recargar tabla por si hubo cambios
-      render(productos);
-    }catch(e){
-      console.error(e);
-      alert('❌ Error guardando fila: ' + (e.message || e));
-    }
-  }
-
-  /**********************************************************
-   * Guardar todos -> guarda MAIN_JSON y sincroniza cada precio
-   **********************************************************/
-  async function guardarTodosLosPrecios(){
-    try{
-      // asegurar que todos los productos tengan id
-      productos = productos.map(p => p.id ? p : ({ ...p, id: 'prod' + Date.now() + Math.floor(Math.random()*900) }) );
-
-      const okMain = await saveToGitHub(MAIN_JSON, productos);
-      if(!okMain){ alert("❌ Error guardando español (productos.json). Revisa token/permisos en consola."); return; }
-
-      // sincronizar secuencialmente (para evitar rate limits)
-      for(const p of productos){
-        if(p.id) await syncPrice(p.id, p.precio);
-      }
-
-      alert('✅ TODOS los cambios guardados y precios sincronizados.');
-    }catch(e){
-      console.error(e);
-      alert('❌ Error en guardar todos: ' + (e.message || e));
-    }
-  }
-
-  /**********************************************************
-   * Sincronizar precios a EN y PT
-   **********************************************************/
-  async function syncPrice(id, precio){
-    if(!id) return;
-    await updatePriceInJSON(EN_JSON, id, precio, 'price');
-    await updatePriceInJSON(PT_JSON, id, precio, 'preco');
-  }
-
-  // Actualiza (o crea) el item en el archivo destino (solo tocamos el campo precio)
-  async function updatePriceInJSON(file, id, precio, campo){
-    try{
-      // 1) obtener raw si existe
-      const rawUrl = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${file}`;
-      let arr = [];
-      try{
-        const r = await fetch(rawUrl);
-        if(!r.ok){
-          arr = [];
-        } else {
-          arr = await r.json();
-          if(!Array.isArray(arr)) arr = [];
-        }
-      }catch(e){
-        arr = [];
-      }
-
-      // 2) buscar por id
-      const ix = arr.findIndex(x => x && x.id === id);
-      if(ix >= 0){
-        arr[ix][campo] = precio;
-      } else {
-        // si no existe, agregar objeto mínimo: mantener algunas claves del main
-        const mainP = productos.find(p => p.id === id) || {};
-        if(file === EN_JSON){
-          arr.push({
-            id: id,
-            name: mainP.nombre || mainP.nome || '',
-            description: mainP.descripcion || mainP.descricao || '',
-            price: precio,
-            image: mainP.imagen || mainP.imagem || ''
-          });
-        } else if(file === PT_JSON){
-          arr.push({
-            id: id,
-            nome: mainP.nombre || mainP.nome || '',
-            descricao: mainP.descripcion || mainP.descricao || '',
-            preco: precio,
-            imagem: mainP.imagen || mainP.imagem || ''
-          });
-        } else {
-          arr.push({ id: id, [campo]: precio });
-        }
-      }
-
-      const ok = await saveToGitHub(file, arr);
-      if(!ok) console.warn('No se pudo guardar ' + file);
-    }catch(e){
-      console.error('updatePriceInJSON error', e);
-    }
-  }
-
-  /**********************************************************
-   * GitHub helpers: getSHA, saveToGitHub
-   **********************************************************/
-  async function getSHA(file){
-    try{
-      const token = getToken();
-      const headers = token ? { "Authorization": "Bearer " + token, "Accept": "application/vnd.github.v3+json" } : { "Accept": "application/vnd.github.v3+json" };
-      const r = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${file}`, { headers });
-      if(r.status === 404) return null;
-      if(!r.ok){
-        const text = await r.text().catch(()=>'');
-        throw new Error(`SHA fetch failed ${r.status} ${text}`);
-      }
-      const j = await r.json();
-      return j.sha;
-    }catch(e){
-      console.warn('getSHA warning', e);
-      return null;
-    }
-  }
-
-  // Guarda/crea archivo en GitHub (PUT contents). content debe ser objeto JS (array u objeto)
-  async function saveToGitHub(file, content){
-    try{
-      const token = getToken();
-      if(!token){
-        alert('❗ Necesitas pegar tu token de GitHub para poder guardar. (Botón Token)');
-        return false;
-      }
-
-      const sha = await getSHA(file);
-
-      const body = {
-        message: `update ${file}`,
-        content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))))
-      };
-      if(sha) body.sha = sha;
-
-      const r = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${file}`, {
-        method: 'PUT',
-        headers: {
-          "Authorization": "Bearer " + token,
-          "Content-Type": "application/json",
-          "Accept":"application/vnd.github.v3+json"
-        },
-        body: JSON.stringify(body)
-      });
-
-      if(r.status === 200 || r.status === 201){
-        console.log('GitHub saved', file);
-        return true;
-      } else {
-        const respText = await r.text().catch(()=>'');
-        console.error('GitHub API error', r.status, respText);
-        return false;
-      }
-
-    }catch(e){
-      console.error('saveToGitHub error', e);
-      return false;
-    }
-  }
-
-  /**********************************************************
-   * Búsqueda / filtro
-   **********************************************************/
-  function filterProducts(){
-    const q = document.getElementById('search').value.trim().toLowerCase();
-    if(!q){ render(productos); return; }
-    const filtered = productos.filter(p => (p.nombre||'').toLowerCase().includes(q) || (p.descripcion||'').toLowerCase().includes(q) || (p.categoria||'').toLowerCase().includes(q));
-    render(filtered);
-  }
-
-  /**********************************************************
-   * Inicio
-   **********************************************************/
-  loadProducts();
-
-  </script>
-
+// -------------------- SUBIDA SIMPLE (local) --------------------
+async function uploadJSON(file, data) {
+  await fetch(file, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data, null, 2)
+  });
+}
+</script>
 </body>
 </html>
