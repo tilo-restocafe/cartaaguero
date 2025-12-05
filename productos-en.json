@@ -5,8 +5,7 @@
     "description": "Small coffee",
     "price": "3400",
     "imagen": "img/cafe.jpg",
-    "category": "Coffee Shop ☕️",
-    "precio": "34000000"
+    "category": "Coffee Shop ☕️"
   },
   {
     "id": "prod0002",
@@ -14,8 +13,7 @@
     "description": "Americano coffee",
     "price": "36000",
     "imagen": "img/Americano.jpg",
-    "category": "Coffee Shop ☕️",
-    "precio": "3600"
+    "category": "Coffee Shop ☕️"
   },
   {
     "id": "prod0003",
