@@ -35,7 +35,7 @@
   {
     "nome": "Café expresso duplo",
     "descricao": "Café expresso duplo",
-    "preco": "520000",
+    "preco": "5200",
     "imagem": "img/doble.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0005"
