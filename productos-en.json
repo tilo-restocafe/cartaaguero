@@ -1420,7 +1420,7 @@
     "id": "prod0178",
     "name": "DAILY MENU or SPECIALS",
     "description": "Daily menu: dish + drink + dessert or coffee. The special includes only the dish.",
-    "price": "0",
+    "price": "1000",
     "imagen": "",
     "category": "📋DAILY MENU/SPECIALS & NEWS"
   },
@@ -1431,12 +1431,5 @@
     "price": "9200",
     "imagen": "img/torgrende.jpg",
     "category": "📋DAILY MENU/SPECIALS & NEWS"
-  },
-  {
-    "id": "prod1764944508852",
-    "name": "Ensalada CAESAR con Atun",
-    "description": "Mix de verdes, croutons, atun rebozados, parmesano y aderezo Caesar",
-    "price": "20000",
-    "image": "img/Caesarlangis.jpg"
   }
 ]
