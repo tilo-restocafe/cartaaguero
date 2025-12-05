@@ -1430,5 +1430,13 @@
     "imagen": "img/torgrende.jpg",
     "categoria": "📋MENU del DIA/SUGERENCIAS Y NOVEDADES",
     "id": "prod0179"
+  },
+  {
+    "id": "prod1764944460932",
+    "nombre": "Ensalada CAESAR con Atun",
+    "descripcion": "Mix de verdes, croutons, atun rebozados, parmesano y aderezo Caesar",
+    "precio": "20000",
+    "imagen": "img/Caesarlangis.jpg",
+    "categoria": "Comidas"
   }
 ]
