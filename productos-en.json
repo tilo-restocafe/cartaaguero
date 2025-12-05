@@ -347,7 +347,7 @@
     "id": "prod0044",
     "name": "SCRAMBLED",
     "description": "Scrambled eggs with ham and cheese, served with toast",
-    "price": "14000",
+    "price": "13400",
     "imagen": "img/Resultado.jpg",
     "category": "💡Promotions"
   },
@@ -355,7 +355,7 @@
     "id": "prod0045",
     "name": "PROTEIN",
     "description": "100% almond flour pancake, cream cheese and seasonal fruit plus honey dip",
-    "price": "15000",
+    "price": "16000",
     "imagen": "img/20250815_132946.jpg",
     "category": "💡Promotions"
   },
