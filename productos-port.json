@@ -3,7 +3,7 @@
     "nome": "Café expresso",
     "descricao": "Café pequeno",
     "preco": "3400",
-    "imagen": "img/cafe.jpg",
+    "imagem": "img/cafe.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0001"
   },
@@ -1432,7 +1432,7 @@
     "id": "prod0179"
   },
   {
-    "id": "prod1764944508852",
+    "id": "prod0180",
     "nome": "Ensalada CAESAR con Atun",
     "descricao": "Mix de verdes, croutons, atun rebozados, parmesano y aderezo Caesar",
     "preco": "20000",
