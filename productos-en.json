@@ -1420,7 +1420,7 @@
     "id": "prod0178",
     "name": "DAILY MENU or SPECIALS",
     "description": "Daily menu: dish + drink + dessert or coffee. The special includes only the dish.",
-    "price": "1000",
+    "price": "0",
     "imagen": "",
     "category": "📋DAILY MENU/SPECIALS & NEWS"
   },
