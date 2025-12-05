@@ -331,7 +331,7 @@
     "id": "prod0042",
     "name": "EGG WHITES OMELETTE",
     "description": "Omelette with cheese and tomato (with FRITOLIN) and seasonal fruits",
-    "price": "16000",
+    "price": "15000",
     "imagen": "img/Promoomelet.jpg",
     "category": "💡Promotions"
   },
@@ -339,7 +339,7 @@
     "id": "prod0043",
     "name": "AVOCADO",
     "description": "Toast with scrambled eggs, avocado cream and seeds",
-    "price": "14700",
+    "price": "16000",
     "imagen": "img/20250806_094923.jpg",
     "category": "💡Promotions"
   },
