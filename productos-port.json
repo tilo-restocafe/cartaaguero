@@ -2,7 +2,7 @@
   {
     "nome": "Café expresso",
     "descricao": "Café pequeno",
-    "preco": "340000",
+    "preco": "3400",
     "imagen": "img/cafe.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0001"
