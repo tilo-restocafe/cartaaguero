@@ -30,7 +30,7 @@
   {
     "id": "prod0081",
     "nome": "Pollo pechuga gril",
-    "descricao": "Con fritas, purÃÂ©, ensalada o arroz",
+    "descricao": "Con fritas, purÃÂÃÂ©, ensalada o arroz",
     "preco": "21000",
     "imagem": "img/Pechuga.jpg"
   },
@@ -47,5 +47,12 @@
     "descricao": "Mix de verdes, croutons, langostinos rebozados, parmesano y aderezo Caesar",
     "preco": "20000",
     "imagem": "img/Caesarlangis.jpg"
+  },
+  {
+    "id": "prod0084",
+    "nome": "Bife de lomo gril",
+    "descricao": "Con fritas, puré, ensalada o arroz",
+    "preco": "33500",
+    "imagem": "img/IMG-20250816-WA0008.jpg"
   }
 ]
