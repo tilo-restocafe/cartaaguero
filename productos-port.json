@@ -12,5 +12,12 @@
     "descricao": "Gin Tonic Beefeater",
     "preco": "12000",
     "imagem": "img/Ginton.jpg"
+  },
+  {
+    "id": "prod0164",
+    "nome": "Batido Gancia",
+    "descricao": "Batido Gancia",
+    "preco": "9500",
+    "imagem": "img/Gancia.jpg"
   }
 ]
