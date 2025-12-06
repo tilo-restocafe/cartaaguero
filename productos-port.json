@@ -8,9 +8,16 @@
   },
   {
     "id": "prod0095",
-    "nome": "Salmón AZUL",
-    "descricao": "Salmón rosado grillado en salsa crema de queso azul con papas españolas",
+    "nome": "SalmÃ³n AZUL",
+    "descricao": "SalmÃ³n rosado grillado en salsa crema de queso azul con papas espaÃ±olas",
     "preco": 38000,
     "imagem": "img/20250817_142010.jpg"
+  },
+  {
+    "id": "prod0076",
+    "nome": "PIZZA Champi",
+    "descricao": "Salsa de tomate, stracciatella sale fria, hongos y cebollas salteadas.",
+    "preco": "30000",
+    "imagem": "img/Pizachampi.jpg"
   }
 ]
