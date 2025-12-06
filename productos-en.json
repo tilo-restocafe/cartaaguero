@@ -1,9 +1,16 @@
 [
   {
     "id": "prod0041",
-    "name": "TOSTADAS🍞",
+    "name": "TOSTADASð",
     "description": "Pan negro o blanco con queso crema y mermelada casera",
     "price": "9700",
     "image": "img/Promotos1.jpg"
+  },
+  {
+    "id": "prod0061",
+    "name": "Ensalada CAESAR con pollo",
+    "description": "Mix de verdes, croutones, pollo, parmesano y aderezo Caesar",
+    "price": "17500",
+    "image": "img/20250819_121751.jpg"
   }
 ]
