@@ -26,5 +26,12 @@
     "descricao": "con verduras lomo.",
     "preco": "28500",
     "imagem": "img/Risotolomo.jpg"
+  },
+  {
+    "id": "prod0081",
+    "nome": "Pollo pechuga gril",
+    "descricao": "Con fritas, puré, ensalada o arroz",
+    "preco": "21000",
+    "imagem": "img/Pechuga.jpg"
   }
 ]
