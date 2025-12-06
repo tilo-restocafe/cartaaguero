@@ -8,8 +8,8 @@
   },
   {
     "id": "prod0095",
-    "nome": "SalmÃ³n AZUL",
-    "descricao": "SalmÃ³n rosado grillado en salsa crema de queso azul con papas espaÃ±olas",
+    "nome": "SalmÃÂ³n AZUL",
+    "descricao": "SalmÃÂ³n rosado grillado en salsa crema de queso azul con papas espaÃÂ±olas",
     "preco": 38000,
     "imagem": "img/20250817_142010.jpg"
   },
@@ -19,5 +19,12 @@
     "descricao": "Salsa de tomate, stracciatella sale fria, hongos y cebollas salteadas.",
     "preco": "30000",
     "imagem": "img/Pizachampi.jpg"
+  },
+  {
+    "id": "prod0096",
+    "nome": "Matambrito a la PIZZA",
+    "descricao": "De cerdo, muzarella, tomate y orégano con papas fritas",
+    "preco": "28500",
+    "imagem": "img/20250815_132057.jpg"
   }
 ]
