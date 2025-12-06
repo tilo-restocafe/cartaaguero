@@ -23,7 +23,7 @@
   {
     "id": "prod0081",
     "name": "Pollo pechuga gril",
-    "description": "Con fritas, purÃÂÃÂ©, ensalada o arroz",
+    "description": "Con fritas, purÃÂÃÂÃÂÃÂ©, ensalada o arroz",
     "price": "21000",
     "image": "img/Pechuga.jpg"
   },
@@ -37,15 +37,22 @@
   {
     "id": "prod0082",
     "name": "Matambre de cerdo gril",
-    "description": "Con fritas, purÃ©, ensalada o arroz",
+    "description": "Con fritas, purÃÂ©, ensalada o arroz",
     "price": "24500",
     "image": "img/Matam.jpg"
   },
   {
     "id": "prod0103",
-    "name": "👶MENU KIDS Spaghetti o ñoquis",
+    "name": "ð¶MENU KIDS Spaghetti o Ã±oquis",
     "description": "Fileto o crema",
     "price": "18000",
-    "image": "img/Ñoquiskit.jpg"
+    "image": "img/Ãoquiskit.jpg"
+  },
+  {
+    "id": "prod0085",
+    "name": "Salmón rosado gril",
+    "description": "Con fritas, puré, ensalada o arroz",
+    "price": "35000",
+    "image": "img/Salmón.jpg"
   }
 ]
