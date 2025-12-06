@@ -5,5 +5,12 @@
     "descricao": "Simple (solo queso) con papas fritas",
     "preco": "15000",
     "imagem": "img/20250816_135012.jpg"
+  },
+  {
+    "id": "prod0094",
+    "nome": "Pollo TERIYAKI",
+    "descricao": "Pechuga en salsa dulce con arroz salteado y verduras",
+    "preco": "23500",
+    "imagem": "img/Tari.jpg"
   }
 ]
