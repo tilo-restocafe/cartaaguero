@@ -16,8 +16,15 @@
   {
     "id": "prod0096",
     "nome": "Matambrito a la PIZZA",
-    "descricao": "De cerdo, muzarella, tomate y orégano con papas fritas",
+    "descricao": "De cerdo, muzarella, tomate y orÃ©gano con papas fritas",
     "preco": "28500",
     "imagem": "img/20250815_132057.jpg"
+  },
+  {
+    "id": "prod0097",
+    "nome": "Matambrito a la RIOJANA",
+    "descricao": "De cerdo, cebollitas, morrones, arvejas y huevo frito, con papas fritas",
+    "preco": "28500",
+    "imagem": "img/Matrio.jpg"
   }
 ]
