@@ -1,7 +1,7 @@
 [
   {
     "id": "prod0041",
-    "name": "TOSTADASÃÂ°ÃÂÃÂÃÂ",
+    "name": "TOSTADASÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
     "description": "Pan negro o blanco con queso crema y mermelada casera",
     "price": "9700",
     "image": "img/Promotos1.jpg"
@@ -16,7 +16,7 @@
   {
     "id": "prod0042",
     "name": "OMELETTE DE CLARAS",
-    "description": "Omelette con queso y tomate (con FRITOLIN) y frutas de estaciÃ³n",
+    "description": "Omelette con queso y tomate (con FRITOLIN) y frutas de estaciÃÂ³n",
     "price": "16000",
     "image": "img/Promoomelet.jpg"
   },
@@ -26,5 +26,12 @@
     "description": "Mix de verdes, croutons, langostinos rebozados, parmesano y aderezo Caesar",
     "price": "20000",
     "image": "img/Caesarlangis.jpg"
+  },
+  {
+    "id": "prod0044",
+    "name": "REVUELTO",
+    "description": "Huevos revueltos con jamón y queso, una tostada para acompañar",
+    "price": "14000",
+    "image": "img/Resultado.jpg"
   }
 ]
