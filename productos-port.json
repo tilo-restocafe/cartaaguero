@@ -1,9 +1,16 @@
 [
   {
     "id": "prod0005",
-    "nome": "Café expresso Doble",
-    "descricao": "Café expresso Doble",
+    "nome": "CafÃ© expresso Doble",
+    "descricao": "CafÃ© expresso Doble",
     "preco": "5200",
     "imagem": "img/doble.jpg"
+  },
+  {
+    "id": "prod0025",
+    "nome": "Cookies🍪",
+    "descricao": "Cookies vainilla con chocolate, chocolate+chocolate c/u",
+    "preco": "4800",
+    "imagem": "img/20250902_085341.jpg"
   }
 ]
