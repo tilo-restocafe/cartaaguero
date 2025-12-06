@@ -1,9 +1,16 @@
 [
   {
     "id": "prod0095",
-    "name": "Salmón AZUL",
-    "description": "Salmón rosado grillado en salsa crema de queso azul con papas españolas",
+    "name": "SalmÃ³n AZUL",
+    "description": "SalmÃ³n rosado grillado en salsa crema de queso azul con papas espaÃ±olas",
     "price": 38000,
     "image": "img/20250817_142010.jpg"
+  },
+  {
+    "id": "prod0115",
+    "name": "Burger bacon",
+    "description": "Queso cheddar, panceta y tomate",
+    "price": "19000",
+    "image": "img/Bacon.jpg"
   }
 ]
