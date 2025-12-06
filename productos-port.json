@@ -16,7 +16,7 @@
   {
     "id": "prod0096",
     "nome": "Matambrito a la PIZZA",
-    "descricao": "De cerdo, muzarella, tomate y orÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©gano con papas fritas",
+    "descricao": "De cerdo, muzarella, tomate y orÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©gano con papas fritas",
     "preco": "28500",
     "imagem": "img/20250815_132057.jpg"
   },
@@ -65,15 +65,22 @@
   {
     "id": "prod0121",
     "nome": "PICADITA FRIA (para 2 personas)",
-    "descricao": "JamÃ³n crudo, jamÃ³n cocido, queso roquefort, queso tybo, tomates cherries, frutos secos",
+    "descricao": "JamÃÂ³n crudo, jamÃÂ³n cocido, queso roquefort, queso tybo, tomates cherries, frutos secos",
     "preco": "55000",
     "imagem": "img/tarta_brocoli.jpg"
   },
   {
     "id": "prod0123",
     "nome": "Spaghetti (salsa aparte)",
-    "descricao": "Spaghetti con salsa a elección",
+    "descricao": "Spaghetti con salsa a elecciÃ³n",
     "preco": "11000",
     "imagem": "img/Spa.jpg"
+  },
+  {
+    "id": "prod0124",
+    "nome": "Ñoquis al huevo (salsa aparte)",
+    "descricao": "Ñoquis al huevo con salsa a elección",
+    "preco": "11000",
+    "imagem": "img/Ñoquis.jpg"
   }
 ]
