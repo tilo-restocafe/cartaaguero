@@ -1,14 +1,14 @@
 [
   {
     "id": "prod0127",
-    "nome": "Sorrentinos de muzzarella y jamÃÂÃÂÃÂÃÂ³n (salsa aparte)",
-    "descricao": "Sorrentinos rellenos de muzzarella y jamÃÂÃÂÃÂÃÂ³n",
+    "nome": "Sorrentinos de muzzarella y jamÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n (salsa aparte)",
+    "descricao": "Sorrentinos rellenos de muzzarella y jamÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n",
     "preco": "15000",
     "imagem": "img/Sonren.jpg"
   },
   {
     "id": "prod0147",
-    "nome": "CORONA (PorrÃÂÃÂ³n)",
+    "nome": "CORONA (PorrÃÂÃÂÃÂÃÂ³n)",
     "descricao": "Cerveza Corona 330cc",
     "preco": "7700",
     "imagem": "img/Estelar.jpg"
@@ -33,5 +33,12 @@
     "descricao": "Trumpeter Malbec (750 cc)",
     "preco": "25000",
     "imagem": "img/20250903_112612.jpg"
+  },
+  {
+    "id": "prod0130",
+    "nome": "Alfredo Pollo",
+    "descricao": "salsa blanca con Pollo",
+    "preco": "7500",
+    "imagem": "img/Frepollo.jpg"
   }
 ]
