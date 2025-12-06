@@ -1,9 +1,16 @@
 [
   {
     "id": "prod0114",
-    "name": "Burger clásico",
-    "description": "Lechuga, tomate, jamón y queso",
+    "name": "Burger clÃ¡sico",
+    "description": "Lechuga, tomate, jamÃ³n y queso",
     "price": "17000",
     "image": "img/20250816_135012.jpg"
+  },
+  {
+    "id": "prod0115",
+    "name": "Burger bacon",
+    "description": "Queso cheddar, panceta y tomate",
+    "price": "19000",
+    "image": "img/Bacon.jpg"
   }
 ]
