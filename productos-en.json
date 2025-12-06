@@ -126,10 +126,10 @@
     "image": "img/Bolo.jpg"
   },
   {
-    "id": "prod0113",
-    "name": "Burger simple",
-    "description": "Simple (solo queso) con papas fritas",
-    "price": "15000",
-    "image": "img/20250816_135012.jpg"
+    "id": "prod0133",
+    "name": "Pesto con nuez",
+    "description": "nuez, ajo y perejil",
+    "price": "6800",
+    "image": "img/IMG-20250816-WA0011.jpg"
   }
 ]
