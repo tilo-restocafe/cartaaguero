@@ -50,8 +50,8 @@
   },
   {
     "id": "prod0137",
-    "name": "lÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­nea Coca-Cola",
-    "description": "Zeros y clÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡sicas",
+    "name": "lÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­nea Coca-Cola",
+    "description": "Zeros y clÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡sicas",
     "price": "4200",
     "image": "img/20250830_141813.jpg"
   },
@@ -67,12 +67,12 @@
     "name": "Jack Daniel's",
     "description": "Jack Daniel's",
     "price": "15000",
-    "image": "img/DanielÃÂ¢ÃÂÃÂs.jpg"
+    "image": "img/DanielÃÂÃÂ¢ÃÂÃÂÃÂÃÂs.jpg"
   },
   {
     "id": "prod0139",
-    "name": "Adicional con limÃÂ³n",
-    "description": "Adicional con limÃÂ³n",
+    "name": "Adicional con limÃÂÃÂ³n",
+    "description": "Adicional con limÃÂÃÂ³n",
     "price": "400",
     "image": "img/20250903_093625.jpg"
   },
@@ -89,5 +89,12 @@
     "description": "Exprimido de naranja natural",
     "price": "6700",
     "image": "img/Exprimido.jpg"
+  },
+  {
+    "id": "prod0141",
+    "name": "Pomelada",
+    "description": "Pomelo  natural",
+    "price": "7200",
+    "image": "img/pomelada.jpg"
   }
 ]
