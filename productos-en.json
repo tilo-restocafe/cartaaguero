@@ -12,5 +12,12 @@
     "description": "Portillo Malbec (750 cc)",
     "price": "19000",
     "image": "img/20250903_111015.jpg"
+  },
+  {
+    "id": "prod0134",
+    "name": "Carbonara",
+    "description": "Crema, panceta y verdeo",
+    "price": "7700",
+    "image": "img/Carbonara.jpg"
   }
 ]
