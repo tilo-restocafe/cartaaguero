@@ -8,7 +8,7 @@
   },
   {
     "id": "prod0132",
-    "nome": "BoloÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ±esa",
+    "nome": "BoloÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ±esa",
     "descricao": "salsa con carne",
     "preco": "7700",
     "imagem": "img/Bolo.jpg"
@@ -29,8 +29,8 @@
   },
   {
     "id": "prod0114",
-    "nome": "Burger clÃÂ¡sico",
-    "descricao": "Lechuga, tomate, jamÃÂ³n y queso",
+    "nome": "Burger clÃÂÃÂ¡sico",
+    "descricao": "Lechuga, tomate, jamÃÂÃÂ³n y queso",
     "preco": "17000",
     "imagem": "img/20250816_135012.jpg"
   },
@@ -44,8 +44,15 @@
   {
     "id": "prod0116",
     "nome": "Empanadas",
-    "descricao": "Carne o jamón y queso",
+    "descricao": "Carne o jamÃ³n y queso",
     "preco": "3000",
     "imagem": "img/Empa.jpg"
+  },
+  {
+    "id": "prod0136",
+    "nome": "SALSA VARIAS",
+    "descricao": "MANTECA, OLIVA, AJO Y PARMESANO",
+    "preco": "6000",
+    "imagem": "img/218.jpg"
   }
 ]
