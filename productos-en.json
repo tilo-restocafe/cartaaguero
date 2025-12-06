@@ -23,7 +23,7 @@
   {
     "id": "prod0081",
     "name": "Pollo pechuga gril",
-    "description": "Con fritas, purÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©, ensalada o arroz",
+    "description": "Con fritas, purÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©, ensalada o arroz",
     "price": "21000",
     "image": "img/Pechuga.jpg"
   },
@@ -37,29 +37,36 @@
   {
     "id": "prod0082",
     "name": "Matambre de cerdo gril",
-    "description": "Con fritas, purÃÂÃÂ©, ensalada o arroz",
+    "description": "Con fritas, purÃÂÃÂÃÂÃÂ©, ensalada o arroz",
     "price": "24500",
     "image": "img/Matam.jpg"
   },
   {
     "id": "prod0103",
-    "name": "Ã°ÂÂÂ¶MENU KIDS Spaghetti o ÃÂ±oquis",
+    "name": "ÃÂ°ÃÂÃÂÃÂ¶MENU KIDS Spaghetti o ÃÂÃÂ±oquis",
     "description": "Fileto o crema",
     "price": "18000",
-    "image": "img/ÃÂoquiskit.jpg"
+    "image": "img/ÃÂÃÂoquiskit.jpg"
   },
   {
     "id": "prod0085",
-    "name": "SalmÃ³n rosado gril",
-    "description": "Con fritas, purÃ©, ensalada o arroz",
+    "name": "SalmÃÂ³n rosado gril",
+    "description": "Con fritas, purÃÂ©, ensalada o arroz",
     "price": "35000",
-    "image": "img/SalmÃ³n.jpg"
+    "image": "img/SalmÃÂ³n.jpg"
   },
   {
     "id": "prod0105",
-    "name": "Jamón cocido, queso y tomate",
-    "description": "Pan ciabatta o árabe",
+    "name": "JamÃ³n cocido, queso y tomate",
+    "description": "Pan ciabatta o Ã¡rabe",
     "price": "14000",
     "image": "img/Jqyt.jpg"
+  },
+  {
+    "id": "prod0086",
+    "name": "Pollo (pechuga gril  ) ",
+    "description": "Acompañado con espinaca, papas a la crema o verduras grilladas",
+    "price": "23000",
+    "image": "img/Espepollo.jpg"
   }
 ]
