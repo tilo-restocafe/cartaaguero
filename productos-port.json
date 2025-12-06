@@ -1,14 +1,14 @@
 [
   {
     "id": "prod0005",
-    "nome": "CafÃÂÃÂ© expresso Doble",
-    "descricao": "CafÃÂÃÂ© expresso Doble",
+    "nome": "CafÃÂÃÂÃÂÃÂ© expresso Doble",
+    "descricao": "CafÃÂÃÂÃÂÃÂ© expresso Doble",
     "preco": "5200",
     "imagem": "img/doble.jpg"
   },
   {
     "id": "prod0025",
-    "nome": "CookiesÃ°ÂÂÂª",
+    "nome": "CookiesÃÂ°ÃÂÃÂÃÂª",
     "descricao": "Cookies vainilla con chocolate, chocolate+chocolate c/u",
     "preco": "4800",
     "imagem": "img/20250902_085341.jpg"
@@ -26,5 +26,12 @@
     "descricao": "Capuccino italiana",
     "preco": "5500",
     "imagem": "img/Capuchino.jpg"
+  },
+  {
+    "id": "prod0027",
+    "nome": "Chipá relleno",
+    "descricao": "Chipá relleno de queso c/u",
+    "preco": "3700",
+    "imagem": "img/Chipa.jpg"
   }
 ]
