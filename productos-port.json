@@ -12,5 +12,12 @@
     "descricao": "Con pollo, calabaza y verduras",
     "preco": "24000",
     "imagem": "img/20250816_143144.jpg"
+  },
+  {
+    "id": "prod0059",
+    "nome": "Tortilla de espinaca",
+    "descricao": "Tortilla de espinaca",
+    "preco": "15700",
+    "imagem": "img/20250813_131026 (1).jpg"
   }
 ]
