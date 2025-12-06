@@ -1,8 +1,8 @@
 [
   {
     "id": "prod0114",
-    "name": "Burger clÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡sico",
-    "description": "Lechuga, tomate, jamÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n y queso",
+    "name": "Burger clÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡sico",
+    "description": "Lechuga, tomate, jamÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n y queso",
     "price": "17000",
     "image": "img/20250816_135012.jpg"
   },
@@ -23,21 +23,21 @@
   {
     "id": "prod0138",
     "name": "Agua local filtrada y mineralizada",
-    "description": "Agua frÃÂÃÂ­a, natural y con gas",
+    "description": "Agua frÃÂÃÂÃÂÃÂ­a, natural y con gas",
     "price": "3700",
     "image": "img/20250830_142147.jpg"
   },
   {
     "id": "prod0139",
-    "name": "Adicional con limÃÂ³n",
-    "description": "Adicional con limÃÂ³n",
+    "name": "Adicional con limÃÂÃÂ³n",
+    "description": "Adicional con limÃÂÃÂ³n",
     "price": "400",
     "image": "img/20250903_093625.jpg"
   },
   {
     "id": "prod0121",
     "name": "PICADITA FRIA (para 2 personas)",
-    "description": "JamÃ³n crudo, jamÃ³n cocido, queso roquefort, queso tybo, tomates cherries, frutos secos",
+    "description": "JamÃÂ³n crudo, jamÃÂ³n cocido, queso roquefort, queso tybo, tomates cherries, frutos secos",
     "price": "55000",
     "image": "img/tarta_brocoli.jpg"
   },
@@ -47,5 +47,12 @@
     "description": "Pomelo  natural",
     "price": "7200",
     "image": "img/pomelada.jpg"
+  },
+  {
+    "id": "prod0122",
+    "name": "PICADITA CALIENTE (para 2 personas)",
+    "description": "Pollo rebozado, bastones de muzarella, rabas y papas fritas. Incluye dos porrones de Stella",
+    "price": "45000",
+    "image": "img/IMG-20250815.jpg"
   }
 ]
