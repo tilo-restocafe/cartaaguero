@@ -50,8 +50,8 @@
   },
   {
     "id": "prod0137",
-    "name": "lÃ­nea Coca-Cola",
-    "description": "Zeros y clÃ¡sicas",
+    "name": "lÃÂ­nea Coca-Cola",
+    "description": "Zeros y clÃÂ¡sicas",
     "price": "4200",
     "image": "img/20250830_141813.jpg"
   },
@@ -61,5 +61,12 @@
     "description": "Blancos o tintos",
     "price": "8000",
     "image": "img/20250903_124351.jpg"
+  },
+  {
+    "id": "prod0158",
+    "name": "Jack Daniel's",
+    "description": "Jack Daniel's",
+    "price": "15000",
+    "image": "img/Daniel’s.jpg"
   }
 ]
