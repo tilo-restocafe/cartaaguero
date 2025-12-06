@@ -140,10 +140,10 @@
     "imagem": "img/Rebuelto.jpg"
   },
   {
-    "id": "prod0092",
-    "nome": "Pollo N.Y",
-    "descricao": "Pollo ahumado, mix de queso, verdeo, tomate and papas fritas",
-    "preco": "24000",
-    "imagem": "img/Ny.jpg"
+    "id": "prod0073",
+    "nome": "PIZZA NAPOLITANA",
+    "descricao": "Salsa de tomate, stracciatella sale fria, jamón y rodajas de tomate",
+    "preco": "28000",
+    "imagem": "img/20250906_150935.jpg"
   }
 ]
