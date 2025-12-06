@@ -12,5 +12,12 @@
     "description": "Con verduras, nueces y almendras",
     "price": "26500",
     "image": "img/Risotolangos.jpg"
+  },
+  {
+    "id": "prod0060",
+    "name": "Ensalada FRESCA",
+    "description": "Rúcula, manzana verde, pepino, tomates cherries, nueces, regianito",
+    "price": "19700",
+    "image": "img/Fresca.jpg"
   }
 ]
