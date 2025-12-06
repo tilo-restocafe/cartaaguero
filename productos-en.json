@@ -8,15 +8,15 @@
   },
   {
     "id": "prod0009",
-    "name": "CafÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© CARAMEL",
-    "description": "Caramelo, cafÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©, leche espumada",
+    "name": "CafÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© CARAMEL",
+    "description": "Caramelo, cafÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©, leche espumada",
     "price": "5950",
     "image": "img/20250903_144413.jpg"
   },
   {
     "id": "prod0010",
-    "name": "TÃÂÃÂÃÂÃÂ© con leche",
-    "description": "TÃÂÃÂÃÂÃÂ© Inti Zen",
+    "name": "TÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© con leche",
+    "description": "TÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Inti Zen",
     "price": "4400",
     "image": "img/te.jpg"
   },
@@ -36,7 +36,7 @@
   },
   {
     "id": "prod0031",
-    "name": "Alfajor DubÃ¡i",
+    "name": "Alfajor DubÃÂ¡i",
     "description": "Alfajor chocolate y pistacho c/u",
     "price": "4700",
     "image": "img/alfapis.jpg"
@@ -44,8 +44,15 @@
   {
     "id": "prod0013",
     "name": "CAFE TILO",
-    "description": "Café, Baileys, leche evaporada y chocolate rallado",
+    "description": "CafÃ©, Baileys, leche evaporada y chocolate rallado",
     "price": "7500",
     "image": "img/20250819_160159.jpg"
+  },
+  {
+    "id": "prod0033",
+    "name": "Alfajor de almendras",
+    "description": "Alfajor de almendras c/u",
+    "price": "5500",
+    "image": "img/Almendras.jpg"
   }
 ]
