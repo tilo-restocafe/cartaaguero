@@ -12,5 +12,12 @@
     "descricao": "Pechuga en salsa dulce con arroz salteado y verduras",
     "preco": "23500",
     "imagem": "img/Tari.jpg"
+  },
+  {
+    "id": "prod0096",
+    "nome": "Matambrito a la PIZZA",
+    "descricao": "De cerdo, muzarella, tomate y orégano con papas fritas",
+    "preco": "28500",
+    "imagem": "img/20250815_132057.jpg"
   }
 ]
