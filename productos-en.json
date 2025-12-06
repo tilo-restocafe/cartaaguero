@@ -50,8 +50,8 @@
   },
   {
     "id": "prod0137",
-    "name": "lÃÂÃÂ­nea Coca-Cola",
-    "description": "Zeros y clÃÂÃÂ¡sicas",
+    "name": "lÃÂÃÂÃÂÃÂ­nea Coca-Cola",
+    "description": "Zeros y clÃÂÃÂÃÂÃÂ¡sicas",
     "price": "4200",
     "image": "img/20250830_141813.jpg"
   },
@@ -67,13 +67,20 @@
     "name": "Jack Daniel's",
     "description": "Jack Daniel's",
     "price": "15000",
-    "image": "img/Danielâs.jpg"
+    "image": "img/DanielÃ¢ÂÂs.jpg"
   },
   {
     "id": "prod0139",
-    "name": "Adicional con limón",
-    "description": "Adicional con limón",
+    "name": "Adicional con limÃ³n",
+    "description": "Adicional con limÃ³n",
     "price": "400",
     "image": "img/20250903_093625.jpg"
+  },
+  {
+    "id": "prod0159",
+    "name": "Johnny Walker Black",
+    "description": "Johnny Walker Black",
+    "price": "15000",
+    "image": "img/Black.jpg"
   }
 ]
