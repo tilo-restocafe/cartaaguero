@@ -19,5 +19,12 @@
     "descricao": "Tortilla de espinaca",
     "preco": "15700",
     "imagem": "img/20250813_131026 (1).jpg"
+  },
+  {
+    "id": "prod0080",
+    "nome": "RISOTTOS Lomo!",
+    "descricao": "con verduras lomo.",
+    "preco": "28500",
+    "imagem": "img/Risotolomo.jpg"
   }
 ]
