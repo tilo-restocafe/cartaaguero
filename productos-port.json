@@ -5,5 +5,12 @@
     "descricao": "Salsa de tomate, stracciatella sale fria, hojas de albahaca.",
     "preco": "25500",
     "imagem": "img/20250819_125331.jpg"
+  },
+  {
+    "id": "prod0095",
+    "nome": "Salmón AZUL",
+    "descricao": "Salmón rosado grillado en salsa crema de queso azul con papas españolas",
+    "preco": 38000,
+    "imagem": "img/20250817_142010.jpg"
   }
 ]
