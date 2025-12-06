@@ -5,5 +5,12 @@
     "description": "Brownie sin TACC",
     "price": "6700",
     "image": "img/Brownie.jpg"
+  },
+  {
+    "id": "prod0009",
+    "name": "Café CARAMEL",
+    "description": "Caramelo, café, leche espumada",
+    "price": "5950",
+    "image": "img/20250903_144413.jpg"
   }
 ]
