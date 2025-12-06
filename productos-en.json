@@ -1,7 +1,7 @@
 [
   {
     "id": "prod0041",
-    "name": "TOSTADASÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
+    "name": "TOSTADASÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
     "description": "Pan negro o blanco con queso crema y mermelada casera",
     "price": "9700",
     "image": "img/Promotos1.jpg"
@@ -16,7 +16,7 @@
   {
     "id": "prod0042",
     "name": "OMELETTE DE CLARAS",
-    "description": "Omelette con queso y tomate (con FRITOLIN) y frutas de estaciÃÂÃÂÃÂÃÂ³n",
+    "description": "Omelette con queso y tomate (con FRITOLIN) y frutas de estaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n",
     "price": "16000",
     "image": "img/Promoomelet.jpg"
   },
@@ -30,22 +30,29 @@
   {
     "id": "prod0044",
     "name": "REVUELTO",
-    "description": "Huevos revueltos con jamÃÂ³n y queso, una tostada para acompaÃÂ±ar",
+    "description": "Huevos revueltos con jamÃÂÃÂ³n y queso, una tostada para acompaÃÂÃÂ±ar",
     "price": "14000",
     "image": "img/Resultado.jpg"
   },
   {
     "id": "prod0045",
     "name": "PROTEICO",
-    "description": "Pancake 100% harina de almendras, queso crema y fruta de estaciÃ³n mÃ¡s dip de miel",
+    "description": "Pancake 100% harina de almendras, queso crema y fruta de estaciÃÂ³n mÃÂ¡s dip de miel",
     "price": "16000",
     "image": "img/20250815_132946.jpg"
   },
   {
     "id": "prod0067",
     "name": "Mila ESPINACA carne o pollo",
-    "description": "Crema de espinaca y queso gratinado. Acompañadas con puré, fideos, ensalada o papas fritas",
+    "description": "Crema de espinaca y queso gratinado. AcompaÃ±adas con purÃ©, fideos, ensalada o papas fritas",
     "price": "22500",
     "image": "img/Esp.jpg"
+  },
+  {
+    "id": "prod0048",
+    "name": "AMIGOS Y FAMILLAS PASTA",
+    "description": "Fuente de ñoquis o tallarines (bolognesa, crema, fileto o rosa). Podés combinar.",
+    "price": "49000",
+    "image": "img/Fuenteñoquis.jpg"
   }
 ]
