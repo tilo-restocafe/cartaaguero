@@ -23,7 +23,8 @@
     .rowActions{display:flex;gap:6px}
     .previewImg{max-width:120px;margin-top:8px;border-radius:6px}
     textarea#multiInput{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;box-sizing:border-box}
-    /* Toast */
+
+    /* Toast variants */
     .toast {
       position: fixed;
       top: 24px;
@@ -37,10 +38,11 @@
       opacity: 0;
       transform: translateY(-10px);
       transition: opacity .25s ease, transform .25s ease;
-      max-width: 320px;
+      max-width: 360px;
     }
     .toast.show { opacity: 1; transform: translateY(0); }
     .toast.ok { background: #2ecc71; }
+    .toast.info { background: #3498db; }
     .toast.err { background: #e74c3c; }
     @media(max-width:720px){ .topRow{flex-direction:column;align-items:flex-start} table{font-size:13px} }
   </style>
@@ -125,34 +127,27 @@
     <tbody id="tbody"></tbody>
   </table>
 
-  <!-- Toast container (se crea dinámicamente) -->
-  <div id="toastContainer"></div>
-
   <script>
   /**********************************************************
-   * Config (editar si hiciera falta)
+   * Config (colocadas según tu confirmación)
    **********************************************************/
   const USERNAME = "cholose10";
   const REPO = "cartaaguero";
   const MAIN_JSON = "productos.json";
   const EN_JSON = "productos-en.json";
-  const PT_JSON = "productos-port.json"; // nombre que usás
+  const PT_JSON = "productos-port.json";
   let productos = [];
 
   /**********************************************************
-   * Toast helper
+   * Toast helper (ahora con variantes: ok, info, err)
    **********************************************************/
-  function showToast(msg, ok = true, timeout = 3000){
-    // crear toast
-    const id = 'toast-' + Date.now();
+  function showToast(msg, variant = 'ok', timeout = 3000){
     const div = document.createElement('div');
-    div.id = id;
-    div.className = 'toast ' + (ok ? 'ok' : 'err');
-    div.innerText = (ok ? '✔︎ ' : '✖︎ ') + msg;
+    div.className = 'toast ' + (variant === 'info' ? 'info' : variant === 'err' ? 'err' : 'ok');
+    div.innerText = (variant === 'err' ? '✖︎ ' : variant === 'info' ? 'ℹ︎ ' : '✔︎ ') + msg;
     document.body.appendChild(div);
-    // force reflow then show
-    requestAnimationFrame(() => { div.classList.add('show'); });
-    // hide after timeout
+    // show
+    requestAnimationFrame(() => div.classList.add('show'));
     setTimeout(() => {
       div.classList.remove('show');
       setTimeout(()=> div.remove(), 300);
@@ -164,15 +159,15 @@
    **********************************************************/
   function saveToken(){
     const t = document.getElementById('token').value.trim();
-    if(!t){ alert('Pegá tu token primero'); return; }
+    if(!t){ showToast('Pegá tu token primero', 'err'); return; }
     localStorage.setItem('github_token', t);
     document.getElementById('tokenStatus').innerText = 'Token guardado';
-    showToast('Token guardado', true, 2000);
+    showToast('Token guardado', 'ok', 1800);
   }
   function clearToken(){
     localStorage.removeItem('github_token');
     document.getElementById('tokenStatus').innerText = 'Token borrado';
-    showToast('Token borrado', true, 2000);
+    showToast('Token borrado', 'info', 1500);
   }
   function getToken(){ return localStorage.getItem('github_token'); }
 
@@ -187,21 +182,18 @@
    **********************************************************/
   function extractNumberFromId(id){
     if(!id) return null;
-    // buscar grupos de dígitos al final
-    const m = id.match(/(\d+)\s*$/);
+    const m = String(id).match(/(\d+)\s*$/);
     if(m) return parseInt(m[1], 10);
     return null;
   }
 
   function generateNextId(){
-    // buscamos el máximo número entre todos los ids actuales
     let max = 0;
     for(const p of productos){
       const n = extractNumberFromId(p.id || '');
       if(Number.isFinite(n) && n > max) max = n;
     }
     const next = max + 1;
-    // formatear con 4 dígitos: 1 -> 0001
     const s = String(next).padStart(4, '0');
     return 'id' + s;
   }
@@ -220,12 +212,12 @@
       console.warn(e);
       productos = [];
       render(productos);
-      showToast("No se pudo cargar productos.json. Revisa repo o token.", false, 5000);
+      showToast("No se pudo cargar productos.json. Revisa repo o token.", 'err', 5000);
     }
   }
 
   /**********************************************************
-   * Render: construyo filas con DOM (más seguro)
+   * Render: filas DOM
    **********************************************************/
   function render(lista){
     const tb = document.getElementById('tbody');
@@ -243,7 +235,7 @@
       tdImg.appendChild(img);
       tr.appendChild(tdImg);
 
-      // nombre (editable inline)
+      // nombre
       const tdNombre = document.createElement('td');
       const nombreInput = document.createElement('input');
       nombreInput.type = 'text';
@@ -361,23 +353,20 @@
     const obj = { nombre, descripcion, precio, imagen, categoria };
 
     const err = validarProductoObj(obj);
-    if(err){ showToast(err, false); return; }
+    if(err){ showToast(err, 'err'); return; }
 
     if(editIndex !== ''){
-      // editar existente
       const idx = Number(editIndex);
       productos[idx] = { ...productos[idx], ...obj };
-      // si no tiene id, crear
       if(!productos[idx].id) productos[idx].id = generateNextId();
     } else {
-      // nuevo
       const id = generateNextId();
       productos.push({ id, ...obj });
     }
 
     render(productos);
     document.getElementById('form').style.display = 'none';
-    showToast('Producto agregado/actualizado localmente', true, 2000);
+    showToast('Producto agregado/actualizado localmente', 'ok', 1800);
   }
 
   function toggleMultiForm(){
@@ -387,11 +376,10 @@
 
   function procesarMulti(){
     const raw = document.getElementById('multiInput').value.trim();
-    if(!raw){ showToast('Nada para procesar', false); return; }
+    if(!raw){ showToast('Nada para procesar', 'err'); return; }
     const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
     for(const ln of lines){
       const parts = ln.split('|').map(p => p.trim());
-      // nombre | descripcion | precio | imagen | categoria
       const nombre = parts[0] || 'Sin nombre';
       const descripcion = parts[1] || '';
       const precio = parts[2] || '';
@@ -402,17 +390,17 @@
     }
     document.getElementById('multiInput').value = '';
     render(productos);
-    showToast('Productos agregados localmente. Presioná "Guardar TODOS los cambios".', true, 4000);
+    showToast('Productos agregados localmente. Presioná "Guardar TODOS los cambios".', 'info', 3500);
   }
 
   /**********************************************************
-   * Eliminar producto (local y luego save si querés)
+   * Eliminar producto (local)
    **********************************************************/
   function eliminarProducto(i){
     if(!confirm('Eliminar producto?')) return;
     productos.splice(i,1);
     render(productos);
-    showToast('Producto eliminado localmente', true, 2000);
+    showToast('Producto eliminado localmente', 'info', 1600);
   }
 
   /**********************************************************
@@ -425,18 +413,17 @@
       if(!p.id) p.id = generateNextId();
 
       const okMain = await saveToGitHub(MAIN_JSON, productos);
-      if(!okMain){ showToast("Error guardando ES (productos.json). Revisa token.", false, 5000); return; }
+      if(!okMain){ showToast("Error guardando ES (productos.json). Revisa token.", 'err', 5000); return; }
 
-      // sincronizar precio en EN y PT
       if(p.id){
         await syncPrice(p.id, p.precio);
       }
 
-      showToast('Cambios guardados correctamente', true, 3000);
+      showToast('Cambios guardados correctamente', 'ok', 3000);
       render(productos);
     }catch(e){
       console.error(e);
-      showToast('Error guardando fila: ' + (e.message || e), false, 5000);
+      showToast('Error guardando fila: ' + (e.message || e), 'err', 5000);
     }
   }
 
@@ -445,21 +432,21 @@
    **********************************************************/
   async function guardarTodosLosPrecios(){
     try{
-      // asegurar que todos los productos tengan id (generar incremental)
       productos = productos.map(p => p.id ? p : ({ ...p, id: generateNextId() }) );
 
       const okMain = await saveToGitHub(MAIN_JSON, productos);
-      if(!okMain){ showToast("Error guardando ES (productos.json). Revisa token.", false, 5000); return; }
+      if(!okMain){ showToast("Error guardando ES (productos.json). Revisa token.", 'err', 5000); return; }
 
-      // sincronizar secuencialmente (para evitar rate limits)
+      // sincronizar secuencialmente
       for(const p of productos){
         if(p.id) await syncPrice(p.id, p.precio);
       }
 
-      showToast('✅ TODOS los cambios guardados y precios sincronizados.', true, 3500);
+      // Mensaje distinto: color azul (info)
+      showToast('Cambios guardados correctamente (TODOS)', 'info', 3500);
     }catch(e){
       console.error(e);
-      showToast('Error en guardar todos: ' + (e.message || e), false, 6000);
+      showToast('Error en guardar todos: ' + (e.message || e), 'err', 6000);
     }
   }
 
@@ -486,7 +473,6 @@
         throw new Error(`GitHub GET ${file} failed ${r.status} ${text}`);
       }
       const j = await r.json();
-      // j.content está en base64
       const decoded = atob(j.content.replace(/\n/g,''));
       const arr = JSON.parse(decoded);
       return { arr: Array.isArray(arr) ? arr : [], sha: j.sha };
@@ -496,20 +482,20 @@
     }
   }
 
-  // Actualiza (o crea) el item en el archivo destino (solo tocamos el campo precio)
+  /**********************************************************
+   * updatePriceInJSON: actualizar o crear item en archivo destino (EN/PT)
+   **********************************************************/
   async function updatePriceInJSON(file, id, precio, campo){
     try{
-      // 1) obtener contenido y sha via API (si existe)
       const { arr, sha } = await getFileFromGitHub(file);
       let newArr = Array.isArray(arr) ? arr.slice() : [];
 
-      // 2) buscar por id (comparación as-string)
       const ix = newArr.findIndex(x => x && String(x.id) === String(id));
       if(ix >= 0){
         newArr[ix][campo] = precio;
       } else {
-        // si no existe, agregar objeto mínimo: mantener algunas claves del main
         const mainP = productos.find(p => String(p.id) === String(id)) || {};
+
         if(file === EN_JSON){
           newArr.push({
             id: id,
@@ -531,52 +517,31 @@
         }
       }
 
-      // 3) Guardar archivo en GitHub (create/overwrite) usando la sha obtenida (si la había)
       const ok = await saveToGitHub(file, newArr, sha);
-      if(!ok) console.warn('No se pudo guardar ' + file);
+      if(!ok) showToast(`No se pudo guardar ${file}`, 'err', 4000);
     }catch(e){
       console.error('updatePriceInJSON error', e);
+      showToast(`Error actualizando ${file}`, 'err', 4000);
     }
   }
 
   /**********************************************************
-   * GitHub helpers: getSHA (se usa internamente), saveToGitHub
+   * saveToGitHub: guarda/crea archivo en GitHub (usa sha si se pasa)
    **********************************************************/
-  async function getSHA(file){
-    try{
-      const token = getToken();
-      const headers = token ? { "Authorization": "Bearer " + token, "Accept":"application/vnd.github.v3+json" } : { "Accept":"application/vnd.github.v3+json" };
-      const r = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${file}`, { headers });
-      if(r.status === 404) return null;
-      if(!r.ok){
-        const text = await r.text().catch(()=>'');
-        throw new Error(`SHA fetch failed ${r.status} ${text}`);
-      }
-      const j = await r.json();
-      return j.sha;
-    }catch(e){
-      console.warn('getSHA warning', e);
-      return null;
-    }
-  }
-
-  // Guarda/crea archivo en GitHub (PUT contents). Accepts optional sha to avoid extra GET
-  async function saveToGitHub(file, content, forceSha = undefined){
+  async function saveToGitHub(file, data, sha = undefined){
     try{
       const token = getToken();
       if(!token){
-        showToast('Necesitas pegar tu token de GitHub para poder guardar.', false, 4000);
+        showToast('Necesitas pegar tu token de GitHub para poder guardar.', 'err', 4000);
         return false;
       }
 
-      let sha = forceSha;
-      if(typeof sha === 'undefined') {
-        sha = await getSHA(file);
-      }
+      // body.content debe ser base64 (UTF-8 safe)
+      const contentB64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
 
       const body = {
         message: `update ${file}`,
-        content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))))
+        content: contentB64
       };
       if(sha) body.sha = sha;
 
@@ -590,15 +555,13 @@
         body: JSON.stringify(body)
       });
 
-      if(r.status === 200 || r.status === 201){
-        console.log('GitHub saved', file);
+      if(r.status === 200 || r.status === 201) {
         return true;
       } else {
         const respText = await r.text().catch(()=>'');
         console.error('GitHub API error', r.status, respText);
         return false;
       }
-
     }catch(e){
       console.error('saveToGitHub error', e);
       return false;
