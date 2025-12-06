@@ -84,10 +84,10 @@
     "image": "img/medialunas.jpg"
   },
   {
-    "id": "prod0001",
-    "name": "Café expresso",
-    "description": "Café chico",
-    "price": "3400",
-    "image": "img/cafe.jpg"
+    "id": "prod0021",
+    "name": "Medialunas",
+    "description": "Medialunas 100% manteca",
+    "price": "2400",
+    "image": "img/Luna.jpg"
   }
 ]
