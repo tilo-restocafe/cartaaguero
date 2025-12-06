@@ -5,5 +5,12 @@
     "descricao": "piza 4 porciones con muzarela salsa de tomate y oregano",
     "preco": "25500",
     "imagem": "img/Piza.jpg"
+  },
+  {
+    "id": "prod0078",
+    "nome": "RISOTTO de Pollo",
+    "descricao": "Con pollo, calabaza y verduras",
+    "preco": "24000",
+    "imagem": "img/20250816_143144.jpg"
   }
 ]
