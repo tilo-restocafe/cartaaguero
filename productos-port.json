@@ -30,7 +30,7 @@
   {
     "id": "prod0081",
     "nome": "Pollo pechuga gril",
-    "descricao": "Con fritas, purÃÂÃÂÃÂÃÂ©, ensalada o arroz",
+    "descricao": "Con fritas, purÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©, ensalada o arroz",
     "preco": "21000",
     "imagem": "img/Pechuga.jpg"
   },
@@ -51,7 +51,7 @@
   {
     "id": "prod0084",
     "nome": "Bife de lomo gril",
-    "descricao": "Con fritas, purÃ©, ensalada o arroz",
+    "descricao": "Con fritas, purÃÂ©, ensalada o arroz",
     "preco": "33500",
     "imagem": "img/IMG-20250816-WA0008.jpg"
   },
@@ -61,5 +61,12 @@
     "descricao": "Mix de verdes, pollo, huevo, queso azul, tomate y salsa de palta.",
     "preco": "18200",
     "imagem": "img/Cpsala.jpg"
+  },
+  {
+    "id": "prod0085",
+    "nome": "Salmón rosado gril",
+    "descricao": "Con fritas, puré, ensalada o arroz",
+    "preco": "35000",
+    "imagem": "img/Salmón.jpg"
   }
 ]
