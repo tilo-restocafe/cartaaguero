@@ -5,5 +5,12 @@
     "description": "fileto",
     "price": "6000",
     "image": "img/20250903_124659.jpg"
+  },
+  {
+    "id": "prod0152",
+    "name": "Portillo Malbec",
+    "description": "Portillo Malbec (750 cc)",
+    "price": "19000",
+    "image": "img/20250903_111015.jpg"
   }
 ]
