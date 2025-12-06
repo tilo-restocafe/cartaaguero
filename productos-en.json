@@ -1,15 +1,15 @@
 [
   {
     "id": "prod0009",
-    "name": "CafÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© CARAMEL",
-    "description": "Caramelo, cafÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©, leche espumada",
+    "name": "CafÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© CARAMEL",
+    "description": "Caramelo, cafÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©, leche espumada",
     "price": "5950",
     "image": "img/20250903_144413.jpg"
   },
   {
     "id": "prod0010",
-    "name": "TÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© con leche",
-    "description": "TÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Inti Zen",
+    "name": "TÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© con leche",
+    "description": "TÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Inti Zen",
     "price": "4400",
     "image": "img/te.jpg"
   },
@@ -22,7 +22,7 @@
   },
   {
     "id": "prod0012",
-    "name": "Leche caliente o frÃÂÃÂÃÂÃÂ­a",
+    "name": "Leche caliente o frÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­a",
     "description": "Leche descremada",
     "price": "3000",
     "image": "img/20250818_101037.jpg"
@@ -30,29 +30,36 @@
   {
     "id": "prod0013",
     "name": "CAFE TILO",
-    "description": "CafÃÂÃÂ©, Baileys, leche evaporada y chocolate rallado",
+    "description": "CafÃÂÃÂÃÂÃÂ©, Baileys, leche evaporada y chocolate rallado",
     "price": "7500",
     "image": "img/20250819_160159.jpg"
   },
   {
     "id": "prod0014",
-    "name": "ICE COFFEÃ°ÂÂ¥Â¶",
-    "description": "Doble shot con hieloÃ¢ÂÂÃ¯Â¸Â",
+    "name": "ICE COFFEÃÂ°ÃÂÃÂ¥ÃÂ¶",
+    "description": "Doble shot con hieloÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
     "price": "5200",
     "image": "img/20250817_131630.jpg"
   },
   {
     "id": "prod0015",
-    "name": "LATTE ICE COFFEð¥¶",
-    "description": "Leche frÃ­a con doble shot de cafÃ© y hieloâï¸",
+    "name": "LATTE ICE COFFEÃ°ÂÂ¥Â¶",
+    "description": "Leche frÃÂ­a con doble shot de cafÃÂ© y hieloÃ¢ÂÂÃ¯Â¸Â",
     "price": "5200",
     "image": "img/20250817_131330.jpg"
   },
   {
     "id": "prod0016",
-    "name": "FRAPPUCCINO con Leche y OREO🥶",
-    "description": "Base de leche ❄️",
+    "name": "FRAPPUCCINO con Leche y OREOð¥¶",
+    "description": "Base de leche âï¸",
     "price": "7100",
     "image": "img/miloreo.jpg"
+  },
+  {
+    "id": "prod0017",
+    "name": "FRAPPUCCINO OREO🥶",
+    "description": "Base de café❄️",
+    "price": "7100",
+    "image": "img/20250815_154308.jpg"
   }
 ]
