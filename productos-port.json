@@ -8,8 +8,8 @@
   },
   {
     "id": "prod0095",
-    "nome": "SalmÃÂ³n AZUL",
-    "descricao": "SalmÃÂ³n rosado grillado en salsa crema de queso azul con papas espaÃÂ±olas",
+    "nome": "SalmÃÂÃÂ³n AZUL",
+    "descricao": "SalmÃÂÃÂ³n rosado grillado en salsa crema de queso azul con papas espaÃÂÃÂ±olas",
     "preco": 38000,
     "imagem": "img/20250817_142010.jpg"
   },
@@ -23,8 +23,15 @@
   {
     "id": "prod0096",
     "nome": "Matambrito a la PIZZA",
-    "descricao": "De cerdo, muzarella, tomate y orégano con papas fritas",
+    "descricao": "De cerdo, muzarella, tomate y orÃ©gano con papas fritas",
     "preco": "28500",
     "imagem": "img/20250815_132057.jpg"
+  },
+  {
+    "id": "prod0077",
+    "nome": "PIZZA MUZA",
+    "descricao": "piza 4 porciones con muzarela salsa de tomate y oregano",
+    "preco": "25500",
+    "imagem": "img/Piza.jpg"
   }
 ]
