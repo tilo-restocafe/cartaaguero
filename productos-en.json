@@ -1,7 +1,7 @@
 [
   {
     "id": "prod0041",
-    "name": "TOSTADASÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+    "name": "TOSTADASÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
     "description": "Pan negro o blanco con queso crema y mermelada casera",
     "price": "9700",
     "image": "img/Promotos1.jpg"
@@ -16,7 +16,7 @@
   {
     "id": "prod0042",
     "name": "OMELETTE DE CLARAS",
-    "description": "Omelette con queso y tomate (con FRITOLIN) y frutas de estaciÃÂ³n",
+    "description": "Omelette con queso y tomate (con FRITOLIN) y frutas de estaciÃÂÃÂ³n",
     "price": "16000",
     "image": "img/Promoomelet.jpg"
   },
@@ -30,8 +30,15 @@
   {
     "id": "prod0044",
     "name": "REVUELTO",
-    "description": "Huevos revueltos con jamón y queso, una tostada para acompañar",
+    "description": "Huevos revueltos con jamÃ³n y queso, una tostada para acompaÃ±ar",
     "price": "14000",
     "image": "img/Resultado.jpg"
+  },
+  {
+    "id": "prod0045",
+    "name": "PROTEICO",
+    "description": "Pancake 100% harina de almendras, queso crema y fruta de estación más dip de miel",
+    "price": "16000",
+    "image": "img/20250815_132946.jpg"
   }
 ]
