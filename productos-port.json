@@ -1,14 +1,14 @@
 [
   {
     "id": "prod0005",
-    "nome": "CafÃÂ© expresso Doble",
-    "descricao": "CafÃÂ© expresso Doble",
+    "nome": "CafÃÂÃÂ© expresso Doble",
+    "descricao": "CafÃÂÃÂ© expresso Doble",
     "preco": "5200",
     "imagem": "img/doble.jpg"
   },
   {
     "id": "prod0025",
-    "nome": "Cookiesðª",
+    "nome": "CookiesÃ°ÂÂÂª",
     "descricao": "Cookies vainilla con chocolate, chocolate+chocolate c/u",
     "preco": "4800",
     "imagem": "img/20250902_085341.jpg"
@@ -19,5 +19,12 @@
     "descricao": "Brownie sin TACC",
     "preco": "6700",
     "imagem": "img/Brownie.jpg"
+  },
+  {
+    "id": "prod0007",
+    "nome": "Capuccino italiana",
+    "descricao": "Capuccino italiana",
+    "preco": "5500",
+    "imagem": "img/Capuchino.jpg"
   }
 ]
