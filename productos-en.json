@@ -1,16 +1,23 @@
 [
   {
     "id": "prod0009",
-    "name": "CafÃ© CARAMEL",
-    "description": "Caramelo, cafÃ©, leche espumada",
+    "name": "CafÃÂ© CARAMEL",
+    "description": "Caramelo, cafÃÂ©, leche espumada",
     "price": "5950",
     "image": "img/20250903_144413.jpg"
   },
   {
     "id": "prod0010",
-    "name": "Té con leche",
-    "description": "Té Inti Zen",
+    "name": "TÃ© con leche",
+    "description": "TÃ© Inti Zen",
     "price": "4400",
     "image": "img/te.jpg"
+  },
+  {
+    "id": "prod0011",
+    "name": "Submarino",
+    "description": "Leche espumada y barra de chocolate",
+    "price": "5200",
+    "image": "img/Submarino.jpg"
   }
 ]
