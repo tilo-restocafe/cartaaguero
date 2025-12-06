@@ -8,8 +8,8 @@
   },
   {
     "id": "prod0095",
-    "nome": "SalmÃÂÃÂÃÂÃÂ³n AZUL",
-    "descricao": "SalmÃÂÃÂÃÂÃÂ³n rosado grillado en salsa crema de queso azul con papas espaÃÂÃÂÃÂÃÂ±olas",
+    "nome": "SalmÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n AZUL",
+    "descricao": "SalmÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n rosado grillado en salsa crema de queso azul con papas espaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ±olas",
     "preco": 38000,
     "imagem": "img/20250817_142010.jpg"
   },
@@ -23,7 +23,7 @@
   {
     "id": "prod0096",
     "nome": "Matambrito a la PIZZA",
-    "descricao": "De cerdo, muzarella, tomate y orÃÂ©gano con papas fritas",
+    "descricao": "De cerdo, muzarella, tomate y orÃÂÃÂ©gano con papas fritas",
     "preco": "28500",
     "imagem": "img/20250815_132057.jpg"
   },
@@ -40,5 +40,12 @@
     "descricao": "De cerdo, cebollitas, morrones, arvejas y huevo frito, con papas fritas",
     "preco": "28500",
     "imagem": "img/Matrio.jpg"
+  },
+  {
+    "id": "prod0098",
+    "nome": "Lomo CACIO E PEPE",
+    "descricao": "Bife de lomo grillado con spaghetti en pimienta y queso",
+    "preco": "36000",
+    "imagem": "img/Pepe.jpg"
   }
 ]
