@@ -1,9 +1,16 @@
 [
   {
     "id": "prod0127",
-    "nome": "Sorrentinos de muzzarella y jamón (salsa aparte)",
-    "descricao": "Sorrentinos rellenos de muzzarella y jamón",
+    "nome": "Sorrentinos de muzzarella y jamÃ³n (salsa aparte)",
+    "descricao": "Sorrentinos rellenos de muzzarella y jamÃ³n",
     "preco": "15000",
     "imagem": "img/Sonren.jpg"
+  },
+  {
+    "id": "prod0147",
+    "nome": "CORONA (Porrón)",
+    "descricao": "Cerveza Corona 330cc",
+    "preco": "7700",
+    "imagem": "img/Estelar.jpg"
   }
 ]
