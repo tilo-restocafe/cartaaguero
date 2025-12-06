@@ -5,5 +5,12 @@
     "description": "Con pollo, calabaza y verduras",
     "price": "24000",
     "image": "img/20250816_143144.jpg"
+  },
+  {
+    "id": "prod0079",
+    "name": "RISOTTO Langostinos",
+    "description": "Con verduras, nueces y almendras",
+    "price": "26500",
+    "image": "img/Risotolangos.jpg"
   }
 ]
