@@ -2,8 +2,15 @@
   {
     "id": "prod0042",
     "nome": "OMELETTE DE CLARAS",
-    "descricao": "Omelette con queso y tomate (con FRITOLIN) y frutas de estación",
+    "descricao": "Omelette con queso y tomate (con FRITOLIN) y frutas de estaciÃ³n",
     "preco": "16000",
     "imagem": "img/Promoomelet.jpg"
+  },
+  {
+    "id": "prod0062",
+    "nome": "Ensalada CAESAR con pollo crujiente",
+    "descricao": "Mix de verdes, croutons, pollo crujiente, parmesano y aderezo Caesar",
+    "preco": "18500",
+    "imagem": "img/Cranch.jpg"
   }
 ]
