@@ -47,5 +47,12 @@
     "description": "MANTECA, OLIVA, AJO Y PARMESANO",
     "price": "6000",
     "image": "img/218.jpg"
+  },
+  {
+    "id": "prod0137",
+    "name": "línea Coca-Cola",
+    "description": "Zeros y clásicas",
+    "price": "4200",
+    "image": "img/20250830_141813.jpg"
   }
 ]
