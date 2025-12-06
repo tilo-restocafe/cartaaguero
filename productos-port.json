@@ -19,5 +19,12 @@
     "descricao": "Batido Gancia",
     "preco": "9500",
     "imagem": "img/Gancia.jpg"
+  },
+  {
+    "id": "prod0145",
+    "nome": "Limonada",
+    "descricao": "Limonada simple",
+    "preco": "6400",
+    "imagem": "img/Limosim.jpg"
   }
 ]
