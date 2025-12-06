@@ -19,5 +19,12 @@
     "description": "Crema, panceta y verdeo",
     "price": "7700",
     "image": "img/Carbonara.jpg"
+  },
+  {
+    "id": "prod0154",
+    "name": "Trumpeter Sauvignon Blanc",
+    "description": "Trumpeter Sauvignon Blanc (750 cc)",
+    "price": "25000",
+    "image": "img/20250903_112257.jpg"
   }
 ]
