@@ -12,5 +12,12 @@
     "description": "Bife de lomo grillado en salsa de hongos con papas fritas",
     "price": "37000",
     "image": "img/IMG-20250816-WA0009.jpg"
+  },
+  {
+    "id": "prod0100",
+    "name": "BROCHETTE de Lomo",
+    "description": "Con papas fritas (para 2 personas)",
+    "price": "71000",
+    "image": "img/Brochette.jpg"
   }
 ]
