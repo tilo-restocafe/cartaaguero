@@ -3,7 +3,7 @@
     "id": "prod0001",
     "name": "Espresso Coffee",
     "description": "Small coffee",
-    "price": "34009",
+    "price": "3400",
     "image": "img/cafe.jpg",
     "category": "Coffee Shop ☕️"
   },
@@ -11,7 +11,7 @@
     "id": "prod0002",
     "name": "Espresso Coffee (jarrito)",
     "description": "Americano coffee",
-    "price": "3600",
+    "price": "3609",
     "image": "img/Americano.jpg",
     "category": "Coffee Shop ☕️"
   },
@@ -19,7 +19,7 @@
     "id": "prod0003",
     "name": "Decaf Coffee",
     "description": "Decaffeinated coffee",
-    "price": "3900",
+    "price": "3909",
     "image": "img/20250813_094842.jpg",
     "category": "Coffee Shop ☕️"
   },
@@ -755,7 +755,7 @@
     "id": "prod0095",
     "name": "Blue Salmon",
     "description": "Grilled pink salmon in blue cheese cream sauce with Spanish potatoes",
-    "price": 38000,
+    "price": "38000",
     "image": "img/20250817_142010.jpg",
     "category": "🍽️Meals"
   },
