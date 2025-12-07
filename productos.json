@@ -2,7 +2,7 @@
   {
     "nombre": "Café expresso",
     "descripcion": "Café chico",
-    "precio": "3408",
+    "precio": "3400",
     "imagen": "img/cafe.jpg",
     "categoria": "Cafetería☕️",
     "id": "prod0001"
@@ -640,7 +640,7 @@
     "id": "prod0080"
   },
   {
-    "nombre": "Pollo pechuga gril",
+    "nombre": "Pollo pechuga grill",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": "21000",
     "imagen": "img/Pechuga.jpg",
@@ -648,7 +648,7 @@
     "id": "prod0081"
   },
   {
-    "nombre": "Matambre de cerdo gril",
+    "nombre": "Matambre de cerdo grill",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": "24500",
     "imagen": "img/Matam.jpg",
@@ -656,7 +656,7 @@
     "id": "prod0082"
   },
   {
-    "nombre": "Bife de chorizo gril",
+    "nombre": "Bife de chorizo grill",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": "30500",
     "imagen": "img/20250815_151841.jpg",
@@ -664,7 +664,7 @@
     "id": "prod0083"
   },
   {
-    "nombre": "Bife de lomo gril",
+    "nombre": "Bife de lomo grill",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": "33500",
     "imagen": "img/IMG-20250816-WA0008.jpg",
@@ -672,7 +672,7 @@
     "id": "prod0084"
   },
   {
-    "nombre": "Salmón rosado gril",
+    "nombre": "Salmón rosado grill",
     "descripcion": "Con fritas, puré, ensalada o arroz",
     "precio": "35000",
     "imagen": "img/Salmón.jpg",
@@ -680,7 +680,7 @@
     "id": "prod0085"
   },
   {
-    "nombre": "Pollo (pechuga gril  )",
+    "nombre": "Pollo (pechuga grill )",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": "23000",
     "imagen": "img/Espepollo.jpg",
@@ -688,7 +688,7 @@
     "id": "prod0086"
   },
   {
-    "nombre": "Matambre de cerdo gril",
+    "nombre": "Matambre de cerdo grill",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": "26500",
     "imagen": "img/Matavergrill.jpg",
@@ -712,7 +712,7 @@
     "id": "prod0089"
   },
   {
-    "nombre": "Salmón rosado (gril)",
+    "nombre": "Salmón rosado (grill)",
     "descripcion": "Acompañado con espinaca, papas a la crema o verduras grilladas",
     "precio": "37000",
     "imagen": "img/Blu.jpg",
