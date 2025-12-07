@@ -10,7 +10,7 @@
   {
     "nome": "Café expresso jarrito",
     "descricao": "Café americano",
-    "preco": "3608",
+    "preco": "3600",
     "imagem": "img/Americano.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0002"
@@ -154,7 +154,7 @@
   {
     "nome": "Aromatizante baunilha ou avelã",
     "descricao": "Aromatizante baunilha ou avelã",
-    "preco": "350",
+    "preco": "300",
     "imagem": "img/medialunas.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0020"
