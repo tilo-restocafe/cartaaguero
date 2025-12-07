@@ -10,7 +10,7 @@
   {
     "nome": "Café expresso jarrito",
     "descricao": "Café americano",
-    "preco": "3600",
+    "preco": "3609",
     "imagem": "img/Americano.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0002"
@@ -18,7 +18,7 @@
   {
     "nome": "Café descafeinado",
     "descricao": "Café descafeinado",
-    "preco": "3900",
+    "preco": "3909",
     "imagem": "img/20250813_094842.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0003"
@@ -146,7 +146,7 @@
   {
     "nome": "Leite de amêndoas",
     "descricao": "Pequeno $350 - Grande $450",
-    "preco": "360",
+    "preco": "350",
     "imagem": "img/lmen.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0019"
@@ -754,7 +754,7 @@
   {
     "nome": "Salmón AZUL",
     "descricao": "Salmão rosado grelhado em molho cremoso de queijo azul com batatas espanholas",
-    "preco": 38000,
+    "preco": "38000",
     "imagem": "img/20250817_142010.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0095"
