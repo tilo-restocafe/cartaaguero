@@ -118,7 +118,7 @@
  **********************************************************/
 const USERNAME = "cholose10";
 const REPO = "cartaaguero";
-const BRANCH = "main";               // cambiar si usás otro branch
+const BRANCH = "main";
 const MAIN_JSON = "productos.json";
 const EN_JSON = "productos-en.json";
 const PT_JSON = "productos-port.json";
@@ -126,7 +126,7 @@ const PT_JSON = "productos-port.json";
 let productos = [];
 
 /**********************************************************
- * Toast helper
+ * Toast
  **********************************************************/
 function showToast(msg, variant = 'ok', timeout = 3000){
   const div = document.createElement('div');
@@ -141,7 +141,7 @@ function showToast(msg, variant = 'ok', timeout = 3000){
 }
 
 /**********************************************************
- * Token (localStorage)
+ * Token
  **********************************************************/
 function saveToken(){
   const t = document.getElementById('token').value.trim();
@@ -159,7 +159,7 @@ function getToken(){ return localStorage.getItem('github_token'); }
 (function initTokenStatus(){ const t = getToken(); if(t) document.getElementById('tokenStatus').innerText = 'Token guardado'; })();
 
 /**********************************************************
- * Util: generar id tipo prod0001 (continúa secuencia)
+ * IDs
  **********************************************************/
 function extractNumberFromProdId(id){
   if(!id) return null;
@@ -174,12 +174,11 @@ function generateNextProdId(){
     if(Number.isFinite(n) && n > max) max = n;
   }
   const next = max + 1;
-  const s = String(next).padStart(4, '0');
-  return 'prod' + s;
+  return 'prod' + String(next).padStart(4, '0');
 }
 
 /**********************************************************
- * Sanitizar precio (quita todo lo que no sea dígito)
+ * Precio
  **********************************************************/
 function sanitizePrice(v){
   if(v === undefined || v === null) return '';
@@ -188,12 +187,12 @@ function sanitizePrice(v){
 }
 
 /**********************************************************
- * Ordenar campos por idioma (con el orden requerido)
+ * Ordenar claves según idioma
  **********************************************************/
 function ordenarCamposPorIdioma(item, idioma){
   const id = item.id || '';
+
   if(idioma === 'EN'){
-    // id primero
     return {
       id: id,
       name: item.name || item.nombre || item.nome || '',
@@ -203,8 +202,8 @@ function ordenarCamposPorIdioma(item, idioma){
       category: item.category || item.categoria || ''
     };
   }
+
   if(idioma === 'PT'){
-    // id al final, claves portuguesas
     return {
       nome: item.nome || item.name || item.nombre || '',
       descricao: item.descricao || item.description || item.descripcion || '',
@@ -214,7 +213,7 @@ function ordenarCamposPorIdioma(item, idioma){
       id: id
     };
   }
-  // ESPAÑOL - id al final, claves españolas
+
   return {
     nombre: item.nombre || item.name || item.nome || '',
     descripcion: item.descripcion || item.description || item.descricao || '',
@@ -226,7 +225,7 @@ function ordenarCamposPorIdioma(item, idioma){
 }
 
 /**********************************************************
- * Cargar JSON principal y normalizar a modelo interno (ES)
+ * Cargar productos.json
  **********************************************************/
 async function loadProducts(){
   try{
@@ -234,104 +233,112 @@ async function loadProducts(){
     if(!r.ok) throw new Error(`No se pudo cargar ${MAIN_JSON} (${r.status})`);
     const arr = await r.json();
     if(!Array.isArray(arr)) throw new Error('Formato inválido en productos.json');
-    // mapear a forma interna (claves españolas)
-    productos = arr.map(item => {
-      return {
-        id: item.id || item.prodId || '',
-        nombre: item.nombre || item.name || item.nome || '',
-        descripcion: item.descripcion || item.description || item.descricao || '',
-        precio: String(item.precio || item.price || item.preco || '').toString(),
-        imagen: item.imagen || item.image || item.imagem || '',
-        categoria: item.categoria || item.category || item.categoria || ''
-      };
-    });
-    // Si hay productos sin id, asignar prodXXXX
+
+    productos = arr.map(item => ({
+      id: item.id || '',
+      nombre: item.nombre || item.name || item.nome || '',
+      descripcion: item.descripcion || item.description || item.descricao || '',
+      precio: String(item.precio || item.price || item.preco || ''),
+      imagen: item.imagen || item.image || item.imagem || '',
+      categoria: item.categoria || item.category || ''
+    }));
+
+    // asignar IDs faltantes
     let changed = false;
-    productos.forEach(p=>{
+    productos.forEach(p => {
       if(!p.id || !/^prod\d{4}$/.test(p.id)){
         p.id = generateNextProdId();
         changed = true;
       }
     });
+
     render(productos);
-    if(changed) showToast('Se asignaron IDs faltantes localmente (prodXXXX)', 'info', 2200);
+    if(changed) showToast('Se asignaron IDs faltantes (prodXXXX)', 'info', 2500);
+
   }catch(e){
     console.warn(e);
     productos = [];
     render(productos);
-    showToast("No se pudo cargar productos.json. Revisa repo o token.", 'err', 5000);
+    showToast("No se pudo cargar productos.json", 'err', 5000);
   }
 }
 
 /**********************************************************
- * Render: filas DOM
+ * Render tabla
  **********************************************************/
 function render(lista){
   const tb = document.getElementById('tbody');
   tb.innerHTML = '';
+  
   lista.forEach((p, i) => {
     const tr = document.createElement('tr');
 
+    // imagen
     const tdImg = document.createElement('td');
     const img = document.createElement('img');
     img.className = 'mini';
-    img.src = p.imagen || p.image || p.imagem || '';
-    img.alt = p.nombre || p.name || '';
-    img.onerror = () => { img.src = ''; img.style.display = 'none'; };
+    img.src = p.imagen || '';
+    img.onerror = () => { img.style.display='none'; };
     tdImg.appendChild(img);
     tr.appendChild(tdImg);
 
+    // nombre
     const tdNombre = document.createElement('td');
     const nombreInput = document.createElement('input');
     nombreInput.type = 'text';
     nombreInput.value = p.nombre || '';
-    nombreInput.oninput = (e) => { productos[i].nombre = e.target.value; };
+    nombreInput.oninput = e => productos[i].nombre = e.target.value;
     tdNombre.appendChild(nombreInput);
     tr.appendChild(tdNombre);
 
+    // descripcion
     const tdDesc = document.createElement('td');
-    const descTA = document.createElement('textarea');
-    descTA.rows = 2;
-    descTA.value = p.descripcion || '';
-    descTA.oninput = (e) => { productos[i].descripcion = e.target.value; };
-    tdDesc.appendChild(descTA);
+    const desc = document.createElement('textarea');
+    desc.rows = 2;
+    desc.value = p.descripcion || '';
+    desc.oninput = e => productos[i].descripcion = e.target.value;
+    tdDesc.appendChild(desc);
     tr.appendChild(tdDesc);
 
+    // categoria
     const tdCat = document.createElement('td');
-    const catInput = document.createElement('input');
-    catInput.type = 'text';
-    catInput.value = p.categoria || '';
-    catInput.oninput = (e) => { productos[i].categoria = e.target.value; };
-    tdCat.appendChild(catInput);
+    const cat = document.createElement('input');
+    cat.type = 'text';
+    cat.value = p.categoria || '';
+    cat.oninput = e => productos[i].categoria = e.target.value;
+    tdCat.appendChild(cat);
     tr.appendChild(tdCat);
 
+    // precio
     const tdPrecio = document.createElement('td');
-    const precioInput = document.createElement('input');
-    precioInput.type = 'text';
-    precioInput.value = p.precio || '';
-    precioInput.oninput = (e) => { productos[i].precio = e.target.value; };
-    tdPrecio.appendChild(precioInput);
+    const precio = document.createElement('input');
+    precio.type = 'text';
+    precio.value = p.precio || '';
+    precio.oninput = e => productos[i].precio = e.target.value;
+    tdPrecio.appendChild(precio);
     tr.appendChild(tdPrecio);
 
+    // acciones
     const tdAcc = document.createElement('td');
     tdAcc.className = 'rowActions';
 
-    const btnGuardar = document.createElement('button');
-    btnGuardar.textContent = 'Guardar';
-    btnGuardar.onclick = () => guardarFila(i);
-    tdAcc.appendChild(btnGuardar);
+    const b1 = document.createElement('button');
+    b1.textContent = "Guardar";
+    b1.onclick = () => guardarFila(i);
 
-    const btnEdit = document.createElement('button');
-    btnEdit.textContent = 'Editar';
-    btnEdit.style.background = '#2d87d6';
-    btnEdit.onclick = () => loadIntoForm(i);
-    tdAcc.appendChild(btnEdit);
+    const b2 = document.createElement('button');
+    b2.textContent = "Editar";
+    b2.style.background = "#2d87d6";
+    b2.onclick = () => loadIntoForm(i);
 
-    const btnDelete = document.createElement('button');
-    btnDelete.textContent = 'Eliminar';
-    btnDelete.className = 'danger';
-    btnDelete.onclick = () => eliminarProducto(i);
-    tdAcc.appendChild(btnDelete);
+    const b3 = document.createElement('button');
+    b3.textContent = "Eliminar";
+    b3.className = "danger";
+    b3.onclick = () => eliminarProducto(i);
+
+    tdAcc.appendChild(b1);
+    tdAcc.appendChild(b2);
+    tdAcc.appendChild(b3);
 
     tr.appendChild(tdAcc);
     tb.appendChild(tr);
@@ -339,7 +346,7 @@ function render(lista){
 }
 
 /**********************************************************
- * Form helpers
+ * Formulario
  **********************************************************/
 function toggleForm(){ 
   const f = document.getElementById('form'); 
@@ -435,7 +442,7 @@ function eliminarProducto(i){
 }
 
 /**********************************************************
- * GitHub API helpers (obtener sha y guardar)
+ * GitHub API
  **********************************************************/
 async function githubGetFileInfo(path){
   const token = getToken();
@@ -443,7 +450,7 @@ async function githubGetFileInfo(path){
   const url = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/${path}?ref=${BRANCH}`;
   const res = await fetch(url, { headers });
   if(!res.ok) throw new Error(`GitHub get ${path} -> ${res.status}`);
-  return await res.json(); // contiene .sha y .content (base64)
+  return await res.json();
 }
 async function githubPutFile(path, contentString, message, sha){
   const token = getToken();
@@ -471,21 +478,16 @@ async function githubPutFile(path, contentString, message, sha){
 }
 
 /**********************************************************
- * Guardar una fila (producto) —> actualiza MAIN_JSON y
- * sincroniza precios a EN/PT (solo precio)
+ * Guardar fila
  **********************************************************/
 async function guardarFila(i){
   try{
     const p = productos[i];
     if(!p) throw new Error('Producto no encontrado');
     if(!p.id || !/^prod\d{4}$/.test(p.id)) p.id = generateNextProdId();
-    // sanitizar precio
     p.precio = sanitizePrice(p.precio);
 
-    // 1) Guardamos productos.json (ordenado ES)
     await saveMainJson(productos, `Actualiza producto ${p.id} - precio ${p.precio}`);
-
-    // 2) Sincronizamos precios en EN y PT
     await syncPricesToLangs();
 
     showToast('Producto guardado y precios sincronizados en EN/PT', 'ok', 2600);
@@ -496,14 +498,41 @@ async function guardarFila(i){
 }
 
 /**********************************************************
- * Guardar TODOS los cambios (botón)
+ * 🔥 FIX: Refrescar array desde la tabla
+ **********************************************************/
+function refrescarArrayDesdeTabla() {
+  const filas = document.querySelectorAll("#tbody tr");
+  const nuevos = [];
+
+  filas.forEach((fila, i) => {
+    const celdas = fila.querySelectorAll("td");
+
+    const nombre = celdas[1].querySelector("input").value.trim();
+    const descripcion = celdas[2].querySelector("textarea").value.trim();
+    const categoria = celdas[3].querySelector("input").value.trim();
+    const precio = sanitizePrice(celdas[4].querySelector("input").value.trim());
+
+    const id = productos[i]?.id || generateNextProdId();
+    const imagen = productos[i]?.imagen || '';
+
+    nuevos.push({ id, nombre, descripcion, categoria, precio, imagen });
+  });
+
+  productos = nuevos;
+}
+
+/**********************************************************
+ * Guardar TODOS los cambios
  **********************************************************/
 async function guardarTodosLosPrecios(){
   try{
-    // sanitizar todos los precios antes de subir
+    refrescarArrayDesdeTabla();   // ← FIX aplicado
+
     productos = productos.map(p => ({ ...p, precio: sanitizePrice(p.precio) }));
+
     await saveMainJson(productos, `Guardar TODOS los productos - sincronizando precios a EN/PT`);
     await syncPricesToLangs();
+
     showToast('Todos los cambios guardados y sincronizados (ES/EN/PT)', 'ok', 3000);
   }catch(e){
     console.error(e);
@@ -512,131 +541,87 @@ async function guardarTodosLosPrecios(){
 }
 
 /**********************************************************
- * Guardar main JSON (productos.json) - usando orden ES
+ * Guardar productos.json
  **********************************************************/
 async function saveMainJson(arr, commitMessage){
-  // Convertir cada producto a la estructura ES y con ID al final
-  const out = arr.map(item => {
-    const ordered = ordenarCamposPorIdioma(item, 'ES');
-    return ordered;
-  });
+  const out = arr.map(item => ordenarCamposPorIdioma(item, 'ES'));
   const contentString = JSON.stringify(out, null, 2);
+
   let sha;
-  try{
-    const info = await githubGetFileInfo(MAIN_JSON);
-    sha = info.sha;
-  }catch(e){
-    sha = undefined;
-  }
+  try{ sha = (await githubGetFileInfo(MAIN_JSON)).sha; }catch(e){ sha = undefined; }
+
   await githubPutFile(MAIN_JSON, contentString, commitMessage, sha);
 }
 
 /**********************************************************
- * Sincronizar precios en EN y PT (solo cambia precios)
- * Además reordena campos según idioma al subir.
+ * Sincronizar precios EN y PT
  **********************************************************/
 async function syncPricesToLangs(){
   const token = getToken();
-  if(!token) {
+  if(!token){
     showToast('Token requerido para sincronizar EN/PT', 'err', 4000);
     return;
   }
 
-  // construir mapa por id desde productos (base)
   const byId = {};
-  productos.forEach(p => { if(p.id) byId[p.id] = p; });
+  productos.forEach(p => { byId[p.id] = p; });
 
   async function processLangFile(filename, idioma){
-    // obtener info
     const info = await githubGetFileInfo(filename);
     const sha = info.sha;
-    // decodificar contenido base64
+
     const raw = info.content.replace(/\n/g,'');
     const decoded = decodeURIComponent(escape(window.atob(raw)));
-    let arr;
-    try {
-      arr = JSON.parse(decoded);
-      if(!Array.isArray(arr)) throw new Error('Formato inválido');
-    } catch(err) {
-      throw new Error(`No pude parsear ${filename}: ${err.message}`);
-    }
+    let arr = JSON.parse(decoded);
 
-    // actualizar solo precios
     let changed = false;
+
     const newArr = arr.map(item => {
-      // identificar id en el item
-      const itemId = item.id || item.prodId || null;
+      const itemId = item.id || null;
+
       if(itemId && byId[itemId]){
-        // obtener nuevo precio desde base
-        const sourcePrice = String(byId[itemId].precio || byId[itemId].price || byId[itemId].preco || '');
-        const sourceSan = sanitizePrice(sourcePrice);
-        if(sourceSan !== ''){
-          // actualizar la clave de precio que exista en el archivo original
-          if('precio' in item) {
-            if(String(item.precio) !== sourceSan){ item.precio = sourceSan; changed = true; }
-          } else if('price' in item) {
-            if(String(item.price) !== sourceSan){ item.price = sourceSan; changed = true; }
-          } else if('preco' in item) {
-            if(String(item.preco) !== sourceSan){ item.preco = sourceSan; changed = true; }
-          } else {
-            // fallback: asignar la clave correspondiente al idioma
-            if(idioma === 'EN') { if(String(item.price) !== sourceSan){ item.price = sourceSan; changed = true; } }
-            else if(idioma === 'PT') { if(String(item.preco) !== sourceSan){ item.preco = sourceSan; changed = true; } }
-            else { if(String(item.precio) !== sourceSan){ item.precio = sourceSan; changed = true; } }
-          }
-        }
+        const nuevo = sanitizePrice(byId[itemId].precio);
+
+        if('precio' in item && item.precio !== nuevo){ item.precio = nuevo; changed = true; }
+        if('price' in item && item.price !== nuevo){ item.price = nuevo; changed = true; }
+        if('preco' in item && item.preco !== nuevo){ item.preco = nuevo; changed = true; }
       }
-      // mantener item tal como está (no tocar otras claves), pero devolver ordenado según idioma
-      // Antes de ordenar, aseguramos que item tenga 'id' consistente
-      if(!item.id && itemId) item.id = itemId;
-      // Preparamos objeto de salida usando la función de orden
-      // Pero la función espera claves conocidas; pasamos item tal cual y confiará en fallback
-      const ordered = ordenarCamposPorIdioma(item, idioma);
-      // Para mantener otras claves desconocidas (si las hubiera) no las incluimos porque queremos archivos limpios según estructura acordada
-      return ordered;
+
+      return ordenarCamposPorIdioma(item, idioma);
     });
 
     if(changed){
       const contentString = JSON.stringify(newArr, null, 2);
-      await githubPutFile(filename, contentString, `Sincroniza precios desde ${MAIN_JSON}`, sha);
+      await githubPutFile(filename, contentString, `Sincroniza precios desde productos.json`, sha);
     }
-    return changed;
   }
 
-  // ejecutar EN y PT
-  const results = await Promise.allSettled([
+  await Promise.all([
     processLangFile(EN_JSON, 'EN'),
     processLangFile(PT_JSON, 'PT')
   ]);
-  const errors = results.filter(r => r.status === 'rejected');
-  if(errors.length){
-    const msgs = errors.map(e => e.reason && e.reason.message ? e.reason.message : JSON.stringify(e.reason)).join(' | ');
-    throw new Error('Errores sincronizando EN/PT: ' + msgs);
-  }
-  return true;
 }
 
 /**********************************************************
- * Filtrado simple
+ * Filtrar
  **********************************************************/
 function filterProducts(){
   const q = document.getElementById('search').value.toLowerCase().trim();
-  if(!q) { render(productos); return; }
-  const filtered = productos.filter(p => {
-    const name = (p.nombre||'').toString().toLowerCase();
-    const desc = (p.descripcion||'').toString().toLowerCase();
-    const cat = (p.categoria||'').toString().toLowerCase();
-    return name.includes(q) || desc.includes(q) || cat.includes(q);
-  });
+  if(!q){ render(productos); return; }
+
+  const filtered = productos.filter(p =>
+    (p.nombre||'').toLowerCase().includes(q) ||
+    (p.descripcion||'').toLowerCase().includes(q) ||
+    (p.categoria||'').toLowerCase().includes(q)
+  );
+
   render(filtered);
 }
 
 /**********************************************************
  * Init
  **********************************************************/
-document.addEventListener('DOMContentLoaded', () => {
-  loadProducts();
-});
+document.addEventListener('DOMContentLoaded', () => loadProducts());
 </script>
 
 </body>
