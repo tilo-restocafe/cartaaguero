@@ -138,7 +138,7 @@
   {
     "nombre": "Crema",
     "descripcion": "Crema de leche",
-    "precio": "35000",
+    "precio": "350",
     "imagen": "img/cremaadi.jpg",
     "categoria": "Cafetería☕️",
     "id": "prod0018"
@@ -146,7 +146,7 @@
   {
     "nombre": "Leche de almendras",
     "descripcion": "Chico $350 - Grande $450",
-    "precio": "350000",
+    "precio": "350",
     "imagen": "img/lmen.jpg",
     "categoria": "Cafetería☕️",
     "id": "prod0019"
@@ -154,7 +154,7 @@
   {
     "nombre": "Saborizante vainilla o avellanas",
     "descripcion": "Saborizante vainilla o avellanas",
-    "precio": "300000",
+    "precio": "300",
     "imagen": "img/medialunas.jpg",
     "categoria": "Cafetería☕️",
     "id": "prod0020"
