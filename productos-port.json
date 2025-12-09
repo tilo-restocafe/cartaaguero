@@ -2,7 +2,7 @@
   {
     "nome": "Café expresso",
     "descricao": "Café pequeno",
-    "preco": "340000",
+    "preco": "3400",
     "imagem": "img/cafe.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0001"
@@ -18,7 +18,7 @@
   {
     "nome": "Café descafeinado",
     "descricao": "Café descafeinado",
-    "preco": "390000",
+    "preco": "3900",
     "imagem": "img/20250813_094842.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0003"
