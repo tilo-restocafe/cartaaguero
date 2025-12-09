@@ -37,8 +37,6 @@
 </head>
 <body>
 
-  <h1>Panel de Administración - Tilo Café Agüero</h1>
-
   <div class="topRow">
     <div style="flex:1">
       <div style="margin-bottom:6px"><span class="small">Repositorio:</span> <b>cholose10 / cartaaguero</b></div>
@@ -58,8 +56,9 @@
     </div>
   </div>
 
-  <button id="guardarTodos" onclick="guardarTodosLosPrecios()">💾 Guardar TODOS los cambios</button>
-
+  <button id="guardarTodos" onclick="guardarTodosLosPrecios()">💾 Guardar TODOS los cambios
+</button>
+  <!-- Formulario simple -->
   <form id="form">
     <input type="hidden" id="editIndex">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
@@ -95,6 +94,7 @@
     </div>
   </form>
 
+  <!-- Formulario múltiple -->
   <form id="multiForm" style="display:none">
     <h3>Agregar varios productos</h3>
     <p class="small">Un producto por línea con formato: <b>nombre | descripcion | precio | imagen | categoria</b></p>
@@ -114,7 +114,7 @@
 
 <script>
 /**********************************************************
- * Config
+ * Config + estado
  **********************************************************/
 const USERNAME = "cholose10";
 const REPO = "cartaaguero";
@@ -134,96 +134,37 @@ function showToast(msg, variant = 'ok', timeout = 3000){
   div.innerText = (variant === 'err' ? '✖︎ ' : variant === 'info' ? 'ℹ︎ ' : '✔︎ ') + msg;
   document.body.appendChild(div);
   requestAnimationFrame(() => div.classList.add('show'));
-  setTimeout(() => {
-    div.classList.remove('show');
-    setTimeout(()=> div.remove(), 300);
-  }, timeout);
+  setTimeout(() => { div.classList.remove('show'); setTimeout(()=> div.remove(), 300); }, timeout);
 }
 
 /**********************************************************
  * Token
  **********************************************************/
-function saveToken(){
-  const t = document.getElementById('token').value.trim();
-  if(!t){ showToast('Pegá tu token primero', 'err'); return; }
-  localStorage.setItem('github_token', t);
-  document.getElementById('tokenStatus').innerText = 'Token guardado';
-  showToast('Token guardado', 'ok', 1800);
-}
-function clearToken(){
-  localStorage.removeItem('github_token');
-  document.getElementById('tokenStatus').innerText = 'Token borrado';
-  showToast('Token borrado', 'info', 1500);
-}
+function saveToken(){ const t = document.getElementById('token').value.trim(); if(!t){ showToast('Pegá tu token primero', 'err'); return; } localStorage.setItem('github_token', t); document.getElementById('tokenStatus').innerText = 'Token guardado'; showToast('Token guardado', 'ok', 1800); }
+function clearToken(){ localStorage.removeItem('github_token'); document.getElementById('tokenStatus').innerText = 'Token borrado'; showToast('Token borrado', 'info', 1500); }
 function getToken(){ return localStorage.getItem('github_token'); }
 (function initTokenStatus(){ const t = getToken(); if(t) document.getElementById('tokenStatus').innerText = 'Token guardado'; })();
 
 /**********************************************************
- * IDs
+ * IDs y util
  **********************************************************/
-function extractNumberFromProdId(id){
-  if(!id) return null;
-  const m = String(id).match(/(\d+)\s*$/);
-  if(m) return parseInt(m[1], 10);
-  return null;
-}
-function generateNextProdId(){
-  let max = 0;
-  for(const p of productos){
-    const n = extractNumberFromProdId(p.id || '');
-    if(Number.isFinite(n) && n > max) max = n;
-  }
-  const next = max + 1;
-  return 'prod' + String(next).padStart(4, '0');
-}
+function extractNumberFromProdId(id){ if(!id) return null; const m = String(id).match(/(\d+)\s*$/); if(m) return parseInt(m[1],10); return null; }
+function generateNextProdId(){ let max = 0; for(const p of productos){ const n = extractNumberFromProdId(p.id || ''); if(Number.isFinite(n) && n > max) max = n; } const next = max + 1; return 'prod' + String(next).padStart(4, '0'); }
+function sanitizePrice(v){ if(v===undefined||v===null) return ''; const only = String(v).replace(/[^\d]/g,''); return only || ''; }
 
 /**********************************************************
- * Precio
- **********************************************************/
-function sanitizePrice(v){
-  if(v === undefined || v === null) return '';
-  const only = String(v).replace(/[^\d]/g, '');
-  return only || '';
-}
-
-/**********************************************************
- * Ordenar claves según idioma
+ * Ordenar campos por idioma (ES id al final, EN id primero, PT id al final)
  **********************************************************/
 function ordenarCamposPorIdioma(item, idioma){
   const id = item.id || '';
-
   if(idioma === 'EN'){
-    return {
-      id: id,
-      name: item.name || item.nombre || item.nome || '',
-      description: item.description || item.descripcion || item.descricao || '',
-      price: item.price || item.precio || item.preco || '',
-      image: item.image || item.imagen || item.imagem || '',
-      category: item.category || item.categoria || ''
-    };
+    return { id: id, name: item.name || item.nombre || item.nome || '', description: item.description || item.descripcion || item.descricao || '', price: item.price || item.precio || item.preco || '', image: item.image || item.imagen || item.imagem || '', category: item.category || item.categoria || '' };
   }
-
   if(idioma === 'PT'){
-    return {
-      nome: item.nome || item.name || item.nombre || '',
-      descricao: item.descricao || item.description || item.descripcion || '',
-      preco: item.preco || item.price || item.precio || '',
-      imagem: item.imagem || item.image || item.imagen || '',
-      categoria: item.categoria || item.category || '',
-      id: id
-    };
+    return { nome: item.nome || item.name || item.nombre || '', descricao: item.descricao || item.description || item.descripcion || '', preco: item.preco || item.price || item.precio || '', imagem: item.imagem || item.image || item.imagen || '', categoria: item.categoria || item.category || '', id: id };
   }
-
-  return {
-    nombre: item.nombre || item.name || item.nome || '',
-    descripcion: item.descripcion || item.description || item.descricao || '',
-    precio: item.precio || item.price || item.preco || '',
-    imagen: item.imagen || item.image || item.imagem || '',
-    categoria: item.categoria || item.category || '',
-    id: id
-  };
+  return { nombre: item.nombre || item.name || item.nome || '', descripcion: item.descripcion || item.description || item.descricao || '', precio: item.precio || item.price || item.preco || '', imagen: item.imagen || item.image || item.imagem || '', categoria: item.categoria || item.category || '', id: id };
 }
-
 /**********************************************************
  * Cargar productos.json
  **********************************************************/
@@ -243,15 +184,8 @@ async function loadProducts(){
       categoria: item.categoria || item.category || ''
     }));
 
-    // asignar IDs faltantes
     let changed = false;
-    productos.forEach(p => {
-      if(!p.id || !/^prod\d{4}$/.test(p.id)){
-        p.id = generateNextProdId();
-        changed = true;
-      }
-    });
-
+    productos.forEach(p => { if(!p.id || !/^prod\d{4}$/.test(p.id)){ p.id = generateNextProdId(); changed = true; } });
     render(productos);
     if(changed) showToast('Se asignaron IDs faltantes (prodXXXX)', 'info', 2500);
 
@@ -269,7 +203,6 @@ async function loadProducts(){
 function render(lista){
   const tb = document.getElementById('tbody');
   tb.innerHTML = '';
-  
   lista.forEach((p, i) => {
     const tr = document.createElement('tr');
 
@@ -346,139 +279,322 @@ function render(lista){
 }
 
 /**********************************************************
- * Formulario
+ * Form helpers
  **********************************************************/
-function toggleForm(){ 
-  const f = document.getElementById('form'); 
-  f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none';
-}
-function cancelForm(){
-  document.getElementById('editIndex').value = '';
-  document.getElementById('nombre').value = '';
-  document.getElementById('descripcion').value = '';
-  document.getElementById('precio').value = '';
-  document.getElementById('imagen').value = '';
-  document.getElementById('categoria').value = '';
-  document.getElementById('preview').style.display = 'none';
-  document.getElementById('form').style.display = 'none';
-}
-function previewImage(){
-  const v = document.getElementById('imagen').value.trim();
-  const img = document.getElementById('preview');
-  if(!v){ img.style.display='none'; img.src=''; return; }
-  img.src = v;
-  img.style.display = 'block';
-  img.onerror = ()=>{ img.style.display='none'; };
-}
-function loadIntoForm(index){
-  const p = productos[index];
-  if(!p) return;
-  document.getElementById('editIndex').value = index;
-  document.getElementById('nombre').value = p.nombre || '';
-  document.getElementById('descripcion').value = p.descripcion || '';
-  document.getElementById('precio').value = p.precio || '';
-  document.getElementById('imagen').value = p.imagen || '';
-  document.getElementById('categoria').value = p.categoria || '';
-  previewImage();
-  document.getElementById('form').style.display = 'block';
-}
-function validarProductoObj(obj){
-  if(!obj.nombre) return "Falta nombre";
-  if(!obj.precio) return "Falta precio";
-  return null;
-}
-function guardarFormulario(){
-  const nombre = document.getElementById('nombre').value.trim();
-  const descripcion = document.getElementById('descripcion').value.trim();
-  const precio = sanitizePrice(document.getElementById('precio').value.trim());
-  const imagen = document.getElementById('imagen').value.trim();
-  const categoria = document.getElementById('categoria').value.trim();
-  const editIndex = document.getElementById('editIndex').value;
+function toggleForm(){ const f=document.getElementById('form'); f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none'; }
+function cancelForm(){ document.getElementById('editIndex').value=''; document.getElementById('nombre').value=''; document.getElementById('descripcion').value=''; document.getElementById('precio').value=''; document.getElementById('imagen').value=''; document.getElementById('categoria').value=''; document.getElementById('preview').style.display='none'; document.getElementById('form').style.display='none'; }
+function previewImage(){ const v=document.getElementById('imagen').value.trim(); const img=document.getElementById('preview'); if(!v){ img.style.display='none'; img.src=''; return; } img.src=v; img.style.display='block'; img.onerror=()=>{ img.style.display='none'; }; }
+function loadIntoForm(index){ const p=productos[index]; if(!p) return; document.getElementById('editIndex').value=index; document.getElementById('nombre').value=p.nombre||''; document.getElementById('descripcion').value=p.descripcion||''; document.getElementById('precio').value=p.precio||''; document.getElementById('imagen').value=p.imagen||''; document.getElementById('categoria').value=p.categoria||''; previewImage(); document.getElementById('form').style.display='block'; }
+function validarProductoObj(obj){ if(!obj.nombre) return "Falta nombre"; if(!obj.precio) return "Falta precio"; return null; }
+function guardarFormulario(){ const nombre=document.getElementById('nombre').value.trim(); const descripcion=document.getElementById('descripcion').value.trim(); const precio=sanitizePrice(document.getElementById('precio').value.trim()); const imagen=document.getElementById('imagen').value.trim(); const categoria=document.getElementById('categoria').value.trim(); const editIndex=document.getElementById('editIndex').value; const obj={ nombre, descripcion, precio, imagen, categoria }; const err=validarProductoObj(obj); if(err){ showToast(err,'err'); return; } if(editIndex!==''){ const idx=Number(editIndex); productos[idx] = { ...productos[idx], ...obj }; if(!productos[idx].id || !/^prod\d{4}$/.test(productos[idx].id)) productos[idx].id = generateNextProdId(); } else { const id = generateNextProdId(); productos.push({ id, ...obj }); } render(productos); document.getElementById('form').style.display='none'; showToast('Producto agregado/actualizado localmente','ok',1800); }
+function toggleMultiForm(){ const f=document.getElementById('multiForm'); f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none'; }
+function procesarMulti(){ const raw=document.getElementById('multiInput').value.trim(); if(!raw){ showToast('Nada para procesar','err'); return;} const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean); for(const ln of lines){ const parts=ln.split('|').map(p=>p.trim()); const nombre=parts[0]||'Sin nombre'; const descripcion=parts[1]||''; const precio=sanitizePrice(parts[2]||''); const imagen=parts[3]||''; const categoria=parts[4]||''; const id=generateNextProdId(); productos.push({ id, nombre, descripcion, precio, imagen, categoria }); } document.getElementById('multiInput').value=''; render(productos); showToast('Productos agregados localmente. Presioná \"Guardar TODOS los cambios\".','info',3500); }
+function eliminarProducto(i){ if(!confirm('Eliminar producto?')) return; productos.splice(i,1); render(productos); showToast('Producto eliminado localmente','info',1600); }
 
-  const obj = { nombre, descripcion, precio, imagen, categoria };
-  const err = validarProductoObj(obj);
-  if(err){ showToast(err, 'err'); return; }
+/**********************************************************
+ * FIX: Refrescar array desde la tabla (importante antes de "Guardar TODOS")
+ **********************************************************/
+function refrescarArrayDesdeTabla(){
+  const filas = document.querySelectorAll("#tbody tr");
+  const nuevos = [];
+  filas.forEach((fila, idx) => {
+    const celdas = fila.querySelectorAll("td");
+    const nombre = celdas[1].querySelector("input").value.trim();
+    const descripcion = celdas[2].querySelector("textarea").value.trim();
+    const categoria = celdas[3].querySelector("input").value.trim();
+    const precio = sanitizePrice(celdas[4].querySelector("input").value.trim());
+    const id = productos[idx]?.id || generateNextProdId();
+    const imagen = productos[idx]?.imagen || '';
+    nuevos.push({ id, nombre, descripcion, categoria, precio, imagen });
+  });
+  productos = nuevos;
+}
+/**********************************************************
+ * Cargar productos.json
+ **********************************************************/
+async function loadProducts(){
+  try{
+    const r = await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/${BRANCH}/${MAIN_JSON}`);
+    if(!r.ok) throw new Error(`No se pudo cargar ${MAIN_JSON} (${r.status})`);
+    const arr = await r.json();
+    if(!Array.isArray(arr)) throw new Error('Formato inválido en productos.json');
 
-  if(editIndex !== ''){
-    const idx = Number(editIndex);
-    productos[idx] = { ...productos[idx], ...obj };
-    if(!productos[idx].id || !/^prod\d{4}$/.test(productos[idx].id)) productos[idx].id = generateNextProdId();
-  } else {
-    const id = generateNextProdId();
-    productos.push({ id, ...obj });
+    productos = arr.map(item => ({
+      id: item.id || '',
+      nombre: item.nombre || item.name || item.nome || '',
+      descripcion: item.descripcion || item.description || item.descricao || '',
+      precio: String(item.precio || item.price || item.preco || ''),
+      imagen: item.imagen || item.image || item.imagem || '',
+      categoria: item.categoria || item.category || ''
+    }));
+
+    let changed = false;
+    productos.forEach(p => { if(!p.id || !/^prod\d{4}$/.test(p.id)){ p.id = generateNextProdId(); changed = true; } });
+    render(productos);
+    if(changed) showToast('Se asignaron IDs faltantes (prodXXXX)', 'info', 2500);
+
+  }catch(e){
+    console.warn(e);
+    productos = [];
+    render(productos);
+    showToast("No se pudo cargar productos.json", 'err', 5000);
   }
-
-  render(productos);
-  document.getElementById('form').style.display = 'none';
-  showToast('Producto agregado/actualizado localmente', 'ok', 1800);
-}
-function toggleMultiForm(){
-  const f = document.getElementById('multiForm');
-  f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none';
-}
-function procesarMulti(){
-  const raw = document.getElementById('multiInput').value.trim();
-  if(!raw){ showToast('Nada para procesar', 'err'); return; }
-  const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
-  for(const ln of lines){
-    const parts = ln.split('|').map(p => p.trim());
-    const nombre = parts[0] || 'Sin nombre';
-    const descripcion = parts[1] || '';
-    const precio = sanitizePrice(parts[2] || '');
-    const imagen = parts[3] || '';
-    const categoria = parts[4] || '';
-    const id = generateNextProdId();
-    productos.push({ id, nombre, descripcion, precio, imagen, categoria });
-  }
-  document.getElementById('multiInput').value = '';
-  render(productos);
-  showToast('Productos agregados localmente. Presioná "Guardar TODOS los cambios".', 'info', 3500);
-}
-function eliminarProducto(i){
-  if(!confirm('Eliminar producto?')) return;
-  productos.splice(i,1);
-  render(productos);
-  showToast('Producto eliminado localmente', 'info', 1600);
 }
 
 /**********************************************************
- * GitHub API
+ * Render tabla
+ **********************************************************/
+function render(lista){
+  const tb = document.getElementById('tbody');
+  tb.innerHTML = '';
+  lista.forEach((p, i) => {
+    const tr = document.createElement('tr');
+
+    // imagen
+    const tdImg = document.createElement('td');
+    const img = document.createElement('img');
+    img.className = 'mini';
+    img.src = p.imagen || '';
+    img.onerror = () => { img.style.display='none'; };
+    tdImg.appendChild(img);
+    tr.appendChild(tdImg);
+
+    // nombre
+    const tdNombre = document.createElement('td');
+    const nombreInput = document.createElement('input');
+    nombreInput.type = 'text';
+    nombreInput.value = p.nombre || '';
+    nombreInput.oninput = e => productos[i].nombre = e.target.value;
+    tdNombre.appendChild(nombreInput);
+    tr.appendChild(tdNombre);
+
+    // descripcion
+    const tdDesc = document.createElement('td');
+    const desc = document.createElement('textarea');
+    desc.rows = 2;
+    desc.value = p.descripcion || '';
+    desc.oninput = e => productos[i].descripcion = e.target.value;
+    tdDesc.appendChild(desc);
+    tr.appendChild(tdDesc);
+
+    // categoria
+    const tdCat = document.createElement('td');
+    const cat = document.createElement('input');
+    cat.type = 'text';
+    cat.value = p.categoria || '';
+    cat.oninput = e => productos[i].categoria = e.target.value;
+    tdCat.appendChild(cat);
+    tr.appendChild(tdCat);
+
+    // precio
+    const tdPrecio = document.createElement('td');
+    const precio = document.createElement('input');
+    precio.type = 'text';
+    precio.value = p.precio || '';
+    precio.oninput = e => productos[i].precio = e.target.value;
+    tdPrecio.appendChild(precio);
+    tr.appendChild(tdPrecio);
+
+    // acciones
+    const tdAcc = document.createElement('td');
+    tdAcc.className = 'rowActions';
+
+    const b1 = document.createElement('button');
+    b1.textContent = "Guardar";
+    b1.onclick = () => guardarFila(i);
+
+    const b2 = document.createElement('button');
+    b2.textContent = "Editar";
+    b2.style.background = "#2d87d6";
+    b2.onclick = () => loadIntoForm(i);
+
+    const b3 = document.createElement('button');
+    b3.textContent = "Eliminar";
+    b3.className = "danger";
+    b3.onclick = () => eliminarProducto(i);
+
+    tdAcc.appendChild(b1);
+    tdAcc.appendChild(b2);
+    tdAcc.appendChild(b3);
+
+    tr.appendChild(tdAcc);
+    tb.appendChild(tr);
+  });
+}
+
+/**********************************************************
+ * Form helpers
+ **********************************************************/
+function toggleForm(){ const f=document.getElementById('form'); f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none'; }
+function cancelForm(){ document.getElementById('editIndex').value=''; document.getElementById('nombre').value=''; document.getElementById('descripcion').value=''; document.getElementById('precio').value=''; document.getElementById('imagen').value=''; document.getElementById('categoria').value=''; document.getElementById('preview').style.display='none'; document.getElementById('form').style.display='none'; }
+function previewImage(){ const v=document.getElementById('imagen').value.trim(); const img=document.getElementById('preview'); if(!v){ img.style.display='none'; img.src=''; return; } img.src=v; img.style.display='block'; img.onerror=()=>{ img.style.display='none'; }; }
+function loadIntoForm(index){ const p=productos[index]; if(!p) return; document.getElementById('editIndex').value=index; document.getElementById('nombre').value=p.nombre||''; document.getElementById('descripcion').value=p.descripcion||''; document.getElementById('precio').value=p.precio||''; document.getElementById('imagen').value=p.imagen||''; document.getElementById('categoria').value=p.categoria||''; previewImage(); document.getElementById('form').style.display='block'; }
+function validarProductoObj(obj){ if(!obj.nombre) return "Falta nombre"; if(!obj.precio) return "Falta precio"; return null; }
+function guardarFormulario(){ const nombre=document.getElementById('nombre').value.trim(); const descripcion=document.getElementById('descripcion').value.trim(); const precio=sanitizePrice(document.getElementById('precio').value.trim()); const imagen=document.getElementById('imagen').value.trim(); const categoria=document.getElementById('categoria').value.trim(); const editIndex=document.getElementById('editIndex').value; const obj={ nombre, descripcion, precio, imagen, categoria }; const err=validarProductoObj(obj); if(err){ showToast(err,'err'); return; } if(editIndex!==''){ const idx=Number(editIndex); productos[idx] = { ...productos[idx], ...obj }; if(!productos[idx].id || !/^prod\d{4}$/.test(productos[idx].id)) productos[idx].id = generateNextProdId(); } else { const id = generateNextProdId(); productos.push({ id, ...obj }); } render(productos); document.getElementById('form').style.display='none'; showToast('Producto agregado/actualizado localmente','ok',1800); }
+function toggleMultiForm(){ const f=document.getElementById('multiForm'); f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none'; }
+function procesarMulti(){ const raw=document.getElementById('multiInput').value.trim(); if(!raw){ showToast('Nada para procesar','err'); return;} const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean); for(const ln of lines){ const parts=ln.split('|').map(p=>p.trim()); const nombre=parts[0]||'Sin nombre'; const descripcion=parts[1]||''; const precio=sanitizePrice(parts[2]||''); const imagen=parts[3]||''; const categoria=parts[4]||''; const id=generateNextProdId(); productos.push({ id, nombre, descripcion, precio, imagen, categoria }); } document.getElementById('multiInput').value=''; render(productos); showToast('Productos agregados localmente. Presioná \"Guardar TODOS los cambios\".','info',3500); }
+function eliminarProducto(i){ if(!confirm('Eliminar producto?')) return; productos.splice(i,1); render(productos); showToast('Producto eliminado localmente','info',1600); }
+
+/**********************************************************
+ * FIX: Refrescar array desde la tabla (importante antes de "Guardar TODOS")
+ **********************************************************/
+function refrescarArrayDesdeTabla(){
+  const filas = document.querySelectorAll("#tbody tr");
+  const nuevos = [];
+  filas.forEach((fila, idx) => {
+    const celdas = fila.querySelectorAll("td");
+    const nombre = celdas[1].querySelector("input").value.trim();
+    const descripcion = celdas[2].querySelector("textarea").value.trim();
+    const categoria = celdas[3].querySelector("input").value.trim();
+    const precio = sanitizePrice(celdas[4].querySelector("input").value.trim());
+    const id = productos[idx]?.id || generateNextProdId();
+    const imagen = productos[idx]?.imagen || '';
+    nuevos.push({ id, nombre, descripcion, categoria, precio, imagen });
+  });
+  productos = nuevos;
+}
+/**********************************************************
+ * GitHub helpers
  **********************************************************/
 async function githubGetFileInfo(path){
   const token = getToken();
-  const headers = token ? { Authorization: 'token ' + token } : {};
+  const headers = token ? { Authorization: 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } : { 'Accept': 'application/vnd.github.v3+json' };
   const url = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/${path}?ref=${BRANCH}`;
   const res = await fetch(url, { headers });
-  if(!res.ok) throw new Error(`GitHub get ${path} -> ${res.status}`);
-  return await res.json();
+  if(!res.ok) {
+    // Return useful info for 404 - file not found
+    const txt = await res.text().catch(()=>'');
+    throw new Error(`GitHub get ${path} -> ${res.status} ${txt}`);
+  }
+  return await res.json(); // contiene .sha y .content
 }
+
+/**
+ * githubPutFile: hace PUT seguro usando SHA proporcionado.
+ * No intenta retry infinito; se asume que llamante pedirá SHA fresca antes.
+ */
 async function githubPutFile(path, contentString, message, sha){
   const token = getToken();
   if(!token) throw new Error('Token requerido para subir cambios a GitHub');
+
   const url = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/${path}`;
-  const body = {
-    message: message,
-    content: btoa(unescape(encodeURIComponent(contentString))),
-    branch: BRANCH
-  };
+  const body = { message, content: btoa(unescape(encodeURIComponent(contentString))), branch: BRANCH };
   if(sha) body.sha = sha;
+
   const res = await fetch(url, {
     method: 'PUT',
-    headers: {
-      Authorization: 'token ' + token,
-      'Content-Type': 'application/json'
-    },
+    headers: { Authorization: 'token ' + token, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
     body: JSON.stringify(body)
   });
-  const data = await res.json();
-  if(!res.ok) {
+
+  const data = await res.json().catch(()=>({}));
+  if(!res.ok){
     throw new Error(`GitHub PUT ${path} -> ${res.status}: ${data.message || JSON.stringify(data)}`);
   }
   return data;
 }
 
 /**********************************************************
- * Guardar fila
+ * Guardar productos.json (PARCHE: pedir SHA FRESCO justo antes de PUT)
+ **********************************************************/
+async function saveMainJson(arr, commitMessage){
+  const out = arr.map(item => ordenarCamposPorIdioma(item, 'ES'));
+  const contentString = JSON.stringify(out, null, 2);
+
+  let shaActual;
+  try{
+    const info = await githubGetFileInfo(MAIN_JSON);
+    shaActual = info.sha;
+  }catch(e){
+    // si no existe, subimos sin sha
+    shaActual = undefined;
+  }
+
+  // Pedimos SHA FRESCO otra vez justo antes de subir para minimizar 409
+  try{
+    const info2 = await githubGetFileInfo(MAIN_JSON);
+    shaActual = info2.sha;
+  }catch(e){
+    // si falla, dejamos shaActual como estaba (o undefined)
+  }
+
+  await githubPutFile(MAIN_JSON, contentString, commitMessage, shaActual);
+}
+
+/**********************************************************
+ * Sincronizar precios en EN y PT (PARCHE: pedir SHA fresco ANTES de PUT)
+ **********************************************************/
+async function syncPricesToLangs(){
+  const token = getToken();
+  if(!token){ showToast('Token requerido para sincronizar EN/PT', 'err', 4000); return; }
+
+  const byId = {};
+  productos.forEach(p => { if(p.id) byId[p.id] = p; });
+
+  async function processLangFile(filename, idioma){
+    // 1) Obtener info inicial
+    let info;
+    try{
+      info = await githubGetFileInfo(filename);
+    }catch(e){
+      // si no existe or error: crear archivo con estructura vacía
+      info = null;
+    }
+
+    let arr = [];
+    if(info && info.content){
+      const raw = info.content.replace(/\n/g,'');
+      const decoded = decodeURIComponent(escape(window.atob(raw)));
+      try{ arr = JSON.parse(decoded); if(!Array.isArray(arr)) arr = []; } catch(e){ arr = []; }
+    }
+
+    let changed = false;
+
+    const newArr = arr.map(item => {
+      const itemId = item.id || null;
+      if(itemId && byId[itemId]){
+        const nuevo = sanitizePrice(byId[itemId].precio);
+        if('precio' in item && String(item.precio) !== nuevo){ item.precio = nuevo; changed = true; }
+        if('price' in item && String(item.price) !== nuevo){ item.price = nuevo; changed = true; }
+        if('preco' in item && String(item.preco) !== nuevo){ item.preco = nuevo; changed = true; }
+      }
+      // asegurar id esté presente
+      if(!item.id && itemId) item.id = itemId;
+      return ordenarCamposPorIdioma(item, idioma);
+    });
+
+    // Si archivo no existía, podríamos necesitar crear registros desde base (opcional)
+    // Para ahora: si info === null --> crear nuevo array con los productos que existan en base (solo si hay coincidencia)
+    if(info === null){
+      // crear array desde productos que existan en byId (mapeo)
+      const created = [];
+      for(const pid in byId){
+        const p = byId[pid];
+        if(!p) continue;
+        const obj = ordenarCamposPorIdioma({ id: p.id, nombre: p.nombre, descripcion: p.descripcion, precio: p.precio, imagen: p.imagen, categoria: p.categoria }, idioma);
+        created.push(obj);
+      }
+      // guardamos siempre (es creación)
+      const contentStringCreate = JSON.stringify(created, null, 2);
+      await githubPutFile(filename, contentStringCreate, `Crea ${filename} desde productos.json`, undefined);
+      return;
+    }
+
+    if(changed){
+      // Pedir SHA fresco justo antes de subir
+      const latestInfo = await githubGetFileInfo(filename);
+      const latestSha = latestInfo.sha;
+      const contentString = JSON.stringify(newArr, null, 2);
+      await githubPutFile(filename, contentString, `Sincroniza precios desde productos.json`, latestSha);
+    }
+  }
+
+  // ejecutar secuencialmente para evitar race conditions (opcional usar paralelo)
+  await processLangFile(EN_JSON, 'EN');
+  await processLangFile(PT_JSON, 'PT');
+}
+/**********************************************************
+ * Guardar fila (precisa saveMainJson + syncPricesToLangs)
  **********************************************************/
 async function guardarFila(i){
   try{
@@ -491,6 +607,7 @@ async function guardarFila(i){
     await syncPricesToLangs();
 
     showToast('Producto guardado y precios sincronizados en EN/PT', 'ok', 2600);
+    render(productos);
   }catch(e){
     console.error(e);
     showToast('Error al guardar fila: ' + (e.message||e), 'err', 5000);
@@ -498,42 +615,22 @@ async function guardarFila(i){
 }
 
 /**********************************************************
- * 🔥 FIX: Refrescar array desde la tabla
- **********************************************************/
-function refrescarArrayDesdeTabla() {
-  const filas = document.querySelectorAll("#tbody tr");
-  const nuevos = [];
-
-  filas.forEach((fila, i) => {
-    const celdas = fila.querySelectorAll("td");
-
-    const nombre = celdas[1].querySelector("input").value.trim();
-    const descripcion = celdas[2].querySelector("textarea").value.trim();
-    const categoria = celdas[3].querySelector("input").value.trim();
-    const precio = sanitizePrice(celdas[4].querySelector("input").value.trim());
-
-    const id = productos[i]?.id || generateNextProdId();
-    const imagen = productos[i]?.imagen || '';
-
-    nuevos.push({ id, nombre, descripcion, categoria, precio, imagen });
-  });
-
-  productos = nuevos;
-}
-
-/**********************************************************
- * Guardar TODOS los cambios
+ * Guardar TODOS - ahora refresca tabla y usa saveMainJson parcheado
  **********************************************************/
 async function guardarTodosLosPrecios(){
   try{
-    refrescarArrayDesdeTabla();   // ← FIX aplicado
+    // 1) Tomar los valores visibles en pantalla
+    refrescarArrayDesdeTabla();
 
+    // 2) Sanitizar precios
     productos = productos.map(p => ({ ...p, precio: sanitizePrice(p.precio) }));
 
+    // 3) Guardar MAIN y sincronizar EN/PT
     await saveMainJson(productos, `Guardar TODOS los productos - sincronizando precios a EN/PT`);
     await syncPricesToLangs();
 
     showToast('Todos los cambios guardados y sincronizados (ES/EN/PT)', 'ok', 3000);
+    render(productos);
   }catch(e){
     console.error(e);
     showToast('Error al guardar todos: ' + (e.message||e), 'err', 6000);
@@ -541,87 +638,25 @@ async function guardarTodosLosPrecios(){
 }
 
 /**********************************************************
- * Guardar productos.json
- **********************************************************/
-async function saveMainJson(arr, commitMessage){
-  const out = arr.map(item => ordenarCamposPorIdioma(item, 'ES'));
-  const contentString = JSON.stringify(out, null, 2);
-
-  let sha;
-  try{ sha = (await githubGetFileInfo(MAIN_JSON)).sha; }catch(e){ sha = undefined; }
-
-  await githubPutFile(MAIN_JSON, contentString, commitMessage, sha);
-}
-
-/**********************************************************
- * Sincronizar precios EN y PT
- **********************************************************/
-async function syncPricesToLangs(){
-  const token = getToken();
-  if(!token){
-    showToast('Token requerido para sincronizar EN/PT', 'err', 4000);
-    return;
-  }
-
-  const byId = {};
-  productos.forEach(p => { byId[p.id] = p; });
-
-  async function processLangFile(filename, idioma){
-    const info = await githubGetFileInfo(filename);
-    const sha = info.sha;
-
-    const raw = info.content.replace(/\n/g,'');
-    const decoded = decodeURIComponent(escape(window.atob(raw)));
-    let arr = JSON.parse(decoded);
-
-    let changed = false;
-
-    const newArr = arr.map(item => {
-      const itemId = item.id || null;
-
-      if(itemId && byId[itemId]){
-        const nuevo = sanitizePrice(byId[itemId].precio);
-
-        if('precio' in item && item.precio !== nuevo){ item.precio = nuevo; changed = true; }
-        if('price' in item && item.price !== nuevo){ item.price = nuevo; changed = true; }
-        if('preco' in item && item.preco !== nuevo){ item.preco = nuevo; changed = true; }
-      }
-
-      return ordenarCamposPorIdioma(item, idioma);
-    });
-
-    if(changed){
-      const contentString = JSON.stringify(newArr, null, 2);
-      await githubPutFile(filename, contentString, `Sincroniza precios desde productos.json`, sha);
-    }
-  }
-
-  await Promise.all([
-    processLangFile(EN_JSON, 'EN'),
-    processLangFile(PT_JSON, 'PT')
-  ]);
-}
-
-/**********************************************************
- * Filtrar
+ * Filtrado
  **********************************************************/
 function filterProducts(){
   const q = document.getElementById('search').value.toLowerCase().trim();
   if(!q){ render(productos); return; }
-
   const filtered = productos.filter(p =>
     (p.nombre||'').toLowerCase().includes(q) ||
     (p.descripcion||'').toLowerCase().includes(q) ||
     (p.categoria||'').toLowerCase().includes(q)
   );
-
   render(filtered);
 }
 
 /**********************************************************
  * Init
  **********************************************************/
-document.addEventListener('DOMContentLoaded', () => loadProducts());
+document.addEventListener('DOMContentLoaded', () => {
+  loadProducts();
+});
 </script>
 
 </body>
