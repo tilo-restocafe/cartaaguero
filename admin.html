@@ -36,6 +36,7 @@
   </style>
 </head>
 <body>
+  <h1>Admin Carta — Tilo Café Agüero</h1>
 
   <div class="topRow">
     <div style="flex:1">
@@ -45,6 +46,7 @@
         <input type="password" id="token" placeholder="Pegar token de GitHub (repo contents)" style="max-width:420px">
         <button onclick="saveToken()">Guardar</button>
         <button onclick="clearToken()">Borrar</button>
+        <button onclick="exportBackup()" style="background:#4b88c2">Backup</button>
         <span class="small" id="tokenStatus" style="margin-left:8px">No guardado</span>
       </div>
     </div>
@@ -52,12 +54,12 @@
     <div class="controls">
       <input id="search" placeholder="Buscar..." oninput="filterProducts()" style="min-width:180px;max-width:360px">
       <button id="toggleFormBtn" onclick="toggleForm()">+ Agregar producto</button>
-      <button class="secondary" onclick="toggleMultiForm()">➕ Agregar VARIOS</button>
+      <!-- nota: botón agregar varios removido por petición -->
     </div>
   </div>
 
-  <button id="guardarTodos" onclick="guardarTodosLosPrecios()">💾 Guardar TODOS los cambios
-</button>
+  <button id="guardarTodos" onclick="guardarTodosLosPrecios()">💾 Guardar TODOS los cambios</button>
+
   <!-- Formulario simple -->
   <form id="form">
     <input type="hidden" id="editIndex">
@@ -94,17 +96,6 @@
     </div>
   </form>
 
-  <!-- Formulario múltiple -->
-  <form id="multiForm" style="display:none">
-    <h3>Agregar varios productos</h3>
-    <p class="small">Un producto por línea con formato: <b>nombre | descripcion | precio | imagen | categoria</b></p>
-    <textarea id="multiInput" rows="8" placeholder="Ej: Café expresso | Café chico | 3400 | img/cafe.jpg | Cafetería"></textarea>
-    <div style="margin-top:8px;display:flex;gap:8px">
-      <button type="button" onclick="procesarMulti()">Guardar varios</button>
-      <button type="button" onclick="toggleMultiForm()" style="background:#999">Cerrar</button>
-    </div>
-  </form>
-
   <table aria-label="Productos">
     <thead>
       <tr><th style="width:80px">Imagen</th><th>Nombre</th><th>Descripción</th><th>Categoría</th><th style="width:100px">Precio (ES)</th><th style="width:180px">Acciones</th></tr>
@@ -138,12 +129,24 @@ function showToast(msg, variant = 'ok', timeout = 3000){
 }
 
 /**********************************************************
- * Token
+ * Token (guardado en localStorage) + toggle mostrar
  **********************************************************/
 function saveToken(){ const t = document.getElementById('token').value.trim(); if(!t){ showToast('Pegá tu token primero', 'err'); return; } localStorage.setItem('github_token', t); document.getElementById('tokenStatus').innerText = 'Token guardado'; showToast('Token guardado', 'ok', 1800); }
 function clearToken(){ localStorage.removeItem('github_token'); document.getElementById('tokenStatus').innerText = 'Token borrado'; showToast('Token borrado', 'info', 1500); }
 function getToken(){ return localStorage.getItem('github_token'); }
 (function initTokenStatus(){ const t = getToken(); if(t) document.getElementById('tokenStatus').innerText = 'Token guardado'; })();
+
+/* añadir botón ver/ocultar token */
+(function addTokenToggle(){
+  const tokenInput = document.getElementById('token');
+  const wrapper = tokenInput.parentNode;
+  const toggle = document.createElement("button");
+  toggle.textContent = "👁";
+  toggle.style.background = "#444";
+  toggle.style.marginLeft = "6px";
+  toggle.onclick = (e) => { e.preventDefault(); tokenInput.type = tokenInput.type === "password" ? "text" : "password"; };
+  wrapper.appendChild(toggle);
+})();
 
 /**********************************************************
  * IDs y util
@@ -165,6 +168,7 @@ function ordenarCamposPorIdioma(item, idioma){
   }
   return { nombre: item.nombre || item.name || item.nome || '', descripcion: item.descripcion || item.description || item.descricao || '', precio: item.precio || item.price || item.preco || '', imagen: item.imagen || item.image || item.imagem || '', categoria: item.categoria || item.category || '', id: id };
 }
+
 /**********************************************************
  * Cargar productos.json
  **********************************************************/
@@ -287,12 +291,10 @@ function previewImage(){ const v=document.getElementById('imagen').value.trim();
 function loadIntoForm(index){ const p=productos[index]; if(!p) return; document.getElementById('editIndex').value=index; document.getElementById('nombre').value=p.nombre||''; document.getElementById('descripcion').value=p.descripcion||''; document.getElementById('precio').value=p.precio||''; document.getElementById('imagen').value=p.imagen||''; document.getElementById('categoria').value=p.categoria||''; previewImage(); document.getElementById('form').style.display='block'; }
 function validarProductoObj(obj){ if(!obj.nombre) return "Falta nombre"; if(!obj.precio) return "Falta precio"; return null; }
 function guardarFormulario(){ const nombre=document.getElementById('nombre').value.trim(); const descripcion=document.getElementById('descripcion').value.trim(); const precio=sanitizePrice(document.getElementById('precio').value.trim()); const imagen=document.getElementById('imagen').value.trim(); const categoria=document.getElementById('categoria').value.trim(); const editIndex=document.getElementById('editIndex').value; const obj={ nombre, descripcion, precio, imagen, categoria }; const err=validarProductoObj(obj); if(err){ showToast(err,'err'); return; } if(editIndex!==''){ const idx=Number(editIndex); productos[idx] = { ...productos[idx], ...obj }; if(!productos[idx].id || !/^prod\d{4}$/.test(productos[idx].id)) productos[idx].id = generateNextProdId(); } else { const id = generateNextProdId(); productos.push({ id, ...obj }); } render(productos); document.getElementById('form').style.display='none'; showToast('Producto agregado/actualizado localmente','ok',1800); }
-function toggleMultiForm(){ const f=document.getElementById('multiForm'); f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none'; }
-function procesarMulti(){ const raw=document.getElementById('multiInput').value.trim(); if(!raw){ showToast('Nada para procesar','err'); return;} const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean); for(const ln of lines){ const parts=ln.split('|').map(p=>p.trim()); const nombre=parts[0]||'Sin nombre'; const descripcion=parts[1]||''; const precio=sanitizePrice(parts[2]||''); const imagen=parts[3]||''; const categoria=parts[4]||''; const id=generateNextProdId(); productos.push({ id, nombre, descripcion, precio, imagen, categoria }); } document.getElementById('multiInput').value=''; render(productos); showToast('Productos agregados localmente. Presioná \"Guardar TODOS los cambios\".','info',3500); }
 function eliminarProducto(i){ if(!confirm('Eliminar producto?')) return; productos.splice(i,1); render(productos); showToast('Producto eliminado localmente','info',1600); }
 
 /**********************************************************
- * FIX: Refrescar array desde la tabla (importante antes de "Guardar TODOS")
+ * Refrescar array desde la tabla (importante antes de "Guardar TODOS")
  **********************************************************/
 function refrescarArrayDesdeTabla(){
   const filas = document.querySelectorAll("#tbody tr");
@@ -309,152 +311,9 @@ function refrescarArrayDesdeTabla(){
   });
   productos = nuevos;
 }
-/**********************************************************
- * Cargar productos.json
- **********************************************************/
-async function loadProducts(){
-  try{
-    const r = await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/${BRANCH}/${MAIN_JSON}`);
-    if(!r.ok) throw new Error(`No se pudo cargar ${MAIN_JSON} (${r.status})`);
-    const arr = await r.json();
-    if(!Array.isArray(arr)) throw new Error('Formato inválido en productos.json');
-
-    productos = arr.map(item => ({
-      id: item.id || '',
-      nombre: item.nombre || item.name || item.nome || '',
-      descripcion: item.descripcion || item.description || item.descricao || '',
-      precio: String(item.precio || item.price || item.preco || ''),
-      imagen: item.imagen || item.image || item.imagem || '',
-      categoria: item.categoria || item.category || ''
-    }));
-
-    let changed = false;
-    productos.forEach(p => { if(!p.id || !/^prod\d{4}$/.test(p.id)){ p.id = generateNextProdId(); changed = true; } });
-    render(productos);
-    if(changed) showToast('Se asignaron IDs faltantes (prodXXXX)', 'info', 2500);
-
-  }catch(e){
-    console.warn(e);
-    productos = [];
-    render(productos);
-    showToast("No se pudo cargar productos.json", 'err', 5000);
-  }
-}
 
 /**********************************************************
- * Render tabla
- **********************************************************/
-function render(lista){
-  const tb = document.getElementById('tbody');
-  tb.innerHTML = '';
-  lista.forEach((p, i) => {
-    const tr = document.createElement('tr');
-
-    // imagen
-    const tdImg = document.createElement('td');
-    const img = document.createElement('img');
-    img.className = 'mini';
-    img.src = p.imagen || '';
-    img.onerror = () => { img.style.display='none'; };
-    tdImg.appendChild(img);
-    tr.appendChild(tdImg);
-
-    // nombre
-    const tdNombre = document.createElement('td');
-    const nombreInput = document.createElement('input');
-    nombreInput.type = 'text';
-    nombreInput.value = p.nombre || '';
-    nombreInput.oninput = e => productos[i].nombre = e.target.value;
-    tdNombre.appendChild(nombreInput);
-    tr.appendChild(tdNombre);
-
-    // descripcion
-    const tdDesc = document.createElement('td');
-    const desc = document.createElement('textarea');
-    desc.rows = 2;
-    desc.value = p.descripcion || '';
-    desc.oninput = e => productos[i].descripcion = e.target.value;
-    tdDesc.appendChild(desc);
-    tr.appendChild(tdDesc);
-
-    // categoria
-    const tdCat = document.createElement('td');
-    const cat = document.createElement('input');
-    cat.type = 'text';
-    cat.value = p.categoria || '';
-    cat.oninput = e => productos[i].categoria = e.target.value;
-    tdCat.appendChild(cat);
-    tr.appendChild(tdCat);
-
-    // precio
-    const tdPrecio = document.createElement('td');
-    const precio = document.createElement('input');
-    precio.type = 'text';
-    precio.value = p.precio || '';
-    precio.oninput = e => productos[i].precio = e.target.value;
-    tdPrecio.appendChild(precio);
-    tr.appendChild(tdPrecio);
-
-    // acciones
-    const tdAcc = document.createElement('td');
-    tdAcc.className = 'rowActions';
-
-    const b1 = document.createElement('button');
-    b1.textContent = "Guardar";
-    b1.onclick = () => guardarFila(i);
-
-    const b2 = document.createElement('button');
-    b2.textContent = "Editar";
-    b2.style.background = "#2d87d6";
-    b2.onclick = () => loadIntoForm(i);
-
-    const b3 = document.createElement('button');
-    b3.textContent = "Eliminar";
-    b3.className = "danger";
-    b3.onclick = () => eliminarProducto(i);
-
-    tdAcc.appendChild(b1);
-    tdAcc.appendChild(b2);
-    tdAcc.appendChild(b3);
-
-    tr.appendChild(tdAcc);
-    tb.appendChild(tr);
-  });
-}
-
-/**********************************************************
- * Form helpers
- **********************************************************/
-function toggleForm(){ const f=document.getElementById('form'); f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none'; }
-function cancelForm(){ document.getElementById('editIndex').value=''; document.getElementById('nombre').value=''; document.getElementById('descripcion').value=''; document.getElementById('precio').value=''; document.getElementById('imagen').value=''; document.getElementById('categoria').value=''; document.getElementById('preview').style.display='none'; document.getElementById('form').style.display='none'; }
-function previewImage(){ const v=document.getElementById('imagen').value.trim(); const img=document.getElementById('preview'); if(!v){ img.style.display='none'; img.src=''; return; } img.src=v; img.style.display='block'; img.onerror=()=>{ img.style.display='none'; }; }
-function loadIntoForm(index){ const p=productos[index]; if(!p) return; document.getElementById('editIndex').value=index; document.getElementById('nombre').value=p.nombre||''; document.getElementById('descripcion').value=p.descripcion||''; document.getElementById('precio').value=p.precio||''; document.getElementById('imagen').value=p.imagen||''; document.getElementById('categoria').value=p.categoria||''; previewImage(); document.getElementById('form').style.display='block'; }
-function validarProductoObj(obj){ if(!obj.nombre) return "Falta nombre"; if(!obj.precio) return "Falta precio"; return null; }
-function guardarFormulario(){ const nombre=document.getElementById('nombre').value.trim(); const descripcion=document.getElementById('descripcion').value.trim(); const precio=sanitizePrice(document.getElementById('precio').value.trim()); const imagen=document.getElementById('imagen').value.trim(); const categoria=document.getElementById('categoria').value.trim(); const editIndex=document.getElementById('editIndex').value; const obj={ nombre, descripcion, precio, imagen, categoria }; const err=validarProductoObj(obj); if(err){ showToast(err,'err'); return; } if(editIndex!==''){ const idx=Number(editIndex); productos[idx] = { ...productos[idx], ...obj }; if(!productos[idx].id || !/^prod\d{4}$/.test(productos[idx].id)) productos[idx].id = generateNextProdId(); } else { const id = generateNextProdId(); productos.push({ id, ...obj }); } render(productos); document.getElementById('form').style.display='none'; showToast('Producto agregado/actualizado localmente','ok',1800); }
-function toggleMultiForm(){ const f=document.getElementById('multiForm'); f.style.display = f.style.display === 'none' || f.style.display === '' ? 'block' : 'none'; }
-function procesarMulti(){ const raw=document.getElementById('multiInput').value.trim(); if(!raw){ showToast('Nada para procesar','err'); return;} const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean); for(const ln of lines){ const parts=ln.split('|').map(p=>p.trim()); const nombre=parts[0]||'Sin nombre'; const descripcion=parts[1]||''; const precio=sanitizePrice(parts[2]||''); const imagen=parts[3]||''; const categoria=parts[4]||''; const id=generateNextProdId(); productos.push({ id, nombre, descripcion, precio, imagen, categoria }); } document.getElementById('multiInput').value=''; render(productos); showToast('Productos agregados localmente. Presioná \"Guardar TODOS los cambios\".','info',3500); }
-function eliminarProducto(i){ if(!confirm('Eliminar producto?')) return; productos.splice(i,1); render(productos); showToast('Producto eliminado localmente','info',1600); }
-
-/**********************************************************
- * FIX: Refrescar array desde la tabla (importante antes de "Guardar TODOS")
- **********************************************************/
-function refrescarArrayDesdeTabla(){
-  const filas = document.querySelectorAll("#tbody tr");
-  const nuevos = [];
-  filas.forEach((fila, idx) => {
-    const celdas = fila.querySelectorAll("td");
-    const nombre = celdas[1].querySelector("input").value.trim();
-    const descripcion = celdas[2].querySelector("textarea").value.trim();
-    const categoria = celdas[3].querySelector("input").value.trim();
-    const precio = sanitizePrice(celdas[4].querySelector("input").value.trim());
-    const id = productos[idx]?.id || generateNextProdId();
-    const imagen = productos[idx]?.imagen || '';
-    nuevos.push({ id, nombre, descripcion, categoria, precio, imagen });
-  });
-  productos = nuevos;
-}
-/**********************************************************
- * GitHub helpers
+ * GitHub helpers (GET info, PUT)
  **********************************************************/
 async function githubGetFileInfo(path){
   const token = getToken();
@@ -462,17 +321,14 @@ async function githubGetFileInfo(path){
   const url = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/${path}?ref=${BRANCH}`;
   const res = await fetch(url, { headers });
   if(!res.ok) {
-    // Return useful info for 404 - file not found
     const txt = await res.text().catch(()=>'');
-    throw new Error(`GitHub get ${path} -> ${res.status} ${txt}`);
+    const e = new Error(`GitHub get ${path} -> ${res.status} ${txt}`);
+    e.status = res.status;
+    throw e;
   }
-  return await res.json(); // contiene .sha y .content
+  return await res.json();
 }
 
-/**
- * githubPutFile: hace PUT seguro usando SHA proporcionado.
- * No intenta retry infinito; se asume que llamante pedirá SHA fresca antes.
- */
 async function githubPutFile(path, contentString, message, sha){
   const token = getToken();
   if(!token) throw new Error('Token requerido para subir cambios a GitHub');
@@ -495,7 +351,7 @@ async function githubPutFile(path, contentString, message, sha){
 }
 
 /**********************************************************
- * Guardar productos.json (PARCHE: pedir SHA FRESCO justo antes de PUT)
+ * Guardar productos.json (usando SHA fresco)
  **********************************************************/
 async function saveMainJson(arr, commitMessage){
   const out = arr.map(item => ordenarCamposPorIdioma(item, 'ES'));
@@ -506,23 +362,38 @@ async function saveMainJson(arr, commitMessage){
     const info = await githubGetFileInfo(MAIN_JSON);
     shaActual = info.sha;
   }catch(e){
-    // si no existe, subimos sin sha
     shaActual = undefined;
   }
 
-  // Pedimos SHA FRESCO otra vez justo antes de subir para minimizar 409
   try{
     const info2 = await githubGetFileInfo(MAIN_JSON);
     shaActual = info2.sha;
   }catch(e){
-    // si falla, dejamos shaActual como estaba (o undefined)
+    // dejar como estaba
   }
 
   await githubPutFile(MAIN_JSON, contentString, commitMessage, shaActual);
 }
 
 /**********************************************************
+ * Protección para no borrar textos EN/PT al sincronizar
+ **********************************************************/
+function safeMergeLangItem(orig, nuevo){
+  return {
+    ...orig,
+    ...Object.fromEntries(
+      Object.entries(nuevo).filter(([k,v]) => {
+        if(k === "precio" || k === "price" || k === "preco") return true;
+        if(v === "" || v === null || v === undefined) return false;
+        return true;
+      })
+    )
+  };
+}
+
+/**********************************************************
  * Sincronizar precios en EN y PT (PARCHE: pedir SHA fresco ANTES de PUT)
+ * Esta versión solo actualiza precios y NO borra textos/otros campos.
  **********************************************************/
 async function syncPricesToLangs(){
   const token = getToken();
@@ -532,20 +403,22 @@ async function syncPricesToLangs(){
   productos.forEach(p => { if(p.id) byId[p.id] = p; });
 
   async function processLangFile(filename, idioma){
-    // 1) Obtener info inicial
-    let info;
+    let info = null;
     try{
       info = await githubGetFileInfo(filename);
     }catch(e){
-      // si no existe or error: crear archivo con estructura vacía
-      info = null;
+      if(e.status === 404) info = null;
+      else throw e;
     }
 
     let arr = [];
     if(info && info.content){
-      const raw = info.content.replace(/\n/g,'');
-      const decoded = decodeURIComponent(escape(window.atob(raw)));
-      try{ arr = JSON.parse(decoded); if(!Array.isArray(arr)) arr = []; } catch(e){ arr = []; }
+      try{
+        const raw = info.content.replace(/\n/g,'');
+        const decoded = decodeURIComponent(escape(window.atob(raw)));
+        arr = JSON.parse(decoded);
+        if(!Array.isArray(arr)) arr = [];
+      }catch(e){ arr = []; }
     }
 
     let changed = false;
@@ -554,45 +427,38 @@ async function syncPricesToLangs(){
       const itemId = item.id || null;
       if(itemId && byId[itemId]){
         const nuevo = sanitizePrice(byId[itemId].precio);
-        if('precio' in item && String(item.precio) !== nuevo){ item.precio = nuevo; changed = true; }
-        if('price' in item && String(item.price) !== nuevo){ item.price = nuevo; changed = true; }
-        if('preco' in item && String(item.preco) !== nuevo){ item.preco = nuevo; changed = true; }
+        const fusion = safeMergeLangItem(item, { price: nuevo, preco: nuevo, precio: nuevo });
+        if(JSON.stringify(fusion) !== JSON.stringify(item)) changed = true;
+        return ordenarCamposPorIdioma(fusion, idioma);
       }
-      // asegurar id esté presente
-      if(!item.id && itemId) item.id = itemId;
       return ordenarCamposPorIdioma(item, idioma);
     });
 
-    // Si archivo no existía, podríamos necesitar crear registros desde base (opcional)
-    // Para ahora: si info === null --> crear nuevo array con los productos que existan en base (solo si hay coincidencia)
     if(info === null){
-      // crear array desde productos que existan en byId (mapeo)
-      const created = [];
-      for(const pid in byId){
-        const p = byId[pid];
-        if(!p) continue;
-        const obj = ordenarCamposPorIdioma({ id: p.id, nombre: p.nombre, descripcion: p.descripcion, precio: p.precio, imagen: p.imagen, categoria: p.categoria }, idioma);
-        created.push(obj);
-      }
-      // guardamos siempre (es creación)
-      const contentStringCreate = JSON.stringify(created, null, 2);
-      await githubPutFile(filename, contentStringCreate, `Crea ${filename} desde productos.json`, undefined);
+      // crear archivo nuevo usando la base (no sobreescribir textos externos porque no existen)
+      const created = Object.values(byId).map(b => ordenarCamposPorIdioma({
+        id: b.id,
+        nombre: b.nombre,
+        descripcion: b.descripcion,
+        precio: b.precio,
+        categoria: b.categoria,
+        imagen: b.imagen
+      }, idioma));
+      await githubPutFile(filename, JSON.stringify(created, null, 2), `Crea ${filename} desde productos.json`, undefined);
       return;
     }
 
     if(changed){
-      // Pedir SHA fresco justo antes de subir
       const latestInfo = await githubGetFileInfo(filename);
-      const latestSha = latestInfo.sha;
       const contentString = JSON.stringify(newArr, null, 2);
-      await githubPutFile(filename, contentString, `Sincroniza precios desde productos.json`, latestSha);
+      await githubPutFile(filename, contentString, `Sincroniza precios desde productos.json`, latestInfo.sha);
     }
   }
 
-  // ejecutar secuencialmente para evitar race conditions (opcional usar paralelo)
   await processLangFile(EN_JSON, 'EN');
   await processLangFile(PT_JSON, 'PT');
 }
+
 /**********************************************************
  * Guardar fila (precisa saveMainJson + syncPricesToLangs)
  **********************************************************/
@@ -615,17 +481,12 @@ async function guardarFila(i){
 }
 
 /**********************************************************
- * Guardar TODOS - ahora refresca tabla y usa saveMainJson parcheado
+ * Guardar TODOS - refresca tabla y usa saveMainJson parcheado
  **********************************************************/
 async function guardarTodosLosPrecios(){
   try{
-    // 1) Tomar los valores visibles en pantalla
     refrescarArrayDesdeTabla();
-
-    // 2) Sanitizar precios
     productos = productos.map(p => ({ ...p, precio: sanitizePrice(p.precio) }));
-
-    // 3) Guardar MAIN y sincronizar EN/PT
     await saveMainJson(productos, `Guardar TODOS los productos - sincronizando precios a EN/PT`);
     await syncPricesToLangs();
 
@@ -650,6 +511,34 @@ function filterProducts(){
   );
   render(filtered);
 }
+
+/**********************************************************
+ * Backup export
+ **********************************************************/
+function exportBackup(){
+  const blob = new Blob([JSON.stringify(productos,null,2)], {type:"application/json"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "backup-productos.json";
+  a.click();
+  showToast("Backup descargado","info");
+}
+
+/**********************************************************
+ * Ajustes de UI finales (mover guardarTodos, remover multi form si existe)
+ **********************************************************/
+(function finalUI(){
+  const btn = document.getElementById("guardarTodos");
+  btn.style.position = "fixed";
+  btn.style.bottom = "20px";
+  btn.style.right = "20px";
+  btn.style.top = "auto";
+  // remover multi button/form por pedido
+  const multiBtn = document.querySelector(".controls button.secondary");
+  if(multiBtn) multiBtn.remove();
+  const multiForm = document.getElementById('multiForm');
+  if(multiForm) multiForm.remove();
+})();
 
 /**********************************************************
  * Init
