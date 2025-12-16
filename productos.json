@@ -400,8 +400,8 @@
     "id": "prod0050"
   },
   {
-    "nombre": "Tarta de calabaza",
-    "descripcion": "Brócoli, queso sardo, muzarella, cebolla, masa integral",
+    "nombre": "Tarta de verduras y calabaza",
+    "descripcion": "Calabaza, ratatouille de verduras, y temina con queso graten",
     "precio": "19000",
     "imagen": "img/calboso.jpg",
     "categoria": "🍽️Comidas",
@@ -409,7 +409,7 @@
   },
   {
     "nombre": "Tarta de POLLO",
-    "descripcion": "Pechuga de pollo, puerro, queso sardo, cebolla, masa integral",
+    "descripcion": "Pechuga de pollo, puerro, muzzarella, cebolla",
     "precio": "19000",
     "imagen": "img/Tartapollo.jpg",
     "categoria": "🍽️Comidas",
