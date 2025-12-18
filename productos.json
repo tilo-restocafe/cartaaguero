@@ -265,8 +265,8 @@
   },
   {
     "nombre": "Mini torta",
-    "descripcion": "Mini tortas dulces c/u a eleccion",
-    "precio": "92000",
+    "descripcion": "Mini tortas dulces c/u ",
+    "precio": "9200",
     "imagen": "img/Minitor.jpg",
     "categoria": "Cafetería☕️",
     "id": "prod0034"
