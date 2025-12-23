@@ -1438,5 +1438,13 @@
     "imagen": "img/Nueva.jpg",
     "categoria": "🍽️Comidas",
     "id": "prod0180"
+  },
+  {
+    "nombre": "ROGEL",
+    "descripcion": "Nueva torta Rogel",
+    "precio": "9200",
+    "imagen": "img/Rojel.jpg",
+    "categoria": "📋MENU del DIA/SUGERENCIAS Y NOVEDADES",
+    "id": "prod0181"
   }
 ]
