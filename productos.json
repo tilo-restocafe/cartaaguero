@@ -387,7 +387,7 @@
     "nombre": "AMIGOS Y FAMILLA MILANESA PARA 3",
     "descripcion": "Ternera napolitana, smoke, suiza (puede ser 1/2 y 1/2) con fritas",
     "precio": "61000",
-    "imagen": "img/mila3.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766530111/milapa3_kb0oo0.jpg",
     "categoria": "💡promociones",
     "id": "prod0049"
   },
