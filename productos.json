@@ -499,7 +499,7 @@
     "nombre": "Ensalada CAESAR con langostinos",
     "descripcion": "Mix de verdes, croutons, langostinos rebozados, parmesano y aderezo Caesar",
     "precio": "20000",
-    "imagen": "img/Caesarlangis.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508233/caesarlagostino_z1yyqt.jpg",
     "categoria": "🍽️Comidas",
     "id": "prod0063"
   },
@@ -555,7 +555,7 @@
     "nombre": "Mila SMOKE",
     "descripcion": "Salsa de tomate, mermelada de bacon, cheddar Acompañadas con puré, fideos, ensalada o papas fritas",
     "precio": "23500",
-    "imagen": "img/Smuk.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508249/smuk_vh84dl.jpg",
     "categoria": "🍽️Comidas",
     "id": "prod0070"
   },
@@ -619,7 +619,7 @@
     "nombre": "RISOTTO de Pollo",
     "descripcion": "Con pollo, calabaza y verduras",
     "precio": "24000",
-    "imagen": "img/20250816_143144.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508221/risopollo_ecrlll.jpg",
     "categoria": "🍽️Comidas",
     "id": "prod0078"
   },
@@ -627,7 +627,7 @@
     "nombre": "RISOTTO Langostinos",
     "descripcion": "Con verduras, nueces y almendras",
     "precio": "26500",
-    "imagen": "img/Risotolangos.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508220/risolangos_ualnwh.jpg",
     "categoria": "🍽️Comidas",
     "id": "prod0079"
   },
