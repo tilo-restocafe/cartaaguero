@@ -59,7 +59,7 @@
     "nombre": "Café MOKA",
     "descripcion": "Cacao intenso, café, leche espumada",
     "precio": "5950",
-    "imagen": "img/Moka.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508226/moka_cc1hre.jpg",
     "categoria": "Cafetería☕️",
     "id": "prod0008"
   },
@@ -339,7 +339,7 @@
     "nombre": "AVOCADO",
     "descripcion": "Tostada con huevos revueltos, crema de palta y semillas",
     "precio": "16000",
-    "imagen": "img/20250806_094923.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508212/avoca_bhdpdq.jpg",
     "categoria": "💡promociones",
     "id": "prod0043"
   },
@@ -555,7 +555,7 @@
     "nombre": "Mila SMOKE",
     "descripcion": "Salsa de tomate, mermelada de bacon, cheddar Acompañadas con puré, fideos, ensalada o papas fritas",
     "precio": "23500",
-    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508249/smuk_vh84dl.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508220/milasmoke_lnn6nz.jpg",
     "categoria": "🍽️Comidas",
     "id": "prod0070"
   },
@@ -787,7 +787,7 @@
     "nombre": "Lomo AL CHAMPI",
     "descripcion": "Bife de lomo grillado en salsa de hongos con papas fritas",
     "precio": "37000",
-    "imagen": "img/IMG-20250816-WA0009.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508233/lomochampi_nsgd4x.jpg",
     "categoria": "🍽️Comidas",
     "id": "prod0099"
   },
