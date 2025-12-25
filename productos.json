@@ -347,7 +347,7 @@
     "nombre": "REVUELTO",
     "descripcion": "Huevos revueltos con jamón y queso, una tostada para acompañar",
     "precio": "14000",
-    "imagen": "img/Resultado.jpg",
+    "imagen": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766535715/20251221_125952_o0phyv.jpg",
     "categoria": "💡promociones",
     "id": "prod0044"
   },
