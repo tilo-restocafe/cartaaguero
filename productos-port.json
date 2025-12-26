@@ -3,7 +3,7 @@
     "nome": "Café expresso",
     "descricao": "Café pequeno",
     "preco": "3400",
-    "imagem": "img/cafe.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1765842339/cafe_wf70hy.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0001"
   },
@@ -59,7 +59,7 @@
     "nome": "Café MOKA",
     "descricao": "Cacau intenso, café, leite espumado",
     "preco": "5950",
-    "imagem": "img/Moka.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508226/moka_cc1hre.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0008"
   },
@@ -275,7 +275,7 @@
     "nome": "Medialuna quente com presunto e queijo",
     "descricao": "Medialuna quente com presunto e queijo c/u",
     "preco": "4600",
-    "imagem": "img/Lujyq.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766529930/lujyq_umzzi5.jpg",
     "categoria": "Cafeteria☕️",
     "id": "prod0035"
   },
@@ -339,7 +339,7 @@
     "nome": "AVOCADO",
     "descricao": "Torrada com ovos mexidos, creme de abacate e sementes",
     "preco": "16000",
-    "imagem": "img/20250806_094923.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508212/avoca_bhdpdq.jpg",
     "categoria": "💡promoções",
     "id": "prod0043"
   },
@@ -347,7 +347,7 @@
     "nome": "REVUELTO",
     "descricao": "Ovos mexidos com presunto e queijo, uma torrada para acompanhar",
     "preco": "14000",
-    "imagem": "img/Resultado.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766535715/20251221_125952_o0phyv.jpg",
     "categoria": "💡promoções",
     "id": "prod0044"
   },
@@ -387,7 +387,7 @@
     "nome": "AMIGOS Y FAMILLA MILANESA PARA 3",
     "descricao": "Vitela napolitana, smoke, suíça (pode ser 1/2 e 1/2) com fritas",
     "preco": "61000",
-    "imagem": "img/mila3.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766530111/milapa3_kb0oo0.jpg",
     "categoria": "💡promoções",
     "id": "prod0049"
   },
@@ -411,7 +411,7 @@
     "nome": "Torta de frango",
     "descricao": "Peito de frango, alho-poró, queijo sardo, cebola, massa integral",
     "preco": "19000",
-    "imagem": "img/Tartapollo.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766529958/tartapollo_ivwpua.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0052"
   },
@@ -475,7 +475,7 @@
     "nome": "Salada FRESCA",
     "descricao": "Rúcula, maçã verde, pepino, tomates-cereja, nozes, regianito",
     "preco": "19700",
-    "imagem": "img/Fresca.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766509183/fresca_iptvwv.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0060"
   },
@@ -499,7 +499,7 @@
     "nome": "Salada Caesar com camarões",
     "descricao": "Mix de folhas, croutons, camarões empanados, parmesão e molho Caesar",
     "preco": "20000",
-    "imagem": "img/Caesarlangis.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508233/caesarlagostino_z1yyqt.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0063"
   },
@@ -515,7 +515,7 @@
     "nome": "Salada Cobb",
     "descricao": "Mix de folhas, frango, ovo, queijo azul, tomate e molho de abacate",
     "preco": "18200",
-    "imagem": "img/Cpsala.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766509219/copsala_hn6org.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0065"
   },
@@ -555,7 +555,7 @@
     "nome": "Mila SMOKE",
     "descricao": "Molho de tomate, geleia de bacon, cheddar. Acompanhadas com purê, massas, salada ou batatas fritas",
     "preco": "23500",
-    "imagem": "img/Smuk.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508220/milasmoke_lnn6nz.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0070"
   },
@@ -619,7 +619,7 @@
     "nome": "RISOTTO de Frango",
     "descricao": "Com frango, abóbora e legumes",
     "preco": "24000",
-    "imagem": "img/20250816_143144.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508221/risopollo_ecrlll.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0078"
   },
@@ -627,7 +627,7 @@
     "nome": "RISOTTO de Camarões",
     "descricao": "Com legumes, nozes e amêndoas",
     "preco": "26500",
-    "imagem": "img/Risotolangos.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508220/risolangos_ualnwh.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0079"
   },
@@ -667,7 +667,7 @@
     "nome": "Filé mignon grelhado",
     "descricao": "Com fritas, purê, salada ou arroz",
     "preco": "33500",
-    "imagem": "img/IMG-20250816-WA0008.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508238/lomo_tnfcze.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0084"
   },
@@ -675,7 +675,7 @@
     "nome": "Salmão rosa grelhado",
     "descricao": "Com fritas, purê, salada ou arroz",
     "preco": "35000",
-    "imagem": "img/Salmón.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766530080/salmon_b18cvr.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0085"
   },
@@ -731,7 +731,7 @@
     "nome": "Pollo N.Y",
     "descricao": "Frango defumado, mix de queijos, cebolinha, tomate e batatas fritas",
     "preco": "24000",
-    "imagem": "img/Ny.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766530089/pollony_ijaswf.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0092"
   },
@@ -739,7 +739,7 @@
     "nome": "Pollo al CHAMPI",
     "descricao": "Em molho de cogumelos com batatas fritas",
     "preco": "24500",
-    "imagem": "img/Pechuchapi.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766530096/pollochampi_mffplh.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0093"
   },
@@ -787,7 +787,7 @@
     "nome": "Lomo AL CHAMPI",
     "descricao": "Filé mignon grelhado em molho de cogumelos com batatas fritas",
     "preco": "37000",
-    "imagem": "img/IMG-20250816-WA0009.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766508233/lomochampi_nsgd4x.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0099"
   },
@@ -819,7 +819,7 @@
     "nome": "MENU KIDS Spaghetti ou nhoques 👶",
     "descricao": "Fileto ou creme",
     "preco": "18000",
-    "imagem": "img/Ñoquiskit.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766535773/20251221_140053_ssbaca.jpg",
     "categoria": "🍽️Refeições",
     "id": "prod0103"
   },
@@ -843,7 +843,7 @@
     "nome": "Tostado misto",
     "descricao": "4 triângulos de presunto e queijo",
     "preco": "15000",
-    "imagem": "img/20250824_141355.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766529949/tostado_yzgb6d.jpg",
     "categoria": "🥪 Sanduíches",
     "id": "prod0106"
   },
@@ -875,7 +875,7 @@
     "nome": "Sanduíche de lomito só queijo",
     "descricao": "Simples (só queijo) com batatas fritas",
     "preco": "22000",
-    "imagem": "img/20250910_132716.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766530219/lomitoqueso_ucgzhj.jpg",
     "categoria": "🥪 Sanduíches",
     "id": "prod0110"
   },
@@ -899,7 +899,7 @@
     "nome": "Burger simples",
     "descricao": "Simples (só queijo) com batatas fritas",
     "preco": "15000",
-    "imagem": "img/20250816_135012.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766509123/20251221_130347_otnuns.jpg",
     "categoria": "🥪 Sanduíches",
     "id": "prod0113"
   },
@@ -1059,7 +1059,7 @@
     "nome": "Pesto con nuez",
     "descricao": "noz, alho e salsa",
     "preco": "6800",
-    "imagem": "img/IMG-20250816-WA0011.jpg",
+    "imagem": "https://res.cloudinary.com/dfcj9eyyn/image/upload/v1766535868/spaguettipesto_bepmmw.jpg",
     "categoria": "🥫 Molhos",
     "id": "prod0133"
   },
