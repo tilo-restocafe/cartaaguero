@@ -1,52 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin Carta - Tilo Café Aguero (Sincroniza precios ES/EN/PT)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Carta - Tilo Café Aguero</title>
 
-  <style>
-    body{font-family:Arial,Helvetica,sans-serif;margin:18px;background:#f7f3f0;color:#333}
-    h1{text-align:center;color:#806250;margin-bottom:10px}
-    .topRow{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
-    .controls{display:flex;gap:8px;align-items:center}
-    input[type="text"], input[type="password"], textarea{padding:8px;border-radius:6px;border:1px solid #ccc;width:100%;box-sizing:border-box}
-    button{background:#806250;color:#fff;border:none;padding:8px 10px;border-radius:6px;cursor:pointer}
-    button.secondary{background:#5c8a50}
-    button.danger{background:#c0392b}
-    form{background:#fff;padding:12px;border-radius:10px;margin-bottom:12px;display:none}
-    table{width:100%;border-collapse:collapse;background:#fff}
-    th,td{border:1px solid #ddd;padding:8px;vertical-align:top}
-    th{background:#806250;color:#fff}
-    img.mini{max-width:60px;border-radius:6px}
-    #guardarTodos{position:fixed;top:18px;right:18px;z-index:1200;padding:10px 14px;background:#a07b68;color:#fff;border-radius:8px}
-    .small{font-size:13px;color:#666}
-    .rowActions{display:flex;gap:6px}
-    .previewImg{max-width:120px;margin-top:8px;border-radius:6px}
-    .toast{position:fixed;top:24px;right:24px;z-index:2000;padding:12px 16px;border-radius:8px;color:white;font-weight:600;opacity:0;transition:.25s}
-    .toast.show{opacity:1}
-    .toast.ok{background:#2ecc71}
-    .toast.info{background:#3498db}
-    .toast.err{background:#e74c3c}
-  </style>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:18px;background:#f7f3f0;color:#333}
+h1{text-align:center;color:#806250}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{border:1px solid #ddd;padding:8px}
+th{background:#806250;color:#fff}
+img.mini{max-width:60px;border-radius:6px}
+button{background:#806250;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer}
+.toast{position:fixed;top:20px;right:20px;padding:10px 14px;border-radius:8px;color:#fff;font-weight:600;opacity:0;transition:.3s}
+.toast.show{opacity:1}
+.toast.ok{background:#2ecc71}
+.toast.err{background:#e74c3c}
+#guardarTodos{position:fixed;top:18px;right:18px;z-index:1200}
+</style>
 </head>
 
 <body>
 
 <h1>Admin Carta — Tilo Café Aguero</h1>
-
-<button id="guardarTodos" onclick="guardarTodosLosPrecios()">💾 Guardar TODOS los cambios</button>
+<button id="guardarTodos" onclick="guardarTodosLosPrecios()">💾 Guardar TODOS</button>
 
 <table>
 <thead>
 <tr>
-  <th>Imagen</th>
-  <th>Nombre</th>
-  <th>Descripción</th>
-  <th>Categoría</th>
-  <th>Precio</th>
-  <th>Acciones</th>
+<th>Imagen</th>
+<th>Nombre</th>
+<th>Descripción</th>
+<th>Categoría</th>
+<th>Precio</th>
+<th>Acciones</th>
 </tr>
 </thead>
 <tbody id="tbody"></tbody>
@@ -66,26 +54,24 @@ let productos = [];
 
 /* ================= UTIL ================= */
 function showToast(msg,type='ok'){
-  const d=document.createElement('div');
-  d.className='toast '+type;
-  d.textContent=msg;
-  document.body.appendChild(d);
-  setTimeout(()=>d.classList.add('show'),50);
-  setTimeout(()=>d.remove(),3000);
+  const t=document.createElement('div');
+  t.className='toast '+type;
+  t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.classList.add('show'),50);
+  setTimeout(()=>t.remove(),3000);
 }
-
 function sanitizePrice(v){
   return String(v||'').replace(/[^\d]/g,'');
 }
-
 function getToken(){
   return localStorage.getItem('github_token');
 }
 
 /* ================= LOAD ================= */
 async function loadProducts(){
-  const r=await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/${BRANCH}/${MAIN_JSON}`);
-  productos=await r.json();
+  const r = await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/${BRANCH}/${MAIN_JSON}`);
+  productos = await r.json();
   render();
 }
 
@@ -108,14 +94,13 @@ function render(){
 }
 
 /* ================= GITHUB ================= */
-async function githubGetFileInfo(path){
+async function githubGet(path){
   const r=await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${path}?ref=${BRANCH}`,{
     headers:{Authorization:'token '+getToken()}
   });
   return r.json();
 }
-
-async function githubPutFile(path,content,msg,sha){
+async function githubPut(path,content,msg,sha){
   await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${path}`,{
     method:'PUT',
     headers:{
@@ -133,8 +118,8 @@ async function githubPutFile(path,content,msg,sha){
 
 /* ================= SAVE ES ================= */
 async function saveMainJson(){
-  const info=await githubGetFileInfo(MAIN_JSON);
-  await githubPutFile(
+  const info=await githubGet(MAIN_JSON);
+  await githubPut(
     MAIN_JSON,
     JSON.stringify(productos,null,2),
     'Actualiza productos',
@@ -142,87 +127,97 @@ async function saveMainJson(){
   );
 }
 
-  <script>
-/**********************************************************
- * 🔥 NUEVO: Sincronizar precio + imagen + id a EN / PT
- * NO toca nombres ni descripciones
- **********************************************************/
-async function syncCommonFieldsToLangs(){
+/* ================= SYNC PRECIOS ================= */
+async function syncPricesToLangs(){
+  const byId={};
+  productos.forEach(p=>byId[p.id]=sanitizePrice(p.precio));
 
-  const token = getToken();
-  if(!token){
-    showToast('Token requerido para sincronizar EN/PT', 'err', 4000);
-    return;
+  async function sync(file,key){
+    const info=await githubGet(file);
+    const arr=JSON.parse(atob(info.content));
+    arr.forEach(i=>{
+      if(byId[i.id]) i[key]=byId[i.id];
+    });
+    await githubPut(file,JSON.stringify(arr,null,2),'Sync precios',info.sha);
   }
 
-  // Base desde ES
-  const baseById = {};
-  productos.forEach(p => {
+  await sync(EN_JSON,'price');
+  await sync(PT_JSON,'preco');
+}
+
+/* ================= 🔥 SYNC PRECIO + IMAGEN ================= */
+async function syncCommonFieldsToLangs(){
+  const base={};
+
+  productos.forEach(p=>{
     if(p.id){
-      baseById[p.id] = {
-        precio: sanitizePrice(p.precio),
-        imagen: p.imagen || ''
-      };
+      base[p.id]={precio:sanitizePrice(p.precio),imagen:p.imagen||''};
     }
   });
 
-  async function processFile(filename, idioma){
+  async function sync(file,lang){
+    const info=await githubGet(file);
+    const arr=JSON.parse(atob(info.content));
 
-    let info;
-    try{
-      info = await githubGetFileInfo(filename);
-    }catch(e){
-      return;
-    }
+    arr.forEach(i=>{
+      if(base[i.id]){
+        const b=base[i.id];
 
-    const raw = info.content.replace(/\n/g,'');
-    const decoded = decodeURIComponent(escape(atob(raw)));
-    let arr = JSON.parse(decoded);
-
-    let changed = false;
-
-    arr.forEach(item => {
-      if(item.id && baseById[item.id]){
-        const base = baseById[item.id];
-
-        if(idioma === 'EN'){
-          if(item.price !== base.precio){
-            item.price = base.precio;
-            changed = true;
-          }
-          if(item.image !== base.imagen){
-            item.image = base.imagen;
-            changed = true;
-          }
+        if(lang==='EN'){
+          i.price=b.precio;
+          i.image=b.imagen;   // EN
         }
-
-        if(idioma === 'PT'){
-          if(item.preco !== base.precio){
-            item.preco = base.precio;
-            changed = true;
-          }
-          if(item.imagem !== base.imagen){
-            item.imagem = base.imagen;
-            changed = true;
-          }
+        if(lang==='PT'){
+          i.preco=b.precio;
+          i.imagem=b.imagen;  // PT
         }
       }
     });
 
-    if(changed){
-      const latest = await githubGetFileInfo(filename);
-      await githubPutFile(
-        filename,
-        JSON.stringify(arr, null, 2),
-        'Sincroniza precio e imagen desde productos.json',
-        latest.sha
-      );
-    }
+    await githubPut(file,JSON.stringify(arr,null,2),'Sync precio + imagen',info.sha);
   }
 
-  await processFile(EN_JSON, 'EN');
-  await processFile(PT_JSON, 'PT');
+  await sync(EN_JSON,'EN');
+  await sync(PT_JSON,'PT');
 }
+
+/* ================= GUARDAR ================= */
+async function guardarFilaPorId(id){
+  try{
+    const p=productos.find(x=>x.id===id);
+    if(!p) throw 'No encontrado';
+
+    p.precio=sanitizePrice(p.precio);
+
+    await saveMainJson();
+    await syncPricesToLangs();
+    await syncCommonFieldsToLangs();
+
+    showToast('Producto guardado','ok');
+    render();
+  }catch(e){
+    showToast('Error al guardar','err');
+  }
+}
+
+async function guardarTodosLosPrecios(){
+  try{
+    productos=productos.map(p=>({...p,precio:sanitizePrice(p.precio)}));
+
+    await saveMainJson();
+    await syncPricesToLangs();
+    await syncCommonFieldsToLangs();
+
+    showToast('Todo sincronizado','ok');
+    render();
+  }catch(e){
+    showToast('Error al guardar todo','err');
+  }
+}
+
+/* ================= INIT ================= */
+loadProducts();
 </script>
 
-  
+</body>
+</html>
