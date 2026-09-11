@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargando menú...</title>
-    <!-- Google Fonts for premium typography -->
+    <title>Cava de Vinos</title>
+    <meta name="description"
+        content="Carta digital de vinos con fichas de catador. Descubrí historia, notas de cata y maridaje de cada vino.">
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
         rel="stylesheet">
@@ -18,71 +19,66 @@
         }
 
         :root {
-            --primary-color: #4a2c11;
-            /* Espresso Dark */
-            --secondary-color: #000000;
-            /* Caramel Gold */
-            --accent-color: #382516;
-            /* Cocoa Medium */
-            --bg-color: #a9a7a5;
-            /* Cream Soft */
-            --glass-bg: rgba(153, 153, 153, 0.88);
-            /* Soft warm cream instead of cold white */
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --shadow-sm: 0 4px 12px rgba(69, 39, 10, 0.04);
-            --shadow-md: 0 10px 30px rgba(69, 39, 10, 0.08);
-            --shadow-lg: 0 16px 40px rgba(69, 39, 10, 0.14);
+            --primary: #6b1a2e;
+            /* Borgoña profundo */
+            --gold: #c9a84c;
+            /* Oro añejo */
+            --gold-light: #e4c97e;
+            /* Oro claro */
+            --dark: #1a0a0f;
+            /* Negro vino */
+            --dark2: #2d0e1a;
+            /* Vino oscuro */
+            --cream: #f5ede0;
+            /* Crema pergamino */
+            --glass: rgba(26, 10, 15, 0.82);
+            --glass-b: rgba(201, 168, 76, 0.25);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+            --shadow-md: 0 10px 32px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
         }
 
         body {
             font-family: 'Outfit', sans-serif;
-            background: url("img/Fondo2.jpg") repeat;
+            background: url('img/fondo_vinos.png') repeat center center;
             background-size: cover;
             background-attachment: fixed;
             margin: 0;
             padding: 0;
-            padding-top: 55px;
-            /* Offset for the teleprompter */
-            color: var(--primary-color);
+            padding-top: 52px;
+            color: var(--cream);
             text-align: center;
             scroll-behavior: smooth;
         }
 
-        /* Subtle dark veil over background to increase readability */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(250, 246, 240, 0.35);
+            inset: 0;
+            background: rgba(15, 5, 10, 0.72);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* ================= TELEPROMPTER ================= */
+        /* ========== TELEPROMPTER ========== */
         #teleprompter {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(41, 23, 7, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: #f5eedc;
+            background: rgba(26, 10, 15, 0.97);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--gold-light);
             z-index: 2000;
-            padding: 12px 16px;
+            padding: 13px 16px;
             font-family: 'Playfair Display', serif;
             font-size: 14px;
             font-style: italic;
             overflow: hidden;
-            border-bottom: 1px solid rgba(196, 141, 73, 0.3);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.35);
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transform: translate3d(0, 0, 0);
-            -webkit-transform: translate3d(0, 0, 0);
-            will-change: transform;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
         }
 
         #tele-wrapper {
@@ -107,27 +103,23 @@
             }
         }
 
-        /* ================= MODAL TELEPROMPTER ================= */
+        /* ========== MODAL TELEPROMPTER ========== */
         #modalTele {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(41, 23, 7, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
+            inset: 0;
+            background: rgba(15, 5, 10, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            box-sizing: border-box;
         }
 
-        .modal-content {
-            background: var(--bg-color);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+        .modal-tele-content {
+            background: linear-gradient(145deg, #2d0e1a, #1a0a0f);
+            border: 1px solid var(--glass-b);
             width: 90%;
             max-width: 500px;
             max-height: 80vh;
@@ -140,34 +132,223 @@
             text-align: left;
         }
 
-        .modal-close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(93, 62, 38, 0.08);
-            color: var(--accent-color);
-            border: none;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
+        /* ========== MODAL VINO (FICHA DE CATADOR) ========== */
+        #modalVino {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 4, 8, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 8888;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        #modalVino.open {
+            display: flex;
+        }
+
+        .modal-vino-inner {
+            background: linear-gradient(160deg, #2d0e1a 0%, #1a0a0f 60%);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            width: 100%;
+            max-width: 620px;
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            animation: zoomIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin: auto;
+        }
+
+        .mv-image-container {
+            position: relative;
+            width: 100%;
+            height: 290px;
+            background: radial-gradient(circle at 50% 50%, rgba(107, 26, 46, 0.5) 0%, rgba(15, 5, 10, 0.98) 80%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
+            padding: 16px;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .mv-img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.75));
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .mv-img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .mv-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--primary);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+        }
+
+        .mv-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--cream);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
-        .modal-close-btn:hover {
-            background: var(--accent-color);
-            color: #fff;
+        .mv-close:hover {
+            background: var(--primary);
             transform: rotate(90deg);
+        }
+
+        .mv-body {
+            padding: 28px 28px 32px;
+        }
+
+        .mv-tipo-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .mv-chip {
+            background: rgba(201, 168, 76, 0.12);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .mv-nombre {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--cream);
+            margin: 0 0 4px;
+            line-height: 1.2;
+        }
+
+        .mv-bodega {
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 600;
+            margin: 0 0 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .mv-divider {
+            border: none;
+            border-top: 1px solid rgba(201, 168, 76, 0.18);
+            margin: 18px 0;
+        }
+
+        .mv-section-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            margin: 0 0 7px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mv-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(201, 168, 76, 0.2);
+        }
+
+        .mv-text {
+            font-size: 14px;
+            color: rgba(245, 237, 224, 0.85);
+            line-height: 1.7;
+            margin: 0 0 18px;
+        }
+
+        .mv-maridaje-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .mv-maridaje-item {
+            background: rgba(107, 26, 46, 0.35);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            color: var(--cream);
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 14px;
+        }
+
+        .mv-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid rgba(201, 168, 76, 0.15);
+        }
+
+        .mv-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .mv-region {
+            font-size: 12px;
+            color: rgba(245, 237, 224, 0.5);
+            text-align: right;
         }
 
         @keyframes zoomIn {
             from {
-                transform: scale(0.8);
+                transform: scale(0.85);
                 opacity: 0;
             }
 
@@ -177,12 +358,12 @@
             }
         }
 
-        /* ================= HEADER & HERO ================= */
+        /* ========== HEADER ========== */
         header {
-            height: 240px;
+            height: 220px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
         }
 
         header img {
@@ -191,68 +372,86 @@
             object-fit: cover;
         }
 
-        .banner {
-            margin: 24px 0 10px 0;
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15, 5, 10, 0.2), rgba(15, 5, 10, 0.7));
         }
 
-        /* ================= IDIOMAS ================= */
-        #languageSwitcher {
+        .banner {
+            margin: 24px 0 6px;
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--cream);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .banner span {
+            color: var(--gold);
+        }
+
+        /* ========== SELECTOR DE IDIOMA ========== */
+        .lang-selector-container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
+            margin: 10px auto 14px;
+            padding: 0 16px;
+        }
+
+        .lang-selector {
+            display: inline-flex;
+            gap: 8px;
+            background: rgba(26, 10, 15, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            padding: 5px 8px;
+            border-radius: 22px;
+            box-shadow: var(--shadow-sm);
         }
 
         .lang-btn {
-            background: var(--glass-bg);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid var(--glass-border);
-            color: var(--accent-color);
-            padding: 8px 18px;
-            border-radius: 20px;
+            background: transparent;
+            border: 1px solid transparent;
+            color: rgba(245, 237, 224, 0.72);
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-family: 'Outfit', sans-serif;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-            display: flex;
+            transition: all 0.25s ease;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
         }
 
         .lang-btn:hover {
-            background: rgba(196, 141, 73, 0.1);
-            border-color: rgba(196, 141, 73, 0.4);
-            color: var(--secondary-color);
-            transform: translateY(-1px);
+            color: var(--gold-light);
+            background: rgba(201, 168, 76, 0.12);
         }
 
         .lang-btn.active {
-            background: var(--accent-color);
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 4px 10px rgba(69, 39, 10, 0.2);
+            background: linear-gradient(135deg, var(--primary), #8a2240);
+            color: var(--gold-light);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            box-shadow: 0 2px 12px rgba(107, 26, 46, 0.5);
         }
 
-        /* ================= BUSCADOR PREMIUM ================= */
+        /* ========== BUSCADOR ========== */
         .search-box {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin: 25px auto;
-            max-width: 550px;
+            gap: 8px;
+            margin: 16px auto 20px;
+            max-width: 520px;
             width: 90%;
-            background: var(--glass-bg);
+            background: rgba(26, 10, 15, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(201, 168, 76, 0.25);
             padding: 6px;
             border-radius: 16px;
             box-shadow: var(--shadow-md);
@@ -263,11 +462,15 @@
             min-width: 0;
             border: none;
             background: transparent;
-            padding: 12px 16px;
+            padding: 11px 14px;
             font-size: 15px;
-            color: var(--primary-color);
+            color: var(--cream);
             font-family: 'Outfit', sans-serif;
-            font-weight: 500;
+            font-weight: 400;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(245, 237, 224, 0.4);
         }
 
         .search-box input:focus {
@@ -275,8 +478,8 @@
         }
 
         .search-box button {
-            background: var(--accent-color);
-            color: #fff;
+            background: var(--primary);
+            color: var(--gold-light);
             border: none;
             border-radius: 12px;
             padding: 10px 20px;
@@ -287,213 +490,246 @@
         }
 
         .search-box button:hover {
-            background: var(--primary-color);
+            background: #8a2240;
             transform: scale(1.02);
         }
 
         #btnVoice {
-            background: rgba(196, 141, 73, 0.1);
-            color: var(--secondary-color);
-            border: 1px solid rgba(196, 141, 73, 0.2);
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--gold-light);
+            border: 1px solid rgba(201, 168, 76, 0.2);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 10px 14px;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         #btnVoice:hover {
-            background: rgba(196, 141, 73, 0.2);
+            background: rgba(201, 168, 76, 0.2);
             transform: scale(1.05);
         }
 
-        /* Pulsing ring animation for when voice search is listening */
         @keyframes voicePulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(196, 141, 73, 0.4);
+                box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.5);
             }
 
             70% {
-                box-shadow: 0 0 0 10px rgba(196, 141, 73, 0);
+                box-shadow: 0 0 0 10px rgba(201, 168, 76, 0);
             }
 
             100% {
-                box-shadow: 0 0 0 0 rgba(196, 141, 73, 0);
+                box-shadow: 0 0 0 0 rgba(201, 168, 76, 0);
             }
         }
 
         .recording {
             animation: voicePulse 1.5s infinite;
-            background: var(--secondary-color) !important;
+            background: var(--primary) !important;
             color: white !important;
-            border-color: transparent !important;
         }
 
-        /* ================= STICKY CATEGORÍAS PILL BAR ================= */
+        /* ========== CATEGORÍAS ========== */
         #category-buttons {
             display: flex;
             flex-wrap: nowrap;
             overflow-x: auto;
             scrollbar-width: none;
-            /* Hide scrollbar for Firefox */
             -ms-overflow-style: none;
-            /* Hide scrollbar for IE */
-            padding: 14px 20px;
-            gap: 12px;
+            padding: 12px 18px;
+            gap: 10px;
             position: sticky;
             top: 45px;
-            /* Sits below the teleprompter */
-            background: rgba(250, 233, 207, 0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(20, 7, 13, 0.9);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(69, 39, 10, 0.03);
-            border-bottom: 1px solid rgba(69, 39, 10, 0.06);
-            margin: 0 0 25px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+            margin: 0 0 28px;
         }
 
         #category-buttons::-webkit-scrollbar {
             display: none;
-            /* Hide scrollbar for Chrome/Safari */
         }
 
         #category-buttons button {
             flex: 0 0 auto;
-            background: rgba(252, 243, 243, 0.65);
-            color: var(--accent-color);
-            border: 1px solid rgba(93, 62, 38, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(245, 237, 224, 0.7);
+            border: 1px solid rgba(201, 168, 76, 0.15);
             border-radius: 20px;
-            padding: 8px 22px;
+            padding: 7px 20px;
             font-family: 'Outfit', sans-serif;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
         }
 
         #category-buttons button:hover {
-            background: rgba(196, 141, 73, 0.1);
-            border-color: rgba(196, 141, 73, 0.4);
-            color: var(--secondary-color);
+            background: rgba(201, 168, 76, 0.12);
+            border-color: rgba(201, 168, 76, 0.4);
+            color: var(--gold-light);
             transform: translateY(-1px);
         }
 
         #category-buttons button.active-cat {
-            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 4px 12px rgba(69, 39, 10, 0.15);
+            background: linear-gradient(135deg, var(--primary), #8a2240);
+            color: var(--gold-light);
+            border-color: rgba(201, 168, 76, 0.4);
+            box-shadow: 0 4px 14px rgba(107, 26, 46, 0.5);
             transform: scale(1.05);
         }
 
-        /* ================= GRILLA DE PRODUCTOS DE ALTO RENDIMIENTO ================= */
+        /* ========== GRILLA DE VINOS ========== */
         #product-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 28px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            padding: 16px 20px;
             max-width: 1200px;
             margin: 0 auto;
             min-height: 300px;
         }
 
         .item {
-            background: #eaeaea;
-            /* Blanco sólido para ocultar el fondo de hojas detrás del texto */
-            border: 1px solid var(--glass-border);
+            background: linear-gradient(160deg, rgba(45, 14, 26, 0.95), rgba(26, 10, 15, 0.98));
+            border: 1px solid rgba(201, 168, 76, 0.18);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex;
             flex-direction: column;
             text-align: left;
             position: relative;
+            cursor: pointer;
         }
 
         .item:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(196, 141, 73, 0.3);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(201, 168, 76, 0.4);
         }
 
         .item-image-wrapper {
             width: 100%;
-            height: 210px;
+            height: 230px;
             overflow: hidden;
             position: relative;
-            background: rgba(69, 39, 10, 0.04);
-            cursor: pointer; /* Indicar interactividad */
+            background: radial-gradient(circle at 50% 50%, rgba(107, 26, 46, 0.45) 0%, rgba(20, 7, 13, 0.98) 75%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
         }
 
         .item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            object-fit: contain;
+            object-position: center;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.65));
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .item:hover img {
-            transform: scale(1.06);
+            transform: scale(1.06) translateY(-2px);
         }
 
-        /* Botón indicador de ampliar en la esquina de la foto */
-        .zoom-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(41, 23, 7, 0.75);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            color: #fff;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+        .item-img-placeholder {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
-            opacity: 0.85;
-            transform: scale(0.95);
-            transition: all 0.25s ease;
-            z-index: 2;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            pointer-events: none;
+            font-size: 64px;
+            background: radial-gradient(circle at 50% 50%, rgba(107, 26, 46, 0.35) 0%, rgba(20, 7, 13, 0.95) 75%);
         }
 
-        .item:hover .zoom-badge {
-            opacity: 1;
-            transform: scale(1.1);
-            background: var(--accent-color);
+        .item-tipo-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 4px 11px;
+            border-radius: 20px;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+        }
+
+        .tipo-tinto {
+            background: rgba(107, 26, 46, 0.85);
+            color: #f8d0d8;
+        }
+
+        .tipo-blanco {
+            background: rgba(60, 50, 10, 0.85);
+            color: #f5e8a0;
+        }
+
+        .tipo-rosado {
+            background: rgba(120, 30, 70, 0.85);
+            color: #ffc0cb;
+        }
+
+        .tipo-espumante {
+            background: rgba(20, 50, 80, 0.85);
+            color: #b0d8ff;
+        }
+
+        .tipo-default {
+            background: rgba(40, 40, 40, 0.85);
+            color: #ddd;
+        }
+
+        .item-anio-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(201, 168, 76, 0.85);
+            color: #1a0a0f;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
         }
 
         .item-content {
-            padding: 22px;
+            padding: 18px 20px 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            position: relative;
         }
 
         .item h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 21px;
-            color: var(--primary-color);
-            margin: 0 0 8px 0;
+            font-size: 19px;
+            color: var(--cream);
+            margin: 0 0 3px;
             font-weight: 700;
-            line-height: 1.3;
+            line-height: 1.25;
+        }
+
+        .item-bodega {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 600;
+            margin: 0 0 10px;
         }
 
         .item p {
-            font-size: 14px;
-            color: var(--accent-color);
+            font-size: 13px;
+            color: rgba(245, 237, 224, 0.72);
             line-height: 1.6;
-            margin: 0 0 18px 0;
+            margin: 0 0 14px;
             flex-grow: 1;
-            font-weight: 400;
         }
 
         .item-footer {
@@ -501,247 +737,80 @@
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
-            padding-top: 10px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
         }
 
         .price {
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 700;
-            color: var(--secondary-color);
+            color: var(--gold);
             margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .ver-ficha-btn {
+            background: rgba(201, 168, 76, 0.12);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 6px 14px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
             font-family: 'Outfit', sans-serif;
         }
 
-        .item-category-tag {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 5px 12px;
-            background: rgba(196, 141, 73, 0.12);
-            color: var(--secondary-color);
-            border-radius: 20px;
+        .ver-ficha-btn:hover {
+            background: rgba(201, 168, 76, 0.22);
+            border-color: var(--gold);
         }
 
-        /* ================= MODAL / LIGHTBOX DE FOTO ================= */
-        .photo-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(41, 23, 7, 0.75);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .photo-modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .photo-modal-card {
-            background: #fff;
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            max-width: 580px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            display: flex;
-            flex-direction: column;
-            transform: scale(0.92);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            text-align: left;
-        }
-
-        .photo-modal-overlay.active .photo-modal-card {
-            transform: scale(1);
-        }
-
-        .photo-modal-img-wrapper {
-            background: #f4efe9;
-            width: 100%;
-            height: 320px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border-top-left-radius: 24px;
-            border-top-right-radius: 24px;
-        }
-
-        .photo-modal-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .photo-modal-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(41, 23, 7, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: bold;
-            transition: all 0.2s ease;
-            z-index: 10;
-        }
-
-        .photo-modal-close-btn:hover {
-            background: var(--accent-color);
-            transform: rotate(90deg);
-        }
-
-        .photo-modal-body {
-            padding: 24px;
-        }
-
-        .photo-modal-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 0 0 10px 0;
-            line-height: 1.3;
-        }
-
-        .photo-modal-desc {
-            font-size: 15px;
-            color: var(--accent-color);
-            line-height: 1.6;
-            margin: 0 0 20px 0;
-        }
-
-        .photo-modal-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 15px;
-            border-top: 1px solid rgba(69, 39, 10, 0.08);
-        }
-
-        /* ================= BOTON SUBIR ================= */
+        /* ========== BOTÓN SUBIR ========== */
         #btnUp {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: var(--accent-color);
-            color: #fff;
-            border: none;
+            bottom: 24px;
+            right: 24px;
+            background: var(--primary);
+            color: var(--gold-light);
+            border: 1px solid rgba(201, 168, 76, 0.4);
             border-radius: 50%;
             width: 48px;
             height: 48px;
             display: none;
             cursor: pointer;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 20px rgba(107, 26, 46, 0.5);
             transition: all 0.3s ease;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         #btnUp:hover {
-            background: var(--primary-color);
+            background: #8a2240;
             transform: scale(1.1);
         }
 
-        /* Responsiveness adjustments */
-        @media(max-width: 600px) {
-            .banner {
-                font-size: 26px;
-            }
-
-            #product-list {
-                grid-template-columns: 1fr;
-                padding: 12px;
-                gap: 20px;
-            }
-
-            .item-image-wrapper {
-                height: 180px;
-            }
-
-            .photo-modal-img-wrapper {
-                height: 240px;
-            }
-        }
-
-        @media(max-width: 480px) {
-            .search-box {
-                width: 92%;
-                padding: 4px;
-                border-radius: 14px;
-                gap: 6px;
-                margin: 20px auto;
-            }
-
-            .search-box input {
-                padding: 10px 8px 10px 12px;
-                font-size: 16px;
-            }
-
-            .search-box button {
-                padding: 8px 14px;
-                font-size: 14px;
-            }
-
-            #btnVoice {
-                padding: 8px 10px;
-            }
-
-            #languageSwitcher {
-                gap: 8px;
-                padding: 0 10px;
-            }
-
-            .lang-btn {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
-        }
-
-        /* ================= VOICE SEARCH OVERLAY ================= */
+        /* ========== VOICE OVERLAY ========== */
         #voice-overlay {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            width: 100%;
-            background: rgba(41, 23, 7, 0.96);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-top: 3px solid var(--secondary-color);
+            background: rgba(20, 7, 13, 0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 2px solid var(--gold);
             z-index: 3000;
-            padding: 30px 20px calc(30px + env(safe-area-inset-bottom));
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+            padding: 28px 20px calc(28px + env(safe-area-inset-bottom));
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
             transform: translateY(100%);
             opacity: 0;
             visibility: hidden;
             border-top-left-radius: 24px;
             border-top-right-radius: 24px;
-            box-sizing: border-box;
         }
 
         #voice-overlay.active {
@@ -756,23 +825,23 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            max-width: 450px;
+            max-width: 420px;
             margin: 0 auto;
         }
 
         .voice-mic-icon {
-            font-size: 32px;
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            width: 70px;
-            height: 70px;
+            font-size: 30px;
+            background: linear-gradient(135deg, var(--primary), #8a2240);
+            width: 68px;
+            height: 68px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            box-shadow: 0 0 20px rgba(196, 141, 73, 0.4);
-            z-index: 2;
+            box-shadow: 0 0 24px rgba(201, 168, 76, 0.3);
             position: relative;
+            z-index: 2;
         }
 
         .voice-glow-ring {
@@ -781,7 +850,7 @@
             height: 70px;
             border-radius: 50%;
             background: transparent;
-            border: 2px solid var(--secondary-color);
+            border: 2px solid var(--gold);
             z-index: 1;
             animation: rippleVoice 1.8s infinite ease-out;
         }
@@ -793,58 +862,70 @@
             }
 
             100% {
-                transform: scale(1.6);
+                transform: scale(1.7);
                 opacity: 0;
             }
         }
 
         #voice-status-text {
             font-family: 'Playfair Display', serif;
-            color: #f5eedc;
-            font-size: 22px;
-            margin: 16px 0 6px 0;
+            color: var(--cream);
+            font-size: 20px;
+            margin: 14px 0 4px;
             font-weight: 600;
         }
 
         #voice-sub-text {
-            color: rgba(245, 238, 220, 0.7);
-            font-size: 14px;
-            margin: 0 0 20px 0;
+            color: rgba(245, 237, 224, 0.6);
+            font-size: 13px;
+            margin: 0 0 18px;
         }
 
         .voice-waves {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
-            height: 40px;
-            margin-bottom: 15px;
+            gap: 5px;
+            height: 38px;
+            margin-bottom: 14px;
         }
 
         .voice-wave {
             width: 4px;
             height: 8px;
-            background-color: var(--secondary-color);
+            background: var(--gold);
             border-radius: 4px;
             animation: soundBounce 1.2s infinite ease-in-out alternate;
         }
 
-        .voice-wave.bar-1 { animation-delay: 0.1s; }
-        .voice-wave.bar-2 { animation-delay: 0.3s; }
-        .voice-wave.bar-3 { animation-delay: 0.6s; height: 12px; }
-        .voice-wave.bar-4 { animation-delay: 0.2s; }
-        .voice-wave.bar-5 { animation-delay: 0.4s; }
+        .voice-wave.bar-1 {
+            animation-delay: 0.1s;
+        }
+
+        .voice-wave.bar-2 {
+            animation-delay: 0.3s;
+        }
+
+        .voice-wave.bar-3 {
+            animation-delay: 0.6s;
+            height: 12px;
+        }
+
+        .voice-wave.bar-4 {
+            animation-delay: 0.2s;
+        }
+
+        .voice-wave.bar-5 {
+            animation-delay: 0.4s;
+        }
 
         @keyframes soundBounce {
             0% {
                 height: 8px;
-                transform: scaleY(1);
             }
 
             100% {
-                height: 38px;
-                transform: scaleY(1);
-                background-color: #f5eedc;
+                height: 36px;
+                background: var(--gold-light);
             }
         }
 
@@ -852,9 +933,9 @@
             position: absolute;
             top: -10px;
             right: 0;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             border: none;
-            color: #f5eedc;
+            color: var(--cream);
             border-radius: 50%;
             width: 36px;
             height: 36px;
@@ -867,88 +948,151 @@
         }
 
         #btn-cancel-voice:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        /* ========== MODAL CLOSE GENERIC ========== */
+        .modal-close-btn {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--gold-light);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            background: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media(max-width:600px) {
+            .banner {
+                font-size: 24px;
+            }
+
+            .lang-btn {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+
+            #product-list {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 16px;
+            }
+
+            .item-image-wrapper {
+                height: 175px;
+            }
+
+            .mv-body {
+                padding: 20px 18px 24px;
+            }
+
+            .mv-nombre {
+                font-size: 22px;
+            }
+        }
+
+        @media(max-width:480px) {
+            .search-box {
+                width: 92%;
+                padding: 4px;
+                gap: 5px;
+            }
+
+            .search-box input {
+                padding: 10px 10px;
+                font-size: 15px;
+            }
+
+            .search-box button {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- TELEPROMPTER -->
+    <!-- TELEPROMPTER SOMMELIER -->
     <div id="teleprompter" onclick="abrirModalTele()">
         <div id="tele-wrapper">
-            <div id="tele-track">Cargando sugerencias...</div>
+            <div id="tele-track">Cargando sugerencias del sommelier...</div>
         </div>
     </div>
 
-    <!-- MODAL TELEPROMPTER (Ron Asistente) -->
+    <!-- MODAL TELEPROMPTER -->
     <div id="modalTele">
-        <div class="modal-content">
-            <button class="modal-close-btn" onclick="event.stopPropagation(); cerrarModal()">✕</button>
-            <h2
-                style="font-family:'Playfair Display',serif; color:var(--primary-color); margin-top:0; font-size:24px; border-bottom: 2px solid var(--secondary-color); padding-bottom:10px; margin-bottom:18px;">
-                Sugerencias de Ron ✦</h2>
-            <div id="modal-content-text" style="line-height:1.6; color:#333;"></div>
+        <div class="modal-tele-content">
+            <button class="modal-close-btn" onclick="event.stopPropagation(); cerrarModalTele()">✕</button>
+            <h2 id="modal-tele-title"
+                style="font-family:'Playfair Display',serif; color:var(--gold); margin-top:0; font-size:22px; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom:10px; margin-bottom:16px;">
+                🍷 Sommelier Digital
+            </h2>
+            <div id="modal-tele-text" style="line-height:1.7; color:rgba(245,237,224,0.85);"></div>
         </div>
     </div>
 
-    <!-- MODAL / LIGHTBOX DE FOTO DE PRODUCTO -->
-    <div id="photoModal" class="photo-modal-overlay" onclick="cerrarModalFoto(event)">
-        <div class="photo-modal-card" onclick="event.stopPropagation()">
-            <button class="photo-modal-close-btn" onclick="cerrarModalFoto()" title="Cerrar">✕</button>
-            <div class="photo-modal-img-wrapper">
-                <img id="photoModalImg" src="" alt="Plato">
-            </div>
-            <div class="photo-modal-body">
-                <h3 id="photoModalTitle" class="photo-modal-title"></h3>
-                <p id="photoModalDesc" class="photo-modal-desc"></p>
-                <div class="photo-modal-footer">
-                    <span id="photoModalPrice" class="price"></span>
-                    <span id="photoModalCategory" class="item-category-tag"></span>
-                </div>
-            </div>
+    <!-- MODAL FICHA DE CATADOR -->
+    <div id="modalVino">
+        <div class="modal-vino-inner" id="modalVinoInner">
+            <!-- Se llena dinámicamente -->
         </div>
     </div>
 
-    <!-- HEADER HERO -->
+    <!-- HEADER -->
     <header>
-        <img src="menublanco.jpeg" alt="Tilo Café">
+        <img src="img/header_cava1.png" alt="Cava de Vinos" onerror="this.style.display='none'">
     </header>
 
-    <!-- BANNER Y TITULO AUTO-AJUSTABLE -->
-    <div class="banner" id="banner-text">¡Bienvenidos!</div>
+    <div class="banner" id="banner-text">🍷 <span>Cava de Vinos</span></div>
 
-    <!-- SELECTOR DE IDIOMAS -->
-    <div id="languageSwitcher">
-        <button id="btn-es" class="lang-btn">🇪🇸 Español</button>
-        <button id="btn-en" class="lang-btn">🇬🇧 English</button>
-        <button id="btn-pt" class="lang-btn">🇧🇷 Português</button>
+    <!-- SELECTOR DE IDIOMA ARRIBA -->
+    <div class="lang-selector-container">
+        <div class="lang-selector">
+            <button class="lang-btn active" id="btn-lang-es" onclick="cambiarIdioma('es')">🇪🇸 Español</button>
+            <button class="lang-btn" id="btn-lang-en" onclick="cambiarIdioma('en')">🇬🇧 English</button>
+            <button class="lang-btn" id="btn-lang-pt" onclick="cambiarIdioma('pt')">🇧🇷 Português</button>
+        </div>
     </div>
 
     <!-- BUSCADOR -->
     <div class="search-box">
-        <input id="search" type="text" placeholder="Buscar plato...">
+        <input id="search" type="text" placeholder="Buscar vino, bodega, región...">
         <button id="btnSearch">Buscar</button>
         <button id="btnVoice" title="Búsqueda por voz">🎙️</button>
     </div>
 
-    <!-- BOTONES DE CATEGORÍAS ADAPTATIVOS -->
+    <!-- CATEGORÍAS -->
     <div id="category-buttons"></div>
 
-    <!-- LISTADO DE PLATOS OPTIMIZADO -->
+    <!-- GRILLA DE VINOS -->
     <div id="product-list"></div>
 
-    <!-- BOTÓN SUBIR RÁPIDO -->
+    <!-- BOTÓN SUBIR -->
     <button id="btnUp">⬆</button>
 
-    <!-- OVERLAY DE BÚSQUEDA POR VOZ (ANIMADO) -->
+    <!-- VOICE OVERLAY -->
     <div id="voice-overlay">
         <div class="voice-overlay-content">
             <div class="voice-glow-ring"></div>
             <div class="voice-mic-icon">🎙️</div>
             <h3 id="voice-status-text">Escuchando...</h3>
-            <p id="voice-sub-text">Hable ahora para buscar en el menú</p>
+            <p id="voice-sub-text">Diga el nombre del vino o bodega</p>
             <div class="voice-waves">
                 <div class="voice-wave bar-1"></div>
                 <div class="voice-wave bar-2"></div>
@@ -961,597 +1105,487 @@
     </div>
 
     <script>
-        // ==========================================
-        // CONFIGURACIÓN DE LA SUCURSAL
-        // Modifica esta variable al instalar en cada local:
-        // ==========================================
-        const NOMBRE_LOCAL = "menuclick";
+        const NOMBRE_LOCAL = "Cava de Vinos VAL RIO";
 
-        // Helper global para búsqueda inteligente de imágenes en subcarpetas locales
-        window.handleImageError = function (img, originalSrc) {
-            if (!img.dataset.tryStep) {
-                img.dataset.tryStep = "1";
-            }
-            const step = parseInt(img.dataset.tryStep, 10);
-            const fileName = (originalSrc || '').split('/').pop();
-            const folders = ["cafe", "comids", "bebidas", "san"];
+        // Detección dinámica de GitHub
+        const host = window.location.hostname;
+        const pathParts = window.location.pathname.split("/");
+        let USER = 'tilo-restocafe';
+        let REPO = 'vinos';
+        if (host.includes(".github.io")) {
+            USER = host.split(".")[0];
+            REPO = pathParts[1] || "vinos";
+        }
+        const isLocal = host === "localhost" || host === "127.0.0.1" || window.location.protocol === "file:";
 
-            if (step <= folders.length) {
-                const nextFolder = folders[step - 1];
-                img.dataset.tryStep = (step + 1).toString();
-                img.src = `img/${nextFolder}/${fileName}`;
+        // Smart image fallback helper
+        window.handleCardImgError = function (img, originalSrc) {
+            if (!img.dataset.triedGh && originalSrc && !originalSrc.startsWith('http') && !originalSrc.startsWith('data:')) {
+                img.dataset.triedGh = '1';
+                img.src = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${originalSrc}`;
             } else {
-                img.src = "https://via.placeholder.com/400x300?text=Sin+Imagen";
-                img.onerror = null;
+                img.style.display = 'none';
+                if (img.nextElementSibling) img.nextElementSibling.style.display = 'flex';
             }
         };
 
+        // ========== GESTIÓN MULTI-IDIOMA ==========
+        let currentLang = localStorage.getItem('cava_lang') || 'es';
+
+        const UI_TEXTS = {
+            es: {
+                searchPlaceholder: "Buscar vino, bodega, región...",
+                searchBtn: "Buscar",
+                todosCat: "Todos",
+                verFicha: "📖 Ver ficha",
+                sommelierTitle: "🍷 Sommelier Digital",
+                sommelierSub: "Selección y sugerencias de hoy",
+                notasCata: "🍇 Notas de Cata",
+                historia: "📖 Historia",
+                maridaje: "🍽️ Maridaje Recomendado",
+                sinResultados: "No se encontraron vinos.",
+                saludoDia: "☀️ Bienvenidos",
+                saludoTarde: "🌤️ Buenas tardes",
+                saludoNoche: "🌙 Buenas noches",
+                vozEscuchando: "Escuchando...",
+                vozSub: "Diga el nombre del vino o bodega",
+                vozLang: "es-AR"
+            },
+            en: {
+                searchPlaceholder: "Search wine, winery, region...",
+                searchBtn: "Search",
+                todosCat: "All",
+                verFicha: "📖 View details",
+                sommelierTitle: "🍷 Digital Sommelier",
+                sommelierSub: "Today's selection & recommendations",
+                notasCata: "🍇 Tasting Notes",
+                historia: "📖 History",
+                maridaje: "🍽️ Recommended Pairing",
+                sinResultados: "No wines found.",
+                saludoDia: "☀️ Welcome",
+                saludoTarde: "🌤️ Good afternoon",
+                saludoNoche: "🌙 Good evening",
+                vozEscuchando: "Listening...",
+                vozSub: "Say the wine or winery name",
+                vozLang: "en-US"
+            },
+            pt: {
+                searchPlaceholder: "Buscar vinho, vinícola, região...",
+                searchBtn: "Buscar",
+                todosCat: "Todos",
+                verFicha: "📖 Ver ficha",
+                sommelierTitle: "🍷 Sommelier Digital",
+                sommelierSub: "Seleção e recomendações de hoje",
+                notasCata: "🍇 Notas de Degustação",
+                historia: "📖 História",
+                maridaje: "🍽️ Harmonização Recomendada",
+                sinResultados: "Nenhum vinho encontrado.",
+                saludoDia: "☀️ Bem-vindos",
+                saludoTarde: "🌤️ Boa tarde",
+                saludoNoche: "🌙 Boa noite",
+                vozEscuchando: "Ouvindo...",
+                vozSub: "Diga o nome do vinho ou vinícola",
+                vozLang: "pt-BR"
+            }
+        };
+
+        function getJsonFileName(lang) {
+            if (lang === 'en') return 'vinoing.json';
+            if (lang === 'pt') return 'vinoportu.json';
+            return 'vinos.json';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            let idiomaActual = localStorage.getItem('idioma') || 'es';
 
-            const PAGE_TEXTS = {
-                es: {
-                    welcome: "¡Bienvenidos a {localName}!",
-                    searchPlaceholder: "Buscar plato...",
-                    searchBtn: "Buscar",
-                    voiceTitle: "Búsqueda por voz",
-                    todosCat: "Todos",
-                    mozoTitle: "Sugerencias de Ron ✦",
-                    mozoSub: "Aquí tienes mis sugerencias para hoy",
-                    mozoFooter: "Toca afuera para cerrar el diálogo."
-                },
-                en: {
-                    welcome: "Welcome to {localName}!",
-                    searchPlaceholder: "Search dish...",
-                    searchBtn: "Search",
-                    voiceTitle: "Voice search",
-                    todosCat: "All",
-                    mozoTitle: "Ron's Suggestions ✦",
-                    mozoSub: "Here are my suggestions for today",
-                    mozoFooter: "Tap outside to close."
-                },
-                pt: {
-                    welcome: "Bem-vindos a {localName}!",
-                    searchPlaceholder: "Buscar prato...",
-                    searchBtn: "Buscar",
-                    voiceTitle: "Pesquisa por voz",
-                    todosCat: "Todos",
-                    mozoTitle: "Sugestões do Ron ✦",
-                    mozoSub: "Aqui estão minhas sugestões para hoje",
-                    mozoFooter: "Toque fora para fechar."
-                }
-            };
-
-            function getWelcomeText(localName, lang) {
-                const template = PAGE_TEXTS[lang]?.welcome || PAGE_TEXTS.es.welcome;
-                return template.replace("{localName}", localName);
-            }
-
-            // Aplicar nombre de sucursal de forma inmediata para evitar parpadeos
-            if (typeof NOMBRE_LOCAL !== 'undefined' && NOMBRE_LOCAL) {
-                document.title = NOMBRE_LOCAL;
-                const bannerTextEl = document.getElementById("banner-text");
-                if (bannerTextEl) {
-                    bannerTextEl.textContent = getWelcomeText(NOMBRE_LOCAL, idiomaActual);
-                }
-            }
-
-            // Detección dinámica de GitHub para soporte marca blanca
-            const host = window.location.hostname;
-            const pathParts = window.location.pathname.split("/");
-
-            let USER = 'tilo-restocafe'; // Fallback por defecto
-            let REPO = 'cartaaguero';     // Fallback por defecto
-
-            if (host.includes(".github.io")) {
-                USER = host.split(".")[0];
-                REPO = pathParts[1] || "";
-            }
-
-            // Detección de desarrollo local (Localhost/127.0.0.1 o protocolo file://)
-            const isLocal = host === "localhost" || host === "127.0.0.1" || window.location.protocol === "file:";
+            document.title = NOMBRE_LOCAL;
+            document.getElementById('banner-text').innerHTML = `🍷 <span style="color:var(--gold)">${NOMBRE_LOCAL}</span>`;
 
             const categoryContainer = document.getElementById('category-buttons');
             const productList = document.getElementById('product-list');
             const teleTrack = document.getElementById("tele-track");
-            const bannerText = document.getElementById("banner-text");
+            let vinos = [];
 
-            let productos = [];
+            function actualizarBotonesIdioma() {
+                ['es', 'en', 'pt'].forEach(lang => {
+                    const btn = document.getElementById(`btn-lang-${lang}`);
+                    if (btn) {
+                        if (lang === currentLang) btn.classList.add('active');
+                        else btn.classList.remove('active');
+                    }
+                });
+            }
 
-            // =============================================
-            // MODAL DETALLE DE SUGERENCIAS (RON)
-            // =============================================
-            window.abrirModalTele = function () {
-                const modal = document.getElementById('modalTele');
-                const contenido = document.getElementById('modal-content-text');
-                const modalTitle = modal.querySelector('h2');
+            function actualizarTextosUI() {
+                const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
+                const sInput = document.getElementById('search');
+                if (sInput) sInput.placeholder = t.searchPlaceholder;
+                const sBtn = document.getElementById('btnSearch');
+                if (sBtn) sBtn.innerText = t.searchBtn;
 
-                const texts = PAGE_TEXTS[idiomaActual] || PAGE_TEXTS.es;
-                if (modalTitle) {
-                    modalTitle.textContent = texts.mozoTitle;
-                }
+                const vStatus = document.getElementById('voice-status-text');
+                if (vStatus) vStatus.innerText = t.vozEscuchando;
+                const vSub = document.getElementById('voice-sub-text');
+                if (vSub) vSub.innerText = t.vozSub;
 
-                const texto = teleTrack.innerText || "";
-                const partes = texto.split(" — ");
-                const sugerenciasTexto = partes[1] || texto;
+                const modalTitle = document.getElementById('modal-tele-title');
+                if (modalTitle) modalTitle.innerText = t.sommelierTitle;
+            }
 
-                const lista = sugerenciasTexto
-                    .split("✦")
-                    .map(s => s.trim())
-                    .filter(Boolean);
+            window.cambiarIdioma = function (lang) {
+                if (lang === currentLang) return;
+                currentLang = lang;
+                localStorage.setItem('cava_lang', lang);
+                actualizarBotonesIdioma();
+                actualizarTextosUI();
+                load();
+            };
 
-                contenido.innerHTML = `
-                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px; background:rgba(196, 141, 73, 0.08); padding:12px 16px; border-radius:16px;">
-                        <span style="font-size:32px;">🤖</span>
-                        <div>
-                            <p style="font-weight:600; color:var(--primary-color); margin:0; font-size:16px;">Ron</p>
-                            <p style="font-size:12px; color:var(--accent-color); margin:0;">${texts.mozoSub}</p>
+            // ========== TIPO → CLASE CSS ==========
+            function tipoBadgeClass(tipo) {
+                const t = (tipo || '').toLowerCase();
+                if (t.includes('tinto') || t.includes('red')) return 'tipo-tinto';
+                if (t.includes('blanco') || t.includes('white') || t.includes('branco')) return 'tipo-blanco';
+                if (t.includes('rosado') || t.includes('rosé') || t.includes('rose')) return 'tipo-rosado';
+                if (t.includes('espumante') || t.includes('sparkling') || t.includes('champagne')) return 'tipo-espumante';
+                return 'tipo-default';
+            }
+
+            // ========== MODAL FICHA DE CATADOR ==========
+            function abrirFicha(v) {
+                const modal = document.getElementById('modalVino');
+                const inner = document.getElementById('modalVinoInner');
+                const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
+
+                const badgeClass = tipoBadgeClass(v.tipo);
+
+                // Parsear maridaje como chips
+                const maridajes = (v.maridaje || '').split(/[,\.]+/).map(s => s.trim()).filter(Boolean);
+                const maridajeChips = maridajes.map(m => `<span class="mv-maridaje-item">${m}</span>`).join('');
+
+                inner.innerHTML = `
+                    <div class="mv-image-container">
+                        ${v.imagen
+                        ? `<img class="mv-img" src="${v.imagen}" alt="${v.nombre}" onerror="handleCardImgError(this, '${v.imagen}')">
+                               <div class="mv-img-placeholder" style="display:none;">🍷</div>`
+                        : `<div class="mv-img-placeholder">🍷</div>`
+                    }
+                        <span class="mv-badge ${badgeClass}">${v.tipo || 'Vino'}</span>
+                        <button class="mv-close" onclick="cerrarFicha()">✕</button>
+                    </div>
+                    <div class="mv-body">
+                        <div class="mv-tipo-row">
+                            ${v.anio ? `<span class="mv-chip">📅 ${v.anio}</span>` : ''}
+                            ${v.region ? `<span class="mv-chip">📍 ${v.region}</span>` : ''}
+                            ${v.categoria ? `<span class="mv-chip">🏷️ ${v.categoria}</span>` : ''}
+                        </div>
+                        <h2 class="mv-nombre">${v.nombre}</h2>
+                        <p class="mv-bodega">🏠 ${v.bodega || ''}</p>
+
+                        <div class="mv-section-label">${t.notasCata}</div>
+                        <p class="mv-text">${v.descripcion || ''}</p>
+
+                        ${v.historia ? `
+                        <hr class="mv-divider">
+                        <div class="mv-section-label">${t.historia}</div>
+                        <p class="mv-text">${v.historia}</p>
+                        ` : ''}
+
+                        ${v.maridaje ? `
+                        <hr class="mv-divider">
+                        <div class="mv-section-label">${t.maridaje}</div>
+                        <div class="mv-maridaje-grid">${maridajeChips}</div>
+                        ` : ''}
+
+                        <div class="mv-footer">
+                            <span class="mv-price">$${v.precio}</span>
+                            <span class="mv-region">${v.region || ''}<br><span style="color:var(--gold); font-size:11px;">${v.anio || ''}</span></span>
                         </div>
                     </div>
-
-                    <ul style="padding-left:20px; margin:0 0 20px 0; color:#333;">
-                        ${lista.map(s => `
-                            <li style="margin-bottom:12px; font-size:15px; line-height:1.5;">
-                                ${s}
-                            </li>
-                        `).join('')}
-                    </ul>
-
-                    <p style="font-size:13px; color:#888; text-align:center; margin:0;">
-                        ${texts.mozoFooter}
-                    </p>
                 `;
 
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            window.cerrarFicha = function () {
+                document.getElementById('modalVino').classList.remove('open');
+                document.body.style.overflow = '';
+            };
+
+            document.getElementById('modalVino').addEventListener('click', function (e) {
+                if (e.target === this) cerrarFicha();
+            });
+
+            // ========== TELEPROMPTER ==========
+            window.abrirModalTele = function () {
+                const modal = document.getElementById('modalTele');
+                const contenido = document.getElementById('modal-tele-text');
+                const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
+                const texto = teleTrack.innerText || "";
+                const partes = texto.split(" — ");
+                const sugerencias = partes[1] || texto;
+                const lista = sugerencias.split("✦").map(s => s.trim()).filter(Boolean);
+                contenido.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px; background:rgba(201,168,76,0.07); padding:12px 16px; border-radius:14px; border:1px solid rgba(201,168,76,0.2);">
+                        <span style="font-size:30px;">🍷</span>
+                        <div>
+                            <p style="font-weight:700; color:var(--gold); margin:0; font-size:15px;">${t.sommelierTitle}</p>
+                            <p style="font-size:11px; color:rgba(245,237,224,0.6); margin:0;">${t.sommelierSub}</p>
+                        </div>
+                    </div>
+                    <ul style="padding-left:18px; margin:0; color:rgba(245,237,224,0.85);">
+                        ${lista.map(s => `<li style="margin-bottom:10px; font-size:14px; line-height:1.6;">${s}</li>`).join('')}
+                    </ul>
+                `;
                 modal.style.display = 'flex';
             };
 
-            window.cerrarModal = function () {
+            window.cerrarModalTele = function () {
                 document.getElementById('modalTele').style.display = 'none';
             };
 
             document.getElementById('modalTele').addEventListener('click', function (e) {
-                if (e.target === this) {
-                    cerrarModal();
-                }
+                if (e.target === this) cerrarModalTele();
             });
 
-            // =============================================
-            // MODAL LIGHTBOX / VISOR DE FOTOS
-            // =============================================
-            window.abrirModalFoto = function (indexOrId) {
-                let p = productos.find(item => item.id && item.id == indexOrId);
-                if (!p) {
-                    p = productos[indexOrId];
-                }
-                if (!p) return;
-
-                const modal = document.getElementById('photoModal');
-                const modalImg = document.getElementById('photoModalImg');
-                const modalTitle = document.getElementById('photoModalTitle');
-                const modalDesc = document.getElementById('photoModalDesc');
-                const modalPrice = document.getElementById('photoModalPrice');
-                const modalCategory = document.getElementById('photoModalCategory');
-
-                modalImg.src = p.imagen;
-                modalImg.alt = p.nombre;
-                modalImg.onerror = function() { handleImageError(this, p.imagen); };
-                modalTitle.textContent = p.nombre;
-                modalDesc.textContent = p.descripcion || '';
-                modalPrice.textContent = `$${p.precio}`;
-                modalCategory.textContent = p.categoria;
-
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
-
-            window.cerrarModalFoto = function () {
-                const modal = document.getElementById('photoModal');
-                if (modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            };
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    cerrarModalFoto();
-                    cerrarModal();
-                }
-            });
-
-            // =============================================
-            // CARGA DE SUGERENCIAS E INFORMACIÓN LOCAL
-            // =============================================
+            // ========== CARGA DE SUGERENCIAS ==========
             async function cargarTeleprompter() {
+                const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
                 try {
                     let url = `./sugerencias.json?t=${Date.now()}`;
                     let res;
                     if (!isLocal) {
-                        const githubUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/sugerencias.json?t=${Date.now()}`;
+                        const ghUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/sugerencias.json?t=${Date.now()}`;
                         try {
-                            res = await fetch(githubUrl, { cache: "no-store" });
-                            if (!res.ok) throw new Error("GitHub Raw returned non-OK status");
-                        } catch (err) {
-                            console.warn("GitHub Raw suggestions failed, falling back to local Pages path", err);
-                            res = await fetch(url, { cache: "no-store" });
-                        }
+                            res = await fetch(ghUrl, { cache: "no-store" });
+                            if (!res.ok) throw new Error();
+                        } catch { res = await fetch(url, { cache: "no-store" }); }
                     } else {
                         res = await fetch(url, { cache: "no-store" });
                     }
                     const data = await res.json();
-
-                    // Ajustar título y banner de forma genérica
-                    const localName = NOMBRE_LOCAL || data.config?.nombreLocal || "Tilo Café";
+                    const localName = NOMBRE_LOCAL || data.config?.nombreLocal || "Cava de Vinos";
                     document.title = localName;
-                    bannerText.textContent = getWelcomeText(localName, idiomaActual);
 
-                    const sugerencias = data[idiomaActual] || [];
-                    const saludo = getSaludo();
-                    const textoFinal = saludo + " — " + sugerencias.join("   ✦   ");
-
-                    teleTrack.innerHTML = textoFinal + "   ✦   " + textoFinal;
+                    const hora = new Date().getHours();
+                    const saludo = hora < 12 ? t.saludoDia : hora < 19 ? t.saludoTarde : t.saludoNoche;
+                    const sugs = data[currentLang] || data["es"] || [];
+                    const texto = saludo + " — " + sugs.join("   ✦   ");
+                    teleTrack.innerHTML = texto + "   ✦   " + texto;
                     iniciarScroll();
-
                 } catch (e) {
-                    console.error("Error teleprompter:", e);
-                    teleTrack.textContent = "Bienvenidos a Mozo Digital ☕";
+                    const hora = new Date().getHours();
+                    const saludo = hora < 12 ? t.saludoDia : hora < 19 ? t.saludoTarde : t.saludoNoche;
+                    teleTrack.textContent = `🍷 ${saludo} — ${NOMBRE_LOCAL}`;
+                    iniciarScroll();
                 }
-            }
-
-            function getSaludo() {
-                const hora = new Date().getHours();
-
-                if (idiomaActual === "es") {
-                    return hora < 12 ? "☀️ Buenos días" : hora < 19 ? "🌤️ Buenas tardes" : "🌙 Buenas noches";
-                }
-                if (idiomaActual === "en") {
-                    return hora < 12 ? "☀️ Good morning" : hora < 19 ? "🌤️ Good afternoon" : "🌙 Good evening";
-                }
-                return hora < 12 ? "☀️ Bom dia" : hora < 19 ? "🌤️ Boa tarde" : "🌙 Boa noite";
             }
 
             function iniciarScroll() {
                 teleTrack.style.animation = "none";
                 setTimeout(() => {
-                    const velocidad = 55;
+                    const vel = 52;
                     const ancho = teleTrack.scrollWidth / 2;
-                    const duracion = ancho / velocidad;
-                    teleTrack.style.animation = `scrollTele ${duracion}s linear infinite`;
+                    teleTrack.style.animation = `scrollTele ${ancho / vel}s linear infinite`;
                 }, 100);
             }
 
-            // =============================================
-            // CARGA Y PARSEO DE MENÚ MULTI-IDIOMA
-            // =============================================
+            // ========== CARGA DE VINOS MULTI-IDIOMA ==========
             async function load() {
-                localStorage.setItem('idioma', idiomaActual);
-                actualizarBotonesIdioma();
-
-                // Traducir textos fijos de la página
-                const texts = PAGE_TEXTS[idiomaActual] || PAGE_TEXTS.es;
-                document.getElementById('search').placeholder = texts.searchPlaceholder;
-                document.getElementById('btnSearch').textContent = texts.searchBtn;
-                const btnVoice = document.getElementById('btnVoice');
-                if (btnVoice) btnVoice.title = texts.voiceTitle;
-
-                let archivo =
-                    idiomaActual === "es"
-                        ? "productos.json"
-                        : idiomaActual === "en"
-                            ? "productos-en.json"
-                            : "productos-port.json";
-
+                const targetJson = getJsonFileName(currentLang);
                 try {
-                    let url = `./${archivo}?t=${Date.now()}`;
+                    let url = `./${targetJson}?t=${Date.now()}`;
                     let res;
                     if (!isLocal) {
-                        const githubUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${archivo}?t=${Date.now()}`;
+                        const ghUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${targetJson}?t=${Date.now()}`;
                         try {
-                            res = await fetch(githubUrl, { cache: "no-store" });
-                            if (!res.ok) throw new Error("GitHub Raw returned non-OK status");
-                        } catch (err) {
-                            console.warn("GitHub Raw products failed, falling back to local Pages path", err);
-                            res = await fetch(url, { cache: "no-store" });
-                        }
+                            res = await fetch(ghUrl, { cache: "no-store" });
+                            if (!res.ok) throw new Error();
+                        } catch { res = await fetch(url, { cache: "no-store" }); }
                     } else {
-                        res = await fetch(url, { cache: "no-store" });
+                        try {
+                            res = await fetch(url, { cache: "no-store" });
+                            if (!res.ok) throw new Error();
+                        } catch {
+                            // Fallback a GitHub Raw si falla localmente (por ejemplo en file://)
+                            const ghUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${targetJson}?t=${Date.now()}`;
+                            res = await fetch(ghUrl, { cache: "no-store" });
+                        }
                     }
+
+                    if ((!res || !res.ok) && targetJson !== 'vinos.json') {
+                        // Fallback a vinos.json si el archivo en otro idioma aún no existe
+                        const fallbackUrl = isLocal ? `./vinos.json?t=${Date.now()}` : `https://raw.githubusercontent.com/${USER}/${REPO}/main/vinos.json?t=${Date.now()}`;
+                        try {
+                            res = await fetch(fallbackUrl, { cache: "no-store" });
+                            if (!res.ok) throw new Error();
+                        } catch {
+                            const fallbackGh = `https://raw.githubusercontent.com/${USER}/${REPO}/main/vinos.json?t=${Date.now()}`;
+                            res = await fetch(fallbackGh, { cache: "no-store" });
+                        }
+                    }
+
+                    if (!res || !res.ok) throw new Error("No se pudo cargar");
+
                     const data = await res.json();
-
-                    productos = data.map((p, idx) => ({
-                        nombre: p.nombre || p.name || p.nome || "Sin nombre",
-                        descripcion: p.descripcion || p.description || p.descricao || "",
-                        precio: p.precio || p.price || p.preco || "0",
-                        imagen: p.imagen || p.image || p.imagem || "https://via.placeholder.com/400x300?text=Sin+Imagen",
-                        categoria: p.categoria || p.category || "Otros",
-                        id: p.id || idx.toString()
+                    vinos = data.map(v => ({
+                        id: v.id || '',
+                        nombre: v.nombre || v.name || v.nome || 'Sin nombre',
+                        bodega: v.bodega || v.winery || '',
+                        region: v.region || '',
+                        anio: v.anio || v.year || v.ano || '',
+                        tipo: v.tipo || v.type || 'Tinto',
+                        precio: v.precio || v.price || v.preco || '0',
+                        imagen: v.imagen || v.image || v.imagem || '',
+                        descripcion: v.descripcion || v.description || v.descricao || '',
+                        historia: v.historia || v.history || '',
+                        maridaje: v.maridaje || v.pairing || v.harmonizacao || '',
+                        categoria: v.categoria || v.category || 'Vinos'
                     }));
-
                     renderCategorias();
-                    render(productos);
+                    render(vinos);
                     cargarTeleprompter();
-
                 } catch (e) {
-                    console.error("Error cargando productos:", e);
+                    console.error("Error cargando vinos:", e);
+                    const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
                     productList.innerHTML = `
-                        <div style="grid-column:1/-1; padding:40px; text-align:center;">
-                            <span style="font-size:40px;">⚠️</span>
-                            <p style="color:var(--primary-color); font-weight:600; margin-top:10px;">Error al cargar el menú. Revisa tu conexión.</p>
-                        </div>
-                    `;
+                        <div style="grid-column:1/-1; padding:50px; text-align:center;">
+                            <span style="font-size:48px;">🍷</span>
+                            <p style="color:var(--gold); font-weight:600; margin-top:12px;">${t.sinResultados}</p>
+                        </div>`;
                 }
             }
 
-            // =============================================
-            // RENDERIZADO PREMIUM DE PRODUCTOS (LAZY)
-            // =============================================
+            // ========== RENDER TARJETAS ==========
             function render(arr) {
+                const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
                 if (!arr.length) {
                     productList.innerHTML = `
-                        <div style="grid-column:1/-1; padding:40px; text-align:center;">
-                            <span style="font-size:36px;">🔎</span>
-                            <p style="color:var(--accent-color); font-weight:500; margin-top:10px;">No se encontraron productos en esta categoría.</p>
-                        </div>
-                    `;
+                        <div style="grid-column:1/-1; padding:50px; text-align:center;">
+                            <span style="font-size:40px;">🔎</span>
+                            <p style="color:rgba(245,237,224,0.6); font-weight:500; margin-top:10px;">${t.sinResultados}</p>
+                        </div>`;
                     return;
                 }
 
-                productList.innerHTML = arr.map((p, index) => `
-                    <div class="item" data-id="${p.id}">
-                        <div class="item-image-wrapper" onclick="abrirModalFoto('${p.id || index}')" title="Clic para ampliar foto">
-                            <span class="zoom-badge" title="Ampliar">🔍</span>
-                            <img
-                              src="${p.imagen}"
-                              alt="${p.nombre}"
-                              loading="lazy"
-                              onerror="handleImageError(this, '${p.imagen}')"
-                            >
+                productList.innerHTML = arr.map((v, i) => {
+                    const badgeClass = tipoBadgeClass(v.tipo);
+                    const imgHtml = v.imagen
+                        ? `<img src="${v.imagen}" alt="${v.nombre}" loading="lazy" onerror="handleCardImgError(this, '${v.imagen}')">`
+                        : '';
+                    return `
+                    <div class="item" onclick="abrirFichaById('${v.id}')" data-id="${v.id}" style="animation: fadeUp 0.4s ease ${i * 0.05}s both;">
+                        <div class="item-image-wrapper">
+                            ${imgHtml}
+                            <div class="item-img-placeholder" style="${v.imagen ? 'display:none;' : ''}">🍷</div>
+                            <span class="item-tipo-badge ${badgeClass}">${v.tipo}</span>
+                            ${v.anio ? `<span class="item-anio-badge">${v.anio}</span>` : ''}
                         </div>
                         <div class="item-content">
-                            <h3>${p.nombre}</h3>
-                            <p>${p.descripcion}</p>
+                            <h3>${v.nombre}</h3>
+                            <p class="item-bodega">${v.bodega}${v.region ? ' · ' + v.region : ''}</p>
+                            <p>${v.descripcion}</p>
                             <div class="item-footer">
-                                <span class="price">$${p.precio}</span>
-                                <span class="item-category-tag">${p.categoria}</span>
+                                <span class="price">$${v.precio}</span>
+                                <button class="ver-ficha-btn" onclick="event.stopPropagation(); abrirFichaById('${v.id}')">${t.verFicha}</button>
                             </div>
                         </div>
-                    </div>
-                `).join('');
+                    </div>`;
+                }).join('');
             }
 
-            // =============================================
-            // SISTEMA DINÁMICO DE CATEGORÍAS
-            // =============================================
+            window.abrirFichaById = function (id) {
+                const v = vinos.find(x => x.id === id);
+                if (v) abrirFicha(v);
+            };
+
+            // ========== CATEGORÍAS ==========
             function renderCategorias() {
-                const texts = PAGE_TEXTS[idiomaActual] || PAGE_TEXTS.es;
-                const cats = [
-                    texts.todosCat,
-                    ...new Set(productos.map(p => p.categoria).filter(Boolean))
-                ];
-
-                categoryContainer.innerHTML = cats.map(cat => `
-                    <button
-                      class="${cat === texts.todosCat ? 'active-cat' : ''}"
-                      data-cat="${cat}"
-                    >
-                      ${cat}
-                    </button>
+                const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
+                const cats = [t.todosCat, ...new Set(vinos.map(v => v.categoria).filter(Boolean))];
+                categoryContainer.innerHTML = cats.map((cat, idx) => `
+                    <button class="${idx === 0 ? 'active-cat' : ''}" data-cat="${cat}">${cat}</button>
                 `).join('');
-
                 document.querySelectorAll('#category-buttons button').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const cat = btn.dataset.cat;
-                        filtrarCat(cat, btn);
-                    });
+                    btn.addEventListener('click', () => filtrarCat(btn.dataset.cat, btn));
                 });
             }
 
             window.filtrarCat = function (cat, btn) {
-                const texts = PAGE_TEXTS[idiomaActual] || PAGE_TEXTS.es;
-                document.querySelectorAll("#category-buttons button")
-                    .forEach(b => b.classList.remove("active-cat"));
-
-                btn.classList.add("active-cat");
-
-                const filtrados =
-                    cat === texts.todosCat
-                        ? productos
-                        : productos.filter(p => p.categoria === cat);
-
+                const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
+                document.querySelectorAll('#category-buttons button').forEach(b => b.classList.remove('active-cat'));
+                btn.classList.add('active-cat');
+                const filtrados = (cat === t.todosCat || cat === "Todos" || cat === "All") ? vinos : vinos.filter(v => v.categoria === cat);
                 render(filtrados);
-
-                // Scroll smoothly to list container
-                window.scrollTo({
-                    top: productList.offsetTop - 120,
-                    behavior: "smooth"
-                });
+                window.scrollTo({ top: productList.offsetTop - 120, behavior: "smooth" });
             };
 
-            // =============================================
-            // BUSCADOR INTELIGENTE
-            // =============================================
-            function normalizarTexto(texto) {
-                return (texto || "")
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "");
+            // ========== BUSCADOR ==========
+            function norm(txt) {
+                return (txt || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             }
-
             function filtrar() {
-                const q = normalizarTexto(document.getElementById('search').value);
-                const filtrados = productos.filter(p => {
-                    return (
-                        normalizarTexto(p.nombre).includes(q) ||
-                        normalizarTexto(p.descripcion).includes(q) ||
-                        normalizarTexto(p.categoria).includes(q)
-                    );
-                });
-                render(filtrados);
+                const q = norm(document.getElementById('search').value);
+                render(vinos.filter(v =>
+                    norm(v.nombre).includes(q) ||
+                    norm(v.bodega).includes(q) ||
+                    norm(v.region).includes(q) ||
+                    norm(v.descripcion).includes(q) ||
+                    norm(v.categoria).includes(q)
+                ));
             }
+            document.getElementById('btnSearch').onclick = () => { filtrar(); window.scrollTo({ top: productList.offsetTop - 120, behavior: "smooth" }); };
+            document.getElementById('search').addEventListener('keyup', e => { filtrar(); if (e.key === 'Enter') window.scrollTo({ top: productList.offsetTop - 120, behavior: "smooth" }); });
 
-            document.getElementById('btnSearch').onclick = () => {
-                filtrar();
-                window.scrollTo({
-                    top: productList.offsetTop - 120,
-                    behavior: "smooth"
-                });
-            };
-
-            document.getElementById('search').addEventListener('keyup', (e) => {
-                filtrar();
-                if (e.key === 'Enter') {
-                    window.scrollTo({
-                        top: productList.offsetTop - 120,
-                        behavior: "smooth"
-                    });
-                }
-            });
-
-            // =============================================
-            // INTERFAZ DE VOZ CON ANIMACIÓN
-            // =============================================
+            // ========== VOZ ==========
             const btnVoice = document.getElementById('btnVoice');
             const voiceOverlay = document.getElementById('voice-overlay');
-            const voiceStatusText = document.getElementById('voice-status-text');
-            const voiceSubText = document.getElementById('voice-sub-text');
-            const btnCancelVoice = document.getElementById('btn-cancel-voice');
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-            if (SpeechRecognition) {
-                const recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
-
-                const voiceTexts = {
-                    es: { listening: "Escuchando...", subtext: "Hable ahora para buscar en el menú" },
-                    en: { listening: "Listening...", subtext: "Speak now to search the menu" },
-                    pt: { listening: "Ouvindo...", subtext: "Fale agora para buscar no menu" }
-                };
-
-                const closeVoiceOverlay = () => {
-                    btnVoice.textContent = "🎙️";
-                    btnVoice.classList.remove("recording");
-                    voiceOverlay.classList.remove('active');
-                };
-
-                recognition.onstart = () => {
-                    btnVoice.textContent = "🎙️";
-                    btnVoice.classList.add("recording");
-
-                    const langTexts = voiceTexts[idiomaActual] || voiceTexts.es;
-                    voiceStatusText.textContent = langTexts.listening;
-                    voiceSubText.textContent = langTexts.subtext;
-
-                    voiceOverlay.classList.add('active');
-                };
-
-                recognition.onend = () => {
-                    closeVoiceOverlay();
-                };
-
-                recognition.onerror = () => {
-                    closeVoiceOverlay();
-                };
-
-                recognition.onresult = (event) => {
-                    const voiceText = event.results[0][0].transcript;
-                    document.getElementById('search').value = voiceText;
-                    filtrar();
-                    window.scrollTo({
-                        top: productList.offsetTop - 120,
-                        behavior: "smooth"
-                    });
-                };
-
+            const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SR) {
+                const rec = new SR();
+                rec.continuous = false; rec.interimResults = false;
+                const close = () => { btnVoice.textContent = "🎙️"; btnVoice.classList.remove("recording"); voiceOverlay.classList.remove('active'); };
+                rec.onstart = () => { btnVoice.classList.add("recording"); voiceOverlay.classList.add('active'); };
+                rec.onend = close; rec.onerror = close;
+                rec.onresult = e => { document.getElementById('search').value = e.results[0][0].transcript; filtrar(); window.scrollTo({ top: productList.offsetTop - 120, behavior: "smooth" }); };
                 btnVoice.onclick = () => {
-                    recognition.lang =
-                        idiomaActual === 'es'
-                            ? 'es-AR'
-                            : idiomaActual === 'en'
-                                ? 'en-US'
-                                : 'pt-BR';
-                    recognition.start();
+                    const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
+                    rec.lang = t.vozLang || 'es-AR';
+                    rec.start();
                 };
+                document.getElementById('btn-cancel-voice').onclick = () => { rec.abort(); close(); };
+            } else { btnVoice.style.display = 'none'; }
 
-                btnCancelVoice.onclick = () => {
-                    recognition.abort();
-                    closeVoiceOverlay();
-                };
-            } else {
-                btnVoice.style.display = 'none';
-            }
-
-            // =============================================
-            // SELECCIÓN DE IDIOMAS
-            // =============================================
-            function actualizarBotonesIdioma() {
-                document.querySelectorAll('.lang-btn')
-                    .forEach(btn => btn.classList.remove('active'));
-
-                const activeBtn = document.getElementById(`btn-${idiomaActual}`);
-                if (activeBtn) activeBtn.classList.add('active');
-            }
-
-            document.getElementById('btn-es').onclick = () => {
-                idiomaActual = 'es';
-                load();
-            };
-
-            document.getElementById('btn-en').onclick = () => {
-                idiomaActual = 'en';
-                load();
-            };
-
-            document.getElementById('btn-pt').onclick = () => {
-                idiomaActual = 'pt';
-                load();
-            };
-
-            // =============================================
-            // COMPORTAMIENTO SCROLL UP
-            // =============================================
+            // ========== SCROLL UP ==========
             window.addEventListener('scroll', () => {
-                document.getElementById('btnUp').style.display =
-                    window.scrollY > 400 ? "block" : "none";
+                document.getElementById('btnUp').style.display = window.scrollY > 400 ? "block" : "none";
             });
+            document.getElementById('btnUp').onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-            document.getElementById('btnUp').onclick = () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            };
+            // ========== ANIMACIÓN FADE UP ==========
+            const style = document.createElement('style');
+            style.textContent = `@keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }`;
+            document.head.appendChild(style);
 
-            // =============================================
-            // VISTA PREVIA DEL ADMINISTRADOR EN TIEMPO REAL
-            // =============================================
-            window.addEventListener('message', (e) => {
+            // ========== LIVE PREVIEW ADMIN ==========
+            window.addEventListener('message', e => {
                 if (e.data && e.data.type === "updateSuggestions") {
-                    if (e.data.idioma) {
-                        idiomaActual = e.data.idioma;
-                        localStorage.setItem('idioma', idiomaActual);
-                        actualizarBotonesIdioma();
-                    }
-                    const localName = e.data.config?.nombreLocal || NOMBRE_LOCAL || "Tilo Café";
-                    document.title = localName;
-                    bannerText.textContent = getWelcomeText(localName, idiomaActual);
-
-                    const sugerencias = e.data.sugerencias || [];
-                    const saludo = getSaludo();
-                    const textoFinal = saludo + " — " + sugerencias.join("   ✦   ");
-
-                    teleTrack.innerHTML = textoFinal + "   ✦   " + textoFinal;
+                    const sugs = e.data.sugerencias || [];
+                    const t = UI_TEXTS[currentLang] || UI_TEXTS.es;
+                    const hora = new Date().getHours();
+                    const saludo = hora < 12 ? t.saludoDia : hora < 19 ? t.saludoTarde : t.saludoNoche;
+                    const texto = saludo + " — " + sugs.join("   ✦   ");
+                    teleTrack.innerHTML = texto + "   ✦   " + texto;
                     iniciarScroll();
                 }
             });
 
-            // =============================================
-            // ARRANQUE INICIAL
-            // =============================================
+            actualizarBotonesIdioma();
+            actualizarTextosUI();
             load();
-
         });
     </script>
+
 </body>
 
 </html>
