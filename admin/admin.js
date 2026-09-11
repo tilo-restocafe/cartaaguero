@@ -2,12 +2,12 @@ const host = window.location.hostname;
 const pathParts = window.location.pathname.split("/");
 
 // Dynamic detection of GitHub URL parts
-let USER = "tilo-restocafe"; 
-let REPO = "cartaaguero";     
+let USER = "tilo-restocafe";
+let REPO = "vinos";
 
 if (host.includes(".github.io")) {
     USER = host.split(".")[0];
-    REPO = pathParts[1] || "";
+    REPO = pathParts[1] || "vinos";
 }
 
 const FILE_PATH = "sugerencias.json";
@@ -168,14 +168,14 @@ async function cargarJSON() {
 
         estado.textContent = "Cargado con éxito ✅";
         estado.style.color = "#4a773c";
-        
+
         // Carga inicial en la vista previa
         setTimeout(actualizarVistaPrevia, 800);
     } catch (e) {
         console.error(e);
         estado.textContent = "Error al cargar sugerencias ❌";
         estado.style.color = "#b03a2e";
-        
+
         // Intentar cargar localmente si falla la API (por ejemplo, si no hay token o internet)
         try {
             const localRes = await fetch(`../${FILE_PATH}?t=${Date.now()}`);
@@ -207,20 +207,49 @@ function mostrarIdioma() {
     autoResizeTextarea();
 }
 
-async function translateText(text, fromLang, toLang) {
-    if (!text) return "";
-    try {
-        const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`);
-        if (res.ok) {
-            const data = await res.json();
-            if (data.responseData && data.responseData.translatedText) {
-                return data.responseData.translatedText;
-            }
-        }
-    } catch (e) {
-        console.error("Error translating:", e);
+async function translateWithGoogle(text, fromLang, toLang) {
+    if (!text || !text.trim()) return "";
+    const url = `https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=${encodeURIComponent(fromLang)}&tl=${encodeURIComponent(toLang)}&q=${encodeURIComponent(text.trim())}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Google Translate HTTP " + res.status);
+    const data = await res.json();
+    if (Array.isArray(data) && data.length > 0) {
+        if (typeof data[0] === "string") return data[0];
+        if (Array.isArray(data[0]) && typeof data[0][0] === "string") return data[0][0];
     }
-    return text; // fallback
+    if (typeof data === "string") return data;
+    throw new Error("Formato desconocido de traducción");
+}
+
+async function translateWithMyMemory(text, fromLang, toLang) {
+    if (!text || !text.trim()) return "";
+    const email = `tilo.cava.${Math.floor(Math.random() * 10000)}@gmail.com`;
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.trim())}&langpair=${fromLang}|${toLang}&de=${email}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("MyMemory HTTP " + res.status);
+    const data = await res.json();
+    if (data && data.responseData && data.responseData.translatedText) {
+        const txt = data.responseData.translatedText;
+        if (!txt.toUpperCase().includes("MYMEMORY WARNING")) {
+            return txt;
+        }
+    }
+    throw new Error("Límite de cuota MyMemory alcanzado");
+}
+
+async function translateText(text, fromLang, toLang) {
+    if (!text || !text.trim()) return text || "";
+    try {
+        return await translateWithGoogle(text, fromLang, toLang);
+    } catch (e1) {
+        console.warn("Fallo Google Translate, probando fallback MyMemory...", e1);
+        try {
+            return await translateWithMyMemory(text, fromLang, toLang);
+        } catch (e2) {
+            console.error("Fallo MyMemory también:", e2);
+            return text;
+        }
+    }
 }
 
 async function autoTraducirSugerencias() {
@@ -235,7 +264,15 @@ async function autoTraducirSugerencias() {
         return;
     }
 
-    estado.textContent = "Traduciendo sugerencias con IA...";
+    const btnTraducir = document.getElementById("btnTraducir");
+    const originalBtnHTML = btnTraducir ? btnTraducir.innerHTML : "";
+    if (btnTraducir) {
+        btnTraducir.disabled = true;
+        btnTraducir.innerHTML = "⏳ Traduciendo...";
+        btnTraducir.style.opacity = "0.7";
+    }
+
+    estado.textContent = "Traduciendo sugerencias con IA al inglés y portugués...";
     estado.style.color = "#c48d49";
 
     const targetLangs = ['es', 'en', 'pt'].filter(l => l !== sourceLang);
@@ -254,15 +291,24 @@ async function autoTraducirSugerencias() {
             jsonCompleto[tLang] = translations[tLang];
         }
 
-        estado.textContent = "¡Traducciones automáticas completadas! (Guarda cambios) ✅";
+        estado.textContent = "¡Traducciones automáticas completadas! (Recordá Guardar en la nube) ✅";
         estado.style.color = "#4a773c";
 
         // Forzar actualización en tiempo real en el iframe
         actualizarVistaPrevia();
+
+        alert("✨ ¡Traducción completada con éxito!\n\nSe tradujeron todas las sugerencias al Inglés y Portugués.\n\nPodés cambiar el selector de 'Idioma' para revisarlas o editarlas, y hacer clic en 'Guardar en la nube (GitHub)' para publicarlas.");
     } catch (e) {
         console.error("Error translating suggestions:", e);
         estado.textContent = "Error en el servicio de traducción ❌";
         estado.style.color = "#b03a2e";
+        alert("Hubo un error al traducir las sugerencias: " + (e.message || e));
+    } finally {
+        if (btnTraducir) {
+            btnTraducir.disabled = false;
+            btnTraducir.innerHTML = originalBtnHTML;
+            btnTraducir.style.opacity = "1";
+        }
     }
 }
 
@@ -320,7 +366,7 @@ async function guardarJSON() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                message: `Actualización de sugerencias de Ron (${idioma.toUpperCase()})`,
+                message: `Actualización de sugerencias Mozo Digital (${idioma.toUpperCase()})`,
                 content: contenidoBase64,
                 sha: sha,
                 branch: BRANCH
@@ -332,7 +378,7 @@ async function guardarJSON() {
             shaActual = resData.content.sha; // Actualizar SHA actual para la próxima guardada
             estado.textContent = "Sugerencias guardadas en la nube ✅";
             estado.style.color = "#4a773c";
-            
+
             // Forzar actualización en tiempo real en el iframe
             actualizarVistaPrevia();
             alert("¡Cambios guardados con éxito en la nube! ✅");
@@ -395,7 +441,7 @@ function toggleAdminLock() {
     const group = document.getElementById('tokenControlGroup');
     const btn = document.getElementById('btnLockAdmin');
     if (!group || !btn) return;
-    
+
     if (group.style.display === 'flex') {
         group.style.display = 'none';
         btn.innerHTML = '🔒 Acceso Propietario';
@@ -463,7 +509,7 @@ document.querySelectorAll(".emoji-list button").forEach(btn => {
 
         textarea.focus();
         textarea.selectionStart = textarea.selectionEnd = start + emoji.length;
-        
+
         // Trigger live preview update
         autoResizeTextarea();
         guardarEstadoLocal();
