@@ -13,8 +13,10 @@ body {
 
 .panel {
     width: 400px;
-    background: #291707; /* Dark chocolate */
-    color: #f5eedc; /* Soft cream text */
+    background: #291707;
+    /* Dark chocolate */
+    color: #f5eedc;
+    /* Soft cream text */
     padding: 24px;
     display: flex;
     flex-direction: column;
