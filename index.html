@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargando menú...</title>
-    <!-- Google Fonts for premium typography -->
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
-        rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 
     <style>
         *,
@@ -19,23 +17,15 @@
         }
 
         :root {
-            --primary-color: #4a2c11;
-            /* Espresso Dark */
-            --secondary-color: #000000;
-            /* Caramel Gold */
-            --accent-color: #382516;
-            /* Cocoa Medium */
-            --bg-color: #a9a7a5;
-            /* Cream Soft */
+            --primary-color: #4a2c11;   /* Espresso Dark */
+            --secondary-color: #000000; /* Caramel Gold */
+            --accent-color: #382516;    /* Cocoa Medium */
+            --bg-color: #a9a7a5;        /* Cream Soft */
             --glass-bg: rgba(153, 153, 153, 0.88);
-            /* Soft warm cream instead of cold white */
             --glass-border: rgba(255, 255, 255, 0.5);
             --shadow-sm: 0 4px 12px rgba(69, 39, 10, 0.04);
             --shadow-md: 0 10px 30px rgba(69, 39, 10, 0.08);
             --shadow-lg: 0 16px 40px rgba(69, 39, 10, 0.14);
-
-
-
         }
 
         body {
@@ -45,8 +35,7 @@
             background-attachment: fixed;
             margin: 0;
             padding: 0;
-            padding-top: 55px;
-            /* Offset for the teleprompter */
+            padding-top: 55px; /* Offset for the teleprompter */
             color: var(--primary-color);
             text-align: center;
             scroll-behavior: smooth;
@@ -105,7 +94,6 @@
             from {
                 transform: translateX(0);
             }
-
             to {
                 transform: translateX(-50%);
             }
@@ -145,94 +133,12 @@
         }
 
         .modal-close-btn {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             position: absolute;
             top: 20px;
             right: 20px;
             background: rgba(93, 62, 38, 0.08);
             color: var(--accent-color);
             border: none;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             border-radius: 50%;
             width: 32px;
             height: 32px;
@@ -251,121 +157,11 @@
             transform: rotate(90deg);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         @keyframes zoomIn {
             from {
                 transform: scale(0.8);
                 opacity: 0;
             }
-
             to {
                 transform: scale(1);
                 opacity: 1;
@@ -386,13 +182,6 @@
             object-fit: cover;
         }
 
-
-
-
-
-
-
-
         .banner {
             margin: 24px 0 10px 0;
             font-family: 'Playfair Display', serif;
@@ -400,10 +189,6 @@
             font-weight: 700;
             color: var(--primary-color);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-
-
-
-
         }
 
         /* ================= IDIOMAS ================= */
@@ -413,17 +198,6 @@
             flex-wrap: wrap;
             gap: 10px;
             margin: 20px 0;
-
-
-
-
-
-
-
-
-
-
-
         }
 
         .lang-btn {
@@ -485,10 +259,6 @@
             color: var(--primary-color);
             font-family: 'Outfit', sans-serif;
             font-weight: 500;
-
-
-
-
         }
 
         .search-box input:focus {
@@ -522,7 +292,6 @@
             justify-content: center;
             padding: 10px 14px;
             transition: all 0.2s ease;
-
         }
 
         #btnVoice:hover {
@@ -535,11 +304,9 @@
             0% {
                 box-shadow: 0 0 0 0 rgba(196, 141, 73, 0.4);
             }
-
             70% {
                 box-shadow: 0 0 0 10px rgba(196, 141, 73, 0);
             }
-
             100% {
                 box-shadow: 0 0 0 0 rgba(196, 141, 73, 0);
             }
@@ -558,14 +325,11 @@
             flex-wrap: nowrap;
             overflow-x: auto;
             scrollbar-width: none;
-            /* Hide scrollbar for Firefox */
             -ms-overflow-style: none;
-            /* Hide scrollbar for IE */
             padding: 14px 20px;
             gap: 12px;
             position: sticky;
             top: 45px;
-            /* Sits below the teleprompter */
             background: rgba(250, 233, 207, 0.88);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -577,7 +341,6 @@
 
         #category-buttons::-webkit-scrollbar {
             display: none;
-            /* Hide scrollbar for Chrome/Safari */
         }
 
         #category-buttons button {
@@ -610,7 +373,7 @@
             transform: scale(1.05);
         }
 
-        /* ================= GRILLA DE PRODUCTOS DE ALTO RENDIMIENTO ================= */
+        /* ================= GRILLA DE PRODUCTOS ================= */
         #product-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -623,7 +386,6 @@
 
         .item {
             background: #eaeaea;
-            /* Blanco sólido para ocultar el fondo de hojas detrás del texto */
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             overflow: hidden;
@@ -633,7 +395,6 @@
             flex-direction: column;
             text-align: left;
             position: relative;
-
         }
 
         .item:hover {
@@ -648,10 +409,7 @@
             overflow: hidden;
             position: relative;
             background: rgba(69, 39, 10, 0.04);
-            cursor: pointer; /* Indicar interactividad */
-
-
-
+            cursor: pointer;
         }
 
         .item img {
@@ -659,8 +417,6 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-
         }
 
         .item:hover img {
@@ -696,50 +452,6 @@
             opacity: 1;
             transform: scale(1.1);
             background: var(--accent-color);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
         .item-content {
@@ -757,13 +469,6 @@
             margin: 0 0 8px 0;
             font-weight: 700;
             line-height: 1.3;
-
-
-
-
-
-
-
         }
 
         .item p {
@@ -781,7 +486,6 @@
             align-items: center;
             margin-top: auto;
             padding-top: 10px;
-
         }
 
         .price {
@@ -793,9 +497,6 @@
         }
 
         .item-category-tag {
-
-
-
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
@@ -804,41 +505,12 @@
             background: rgba(196, 141, 73, 0.12);
             color: var(--secondary-color);
             border-radius: 20px;
-
-
-
-
-
         }
 
         /* ================= MODAL / LIGHTBOX DE FOTO ================= */
         .photo-modal-overlay {
             position: fixed;
             top: 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             left: 0;
             width: 100%;
             height: 100%;
@@ -854,11 +526,9 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
-
         }
 
         .photo-modal-overlay.active {
-
             opacity: 1;
             pointer-events: auto;
         }
@@ -980,8 +650,8 @@
             transform: scale(1.1);
         }
 
-        /* Responsiveness adjustments */
-        @media(max-width: 600px) {
+        /* Responsive */
+        @media (max-width: 600px) {
             .banner {
                 font-size: 26px;
             }
@@ -1001,7 +671,7 @@
             }
         }
 
-        @media(max-width: 480px) {
+        @media (max-width: 480px) {
             .search-box {
                 width: 92%;
                 padding: 4px;
@@ -1087,7 +757,6 @@
             box-shadow: 0 0 20px rgba(196, 141, 73, 0.4);
             z-index: 2;
             position: relative;
-
         }
 
         .voice-glow-ring {
@@ -1106,7 +775,6 @@
                 transform: scale(1);
                 opacity: 1;
             }
-
             100% {
                 transform: scale(1.6);
                 opacity: 0;
@@ -1150,27 +818,11 @@
         .voice-wave.bar-4 { animation-delay: 0.2s; }
         .voice-wave.bar-5 { animation-delay: 0.4s; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         @keyframes soundBounce {
             0% {
                 height: 8px;
                 transform: scaleY(1);
             }
-
             100% {
                 height: 38px;
                 transform: scaleY(1);
@@ -1199,78 +851,6 @@
         #btn-cancel-voice:hover {
             background: rgba(255, 255, 255, 0.2);
             color: #fff;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     </style>
 </head>
@@ -1288,11 +868,10 @@
     <div id="modalTele">
         <div class="modal-content">
             <button class="modal-close-btn" onclick="event.stopPropagation(); cerrarModal()">✕</button>
-            <h2
-                style="font-family:'Playfair Display',serif; color:var(--primary-color); margin-top:0; font-size:24px; border-bottom: 2px solid var(--secondary-color); padding-bottom:10px; margin-bottom:18px;">
-                Sugerencias de Ron ✦</h2>
+            <h2 style="font-family:'Playfair Display',serif; color:var(--primary-color); margin-top:0; font-size:24px; border-bottom: 2px solid var(--secondary-color); padding-bottom:10px; margin-bottom:18px;">
+                Sugerencias de Ron ✦
+            </h2>
             <div id="modal-content-text" style="line-height:1.6; color:#333;"></div>
-
         </div>
     </div>
 
@@ -1327,8 +906,6 @@
         <button id="btn-es" class="lang-btn">🇪🇸 Español</button>
         <button id="btn-en" class="lang-btn">🇬🇧 English</button>
         <button id="btn-pt" class="lang-btn">🇧🇷 Português</button>
-
-
     </div>
 
     <!-- BUSCADOR -->
@@ -1368,7 +945,6 @@
     <script>
         // ==========================================
         // CONFIGURACIÓN DE LA SUCURSAL
-        // Modifica esta variable al instalar en cada local:
         // ==========================================
         const NOMBRE_LOCAL = "menuclick";
 
@@ -1390,72 +966,6 @@
                 img.onerror = null;
             }
         };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         document.addEventListener('DOMContentLoaded', () => {
             let idiomaActual = localStorage.getItem('idioma') || 'es';
@@ -1505,25 +1015,14 @@
                 if (bannerTextEl) {
                     bannerTextEl.textContent = getWelcomeText(NOMBRE_LOCAL, idiomaActual);
                 }
-
-
-
-
-
-
             }
 
             // Detección dinámica de GitHub para soporte marca blanca
             const host = window.location.hostname;
             const pathParts = window.location.pathname.split("/");
 
-
-
-
             let USER = 'tilo-restocafe'; // Fallback por defecto
             let REPO = 'cartaaguero';     // Fallback por defecto
-
-
 
             if (host.includes(".github.io")) {
                 USER = host.split(".")[0];
@@ -1533,27 +1032,12 @@
             // Detección de desarrollo local (Localhost/127.0.0.1 o protocolo file://)
             const isLocal = host === "localhost" || host === "127.0.0.1" || window.location.protocol === "file:";
 
-
-
-
-
-
-
             const categoryContainer = document.getElementById('category-buttons');
             const productList = document.getElementById('product-list');
             const teleTrack = document.getElementById("tele-track");
             const bannerText = document.getElementById("banner-text");
 
-
-
-
-
-
             let productos = [];
-
-
-
-
 
             // =============================================
             // MODAL DETALLE DE SUGERENCIAS (RON)
@@ -1572,65 +1056,10 @@
                 const partes = texto.split(" — ");
                 const sugerenciasTexto = partes[1] || texto;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 const lista = sugerenciasTexto
                     .split("✦")
                     .map(s => s.trim())
                     .filter(Boolean);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 contenido.innerHTML = `
                     <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px; background:rgba(196, 141, 73, 0.08); padding:12px 16px; border-radius:16px;">
@@ -1715,7 +1144,6 @@
             // CARGA DE SUGERENCIAS E INFORMACIÓN LOCAL
             // =============================================
             async function cargarTeleprompter() {
-
                 try {
                     let url = `./sugerencias.json?t=${Date.now()}`;
                     let res;
@@ -1743,10 +1171,6 @@
                     const textoFinal = saludo + " — " + sugerencias.join("   ✦   ");
 
                     teleTrack.innerHTML = textoFinal + "   ✦   " + textoFinal;
-
-
-
-
                     iniciarScroll();
 
                 } catch (e) {
@@ -1803,22 +1227,12 @@
                     let res;
                     if (!isLocal) {
                         const githubUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${archivo}?t=${Date.now()}`;
-
-
-
-
-
                         try {
                             res = await fetch(githubUrl, { cache: "no-store" });
                             if (!res.ok) throw new Error("GitHub Raw returned non-OK status");
                         } catch (err) {
                             console.warn("GitHub Raw products failed, falling back to local Pages path", err);
                             res = await fetch(url, { cache: "no-store" });
-
-
-
-
-
                         }
                     } else {
                         res = await fetch(url, { cache: "no-store" });
@@ -1833,26 +1247,6 @@
                         categoria: p.categoria || p.category || "Otros",
                         id: p.id || idx.toString()
                     }));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     renderCategorias();
                     render(productos);
@@ -1874,7 +1268,6 @@
             // RENDERIZADO PREMIUM DE PRODUCTOS (LAZY)
             // =============================================
             function render(arr) {
-
                 if (!arr.length) {
                     productList.innerHTML = `
                         <div style="grid-column:1/-1; padding:40px; text-align:center;">
@@ -1895,8 +1288,6 @@
                               loading="lazy"
                               onerror="handleImageError(this, '${p.imagen}')"
                             >
-
-
                         </div>
                         <div class="item-content">
                             <h3>${p.nombre}</h3>
@@ -1914,9 +1305,6 @@
             // =============================================
             // SISTEMA DINÁMICO DE CATEGORÍAS
             // =============================================
-
-
-
             function renderCategorias() {
                 const texts = PAGE_TEXTS[idiomaActual] || PAGE_TEXTS.es;
                 const cats = [
@@ -1983,8 +1371,6 @@
                 });
                 render(filtrados);
             }
-
-
 
             document.getElementById('btnSearch').onclick = () => {
                 filtrar();
@@ -2111,7 +1497,6 @@
                 document.getElementById('btnUp').style.display =
                     window.scrollY > 400 ? "block" : "none";
             });
-
 
             document.getElementById('btnUp').onclick = () => {
                 window.scrollTo({
