@@ -1,7 +1,11 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin - Mozo Digital (Carta de Platos)</title>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 
@@ -15,10 +19,7 @@
             --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.3);
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
             --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
-
         }
-
-
 
         body {
             font-family: 'Outfit', sans-serif;
@@ -30,13 +31,15 @@
             background-repeat: repeat;
             background-size: cover;
             background-attachment: fixed;
-
         }
 
         body::before {
             content: "";
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: rgba(30, 18, 8, 0.85); /* Dark veil */
             z-index: -1;
             pointer-events: none;
@@ -64,7 +67,6 @@
             border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 10px;
         }
-
 
         .topRow {
             display: flex;
@@ -107,7 +109,6 @@
             align-items: center;
         }
 
-
         input[type="text"],
         input[type="password"],
         textarea {
@@ -130,8 +131,6 @@
             background: rgba(54, 30, 9, 0.95);
         }
 
-
-
         button {
             background: var(--accent-color);
             color: #fff;
@@ -144,71 +143,6 @@
             font-size: 14px;
             transition: all 0.3s ease;
             display: inline-flex;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             align-items: center;
             justify-content: center;
             gap: 6px;
@@ -218,60 +152,20 @@
         button:hover {
             background: var(--secondary-color);
             transform: translateY(-1px);
-
-
-
-
-
-
-
-
         }
 
         button.secondary {
             background: #4a773c;
-
-
-
-
-
-
-
-
         }
+
         button.secondary:hover {
             background: #37592c;
-
-
-
-
         }
 
         button.danger {
             background: #b63a2c;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
+
         button.danger:hover {
             background: #8e2b1f;
         }
@@ -285,41 +179,17 @@
             display: none;
             box-shadow: var(--shadow-md);
             animation: slideDown 0.3s ease-out;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-
-
-
-
-
-
-
-
-
-
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Zona de arrastrar fotos */
@@ -329,50 +199,17 @@
             text-align: center;
             border-radius: 12px;
             cursor: pointer;
-
-
-
-
-
-
-
-
-
-
-
-
             background: rgba(0, 0, 0, 0.25);
             color: var(--primary-color);
             margin-top: 4px;
             transition: all 0.2s ease;
         }
-        .dropZone:hover, .dropZone.dragover {
+
+        .dropZone:hover,
+        .dropZone.dragover {
             background: rgba(196, 141, 73, 0.18);
             border-color: var(--primary-color);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
 
         table {
             width: 100%;
@@ -412,9 +249,8 @@
             border-bottom: none;
         }
 
-
-
-        td input[type="text"], td textarea {
+        td input[type="text"],
+        td textarea {
             border: 1px solid transparent;
             background: transparent;
             width: 100%;
@@ -426,7 +262,8 @@
             transition: all 0.2s ease;
         }
 
-        td input[type="text"]:focus, td textarea:focus {
+        td input[type="text"]:focus,
+        td textarea:focus {
             background: rgba(54, 30, 9, 0.95);
             border-color: var(--secondary-color);
             box-shadow: 0 2px 8px rgba(196, 141, 73, 0.25);
@@ -438,21 +275,14 @@
             font-family: inherit;
         }
 
-
         img.mini {
             max-width: 60px;
             max-height: 60px;
             border-radius: 8px;
             object-fit: cover;
-
-
-
             box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(255,255,255,0.2);
-
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-
 
         #actionButtons {
             display: flex;
@@ -479,12 +309,6 @@
             object-fit: cover;
         }
 
-
-
-
-
-
-
         /* TOAST NOTIFICATIONS */
         .toast {
             position: fixed;
@@ -495,20 +319,13 @@
             border-radius: 12px;
             color: white;
             font-weight: 600;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             opacity: 0;
             transform: translateY(-10px);
             transition: opacity .25s ease, transform .25s ease;
             max-width: 360px;
             font-size: 14px;
-
-
-
         }
-
-
-
-
 
         .toast.show {
             opacity: 1;
@@ -550,12 +367,11 @@
             margin-bottom: 20px;
         }
 
-
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        @media(max-width:850px) {
+        @media (max-width: 850px) {
             .topRow {
                 flex-direction: column;
                 align-items: stretch;
@@ -588,7 +404,6 @@
             td:last-child {
                 border-bottom: none;
             }
-
             td::before {
                 position: absolute;
                 top: 50%;
@@ -637,9 +452,6 @@
             <div class="controls">
                 <input id="search" placeholder="Filtrar por nombre o categoría..." oninput="filterProducts()" style="min-width:240px">
                 <button onclick="toggleForm()">➕ Nuevo Producto</button>
-
-
-
             </div>
         </div>
 
@@ -648,7 +460,6 @@
             <button id="btnMozo" onclick="irTeleprompter()" class="secondary">🙋‍♂️ Mozo Digital (Sugerencias)</button>
             <button class="secondary" onclick="irWhatsApp()" style="background:#25d366;">📲 Soporte WhatsApp</button>
         </div>
-
 
         <!-- FORMULARIO DE ALTA / EDICIÓN -->
         <form id="form">
@@ -668,46 +479,6 @@
                     <textarea id="descripcion" rows="2" style="width:100%;"></textarea>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <!-- CARGA DE IMAGEN CON DRAG & DROP -->
                 <div style="grid-column: 1 / -1">
                     <label style="font-size:13px; font-weight:600; display:block; margin-bottom:5px;">Imagen del Producto</label>
@@ -719,7 +490,6 @@
                          ondrop="handleDrop(event)">
                         📸 <b id="dropText">Hacé clic aquí o arrastrá tu foto desde tu computadora</b>
                         <div style="font-size:12px; color:var(--secondary-color); margin-top:4px">Se subirá automáticamente a la carpeta <code>img/</code> en GitHub</div>
-
                     </div>
                     <input type="hidden" id="imagen">
                     <img id="preview" class="previewImg" style="display:none">
@@ -772,13 +542,9 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
             </div>
+
             <div style="margin-top:20px; display:flex; gap:10px;">
                 <button type="button" onclick="guardarFormulario()">Agregar a la lista temporal</button>
                 <button type="button" onclick="cancelForm()" style="background:#888">Cancelar</button>
@@ -808,18 +574,6 @@
         <div style="font-size:14px; margin-top:12px; color:#ddd">No cierres esta página. Se descargará un archivo de respaldo (.json) automáticamente.</div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
     <script>
         // Helper global para búsqueda inteligente de imágenes en subcarpetas locales
         window.handleImageError = function(img, originalSrc) {
@@ -843,165 +597,13 @@
         const host = window.location.hostname;
         const pathParts = window.location.pathname.split("/");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         let USERNAME = "electrogenesis10-ops";
         let REPO = "carta";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         if (host.includes(".github.io")) {
             USERNAME = host.split(".")[0];
             REPO = pathParts[1] || "";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
 
         document.getElementById('repoDisplay').innerText = `${USERNAME} / ${REPO}`;
 
@@ -1017,16 +619,12 @@
 
         /**************** UI HELPERS ****************/
 
-
-
         function mostrarLoading() {
             document.getElementById("loadingOverlay").style.display = "flex";
         }
 
         function ocultarLoading() {
             document.getElementById("loadingOverlay").style.display = "none";
-
-
         }
 
         function bloquearUI() {
@@ -1127,92 +725,6 @@
                 } else {
                     statusEl.innerText = "⚠️ Token Vencido/Inválido";
                     statusEl.style.color = "#b03a2e";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 }
             } catch (e) {
                 statusEl.innerText = "Error conexión API";
@@ -1317,28 +829,6 @@
         }
 
         async function loadProducts() {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             try {
                 const [rES, rEN, rPT] = await Promise.all([
                     fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPO}/${BRANCH}/${MAIN_JSON}?t=${Date.now()}`),
@@ -1457,35 +947,6 @@
                 tr.querySelector('.deleteBtn').onclick = () => eliminarProductoPorId(p.id);
 
                 tb.appendChild(tr);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             });
         }
 
@@ -1529,32 +990,8 @@
                 document.getElementById('descripcion_pt').value = '';
                 document.getElementById('categoria_pt').value = '';
                 setTimeout(() => document.getElementById('nombre').focus(), 100);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
         }
-
-
 
         function cancelForm() {
             document.getElementById('form').reset();
@@ -1633,47 +1070,6 @@
                 showToast("¡Traducciones automáticas generadas! 🌐", "ok");
             } catch(e) {
                 showToast("Error en el servicio de traducción", "err");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
         }
 
@@ -1688,42 +1084,6 @@
             if (!nombre) {
                 showToast("El plato debe tener un nombre", "err");
                 return;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
 
             const newId = id || generateNextProdId();
@@ -1848,35 +1208,12 @@
 
             const base64Content = isBase64 ? contentString : btoa(unescape(encodeURIComponent(contentString)));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             const body = {
                 message,
                 content: base64Content,
                 branch: BRANCH,
                 sha
             };
-
-
-
-
-
-
-
-
-
 
             const res = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${path}`, {
                 method: 'PUT',
@@ -1885,92 +1222,12 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(body)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             });
 
             if (!res.ok) {
                 const errText = await res.text();
                 throw new Error(`Error en GitHub API al guardar ${path}: ${errText}`);
             }
-
-
         }
 
         /**************** GUARDADO TOTAL Y SINCRONIZACIÓN EN 3 IDIOMAS ****************/
@@ -2086,101 +1343,15 @@
             render(filtered);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function irTeleprompter() {
             window.open(`https://${USERNAME}.github.io/${REPO}/admin.html`, "_blank");
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         function irWhatsApp() {
             const numero = "5491123140119";
             const mensaje = encodeURIComponent("Hola, necesito ayuda con el admin de la carta digital");
             window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         document.addEventListener('DOMContentLoaded', () => {
             validarTokenGitHub();
