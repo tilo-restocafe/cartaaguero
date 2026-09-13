@@ -420,6 +420,163 @@
             transform: scale(1.05);
         }
 
+        /* Botón de vinos en el carrusel de categorías */
+        #category-buttons .cat-wine-btn {
+            flex: 0 0 auto;
+            background: linear-gradient(135deg, #4a1525 0%, #6b1d34 100%);
+            color: #fcefe3;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 12px rgba(74, 21, 37, 0.25);
+        }
+
+        #category-buttons .cat-wine-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            background: linear-gradient(135deg, #5c1b2f 0%, #7d243e 100%);
+            border-color: rgba(212, 175, 55, 0.85);
+            box-shadow: 0 6px 16px rgba(74, 21, 37, 0.4), 0 0 10px rgba(212, 175, 55, 0.3);
+            color: #fff;
+        }
+
+        /* ================= BOTÓN DESTACADO CARTA DE VINOS ================= */
+        .wine-banner-container {
+            display: flex;
+            justify-content: center;
+            margin: -10px auto 20px auto;
+            max-width: 550px;
+            width: 90%;
+        }
+
+        .wine-cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: linear-gradient(135deg, #3d101d 0%, #5e192c 50%, #2b0b14 100%);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 16px;
+            padding: 12px 18px;
+            text-decoration: none;
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(61, 16, 29, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            gap: 12px;
+        }
+
+        .wine-cta-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .wine-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(61, 16, 29, 0.38), 0 0 15px rgba(212, 175, 55, 0.3);
+            border-color: rgba(212, 175, 55, 0.8);
+        }
+
+        .wine-cta-btn:hover::before {
+            opacity: 1;
+        }
+
+        .wine-cta-btn:active {
+            transform: translateY(0);
+        }
+
+        .wine-cta-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            min-width: 0;
+        }
+
+        .wine-cta-icon {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            flex-shrink: 0;
+            animation: wineFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes wineFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .wine-cta-text {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .wine-cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fcefe3;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .wine-cta-sub {
+            font-size: 12px;
+            color: rgba(252, 239, 227, 0.75);
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .wine-cta-badge {
+            background: rgba(212, 175, 55, 0.2);
+            color: #f7d58b;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .wine-cta-btn:hover .wine-cta-badge {
+            background: #d4af37;
+            color: #2b0b14;
+        }
+
         /* ================= GRILLA DE PRODUCTOS ================= */
         #product-list {
             display: grid;
@@ -980,6 +1137,20 @@
         <button id="btnVoice" title="Búsqueda por voz">🎙️</button>
     </div>
 
+    <!-- ENLACE DIRECTO A CARTA DE VINOS -->
+    <div class="wine-banner-container">
+        <a href="https://tilo-restocafe.github.io/vinos/" target="_blank" rel="noopener noreferrer" class="wine-cta-btn" id="wineCtaBtn" title="Ir a la Carta de Vinos">
+            <div class="wine-cta-left">
+                <span class="wine-cta-icon">🍷</span>
+                <div class="wine-cta-text">
+                    <span class="wine-cta-title" id="wineBtnTitle">Carta de Vinos</span>
+                    <span class="wine-cta-sub" id="wineBtnSub">Explorá nuestra cava digital</span>
+                </div>
+            </div>
+            <span class="wine-cta-badge" id="wineBtnBadge">Cava Digital ➔</span>
+        </a>
+    </div>
+
     <!-- BOTONES DE CATEGORÍAS ADAPTATIVOS -->
     <div id="category-buttons"></div>
 
@@ -1042,6 +1213,10 @@
                     searchBtn: "Buscar",
                     voiceTitle: "Búsqueda por voz",
                     todosCat: "Todos",
+                    wineBtnTitle: "Carta de Vinos",
+                    wineBtnSub: "Explorá nuestra cava digital",
+                    wineBtnBadge: "Cava Digital ➔",
+                    catWineBtn: "🍷 Carta de Vinos ↗",
                     mozoTitle: "Sugerencias de Ron ✦",
                     mozoSub: "Aquí tienes mis sugerencias para hoy",
                     mozoFooter: "Toca afuera para cerrar el diálogo."
@@ -1052,6 +1227,10 @@
                     searchBtn: "Search",
                     voiceTitle: "Voice search",
                     todosCat: "All",
+                    wineBtnTitle: "Wine List",
+                    wineBtnSub: "Explore our digital wine cellar",
+                    wineBtnBadge: "Wine Cellar ➔",
+                    catWineBtn: "🍷 Wine List ↗",
                     mozoTitle: "Ron's Suggestions ✦",
                     mozoSub: "Here are my suggestions for today",
                     mozoFooter: "Tap outside to close."
@@ -1062,6 +1241,10 @@
                     searchBtn: "Buscar",
                     voiceTitle: "Pesquisa por voz",
                     todosCat: "Todos",
+                    wineBtnTitle: "Carta de Vinhos",
+                    wineBtnSub: "Explore nossa adega digital",
+                    wineBtnBadge: "Adega Digital ➔",
+                    catWineBtn: "🍷 Carta de Vinhos ↗",
                     mozoTitle: "Sugestões do Ron ✦",
                     mozoSub: "Aqui estão minhas sugestões para hoje",
                     mozoFooter: "Toque fora para fechar."
@@ -1280,6 +1463,13 @@
                 const btnVoice = document.getElementById('btnVoice');
                 if (btnVoice) btnVoice.title = texts.voiceTitle;
 
+                const wineBtnTitle = document.getElementById('wineBtnTitle');
+                if (wineBtnTitle) wineBtnTitle.textContent = texts.wineBtnTitle;
+                const wineBtnSub = document.getElementById('wineBtnSub');
+                if (wineBtnSub) wineBtnSub.textContent = texts.wineBtnSub;
+                const wineBtnBadge = document.getElementById('wineBtnBadge');
+                if (wineBtnBadge) wineBtnBadge.textContent = texts.wineBtnBadge;
+
                 let archivo =
                     idiomaActual === "es"
                         ? "productos.json"
@@ -1307,23 +1497,24 @@
                     productos = data.map((p, idx) => ({
                         nombre: p.nombre || p.name || p.nome || "Sin nombre",
                         descripcion: p.descripcion || p.description || p.descricao || "",
-                        precio: p.precio || p.price || p.preco || "0",
-                        imagen: p.imagen || p.image || p.imagem || "https://via.placeholder.com/400x300?text=Sin+Imagen",
-                        categoria: p.categoria || p.category || "Otros",
+                        precio: p.precio || p.price || p.preco || 0,
+                        categoria: p.categoria || p.category || "General",
+                        imagen: p.imagen || p.image || p.img || "https://via.placeholder.com/400x300?text=Sin+Imagen",
+                        img: p.img || p.imagen || "",
                         id: p.id || idx.toString()
                     }));
 
-                    renderCategorias();
                     render(productos);
+                    renderCategorias();
                     cargarTeleprompter();
 
                 } catch (e) {
                     console.error("Error cargando productos:", e);
 
                     productList.innerHTML = `
-                        <div style="grid-column:1/-1; padding:40px; text-align:center;">
-                            <span style="font-size:40px;">⚠️</span>
-                            <p style="color:var(--primary-color); font-weight:600; margin-top:10px;">Error al cargar el menú. Revisa tu conexión.</p>
+                        <div class="menu-error-state">
+                            <span style="font-size:48px;">⚠️</span>
+                            <p style="font-size:18px; font-weight:600; color:var(--primary-color); margin-top:12px;">Error al cargar el menú. Revisa tu conexión.</p>
                         </div>
                     `;
                 }
@@ -1384,7 +1575,11 @@
                     >
                       ${cat}
                     </button>
-                `).join('');
+                `).join('') + `
+                    <a href="https://tilo-restocafe.github.io/vinos/" target="_blank" rel="noopener noreferrer" class="cat-wine-btn" title="${texts.wineBtnTitle}">
+                        ${texts.catWineBtn}
+                    </a>
+                `;
 
                 document.querySelectorAll('#category-buttons button').forEach(btn => {
                     btn.addEventListener('click', () => {
