@@ -14,7 +14,7 @@
             --primary-color: #f5eedc;    /* Soft Cream text */
             --secondary-color: #c48d49;  /* Caramel Gold */
             --accent-color: #9c6c40;     /* Cocoa Gold */
-            --bg-color: #1e1208;         /* Very dark chocolate */
+            --bg-color: #3d2713;         /* Very dark chocolate */
             --white: #291707;            /* Dark chocolate background */
             --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.3);
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
@@ -260,6 +260,11 @@
             color: var(--primary-color);
             border-radius: 6px;
             transition: all 0.2s ease;
+        }
+
+        .input-precio {
+            font-weight: bold;
+            color: #000000 !important;
         }
 
         td input[type="text"]:focus,
@@ -911,7 +916,7 @@
                         <input type="text" value="${categoria.replace(/"/g, '&quot;')}" placeholder="Categoría">
                     </td>
                     <td>
-                        <input type="text" class="input-precio" value="${precio}" style="font-weight:bold; color:var(--secondary-color);" placeholder="Precio">
+                        <input type="text" class="input-precio" value="${precio}" placeholder="Precio">
                     </td>
                     <td class="rowActions">
                         <button class="editBtn" style="background:var(--secondary-color);" title="Cargar en editor superior">Editar</button>
