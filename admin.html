@@ -262,11 +262,6 @@
             transition: all 0.2s ease;
         }
 
-        .input-precio {
-            font-weight: bold;
-            color: #000000 !important;
-        }
-
         td input[type="text"]:focus,
         td textarea:focus {
             background: rgba(54, 30, 9, 0.95);
@@ -916,7 +911,7 @@
                         <input type="text" value="${categoria.replace(/"/g, '&quot;')}" placeholder="Categoría">
                     </td>
                     <td>
-                        <input type="text" class="input-precio" value="${precio}" placeholder="Precio">
+                        <input type="text" class="input-precio" value="${precio}" style="font-weight:bold; color:var(--secondary-color);" placeholder="Precio">
                     </td>
                     <td class="rowActions">
                         <button class="editBtn" style="background:var(--secondary-color);" title="Cargar en editor superior">Editar</button>
