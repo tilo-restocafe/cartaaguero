@@ -1490,8 +1490,28 @@
                             res = await fetch(url, { cache: "no-store" });
                         }
                     } else {
-                        res = await fetch(url, { cache: "no-store" });
+                        try {
+                            res = await fetch(url, { cache: "no-store" });
+                            if (!res.ok) throw new Error("Local file not found");
+                        } catch (err) {
+                            const githubUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${archivo}?t=${Date.now()}`;
+                            res = await fetch(githubUrl, { cache: "no-store" });
+                        }
                     }
+
+                    if ((!res || !res.ok) && archivo !== "productos.json") {
+                        // Fallback a productos.json si el archivo en otro idioma aún no existe
+                        const fallbackUrl = isLocal ? `./productos.json?t=${Date.now()}` : `https://raw.githubusercontent.com/${USER}/${REPO}/main/productos.json?t=${Date.now()}`;
+                        try {
+                            res = await fetch(fallbackUrl, { cache: "no-store" });
+                        } catch {
+                            const fallbackGh = `https://raw.githubusercontent.com/${USER}/${REPO}/main/productos.json?t=${Date.now()}`;
+                            res = await fetch(fallbackGh, { cache: "no-store" });
+                        }
+                    }
+
+                    if (!res || !res.ok) throw new Error("No se pudo cargar el archivo");
+
                     const data = await res.json();
 
                     productos = data.map((p, idx) => ({
@@ -1499,8 +1519,8 @@
                         descripcion: p.descripcion || p.description || p.descricao || "",
                         precio: p.precio || p.price || p.preco || 0,
                         categoria: p.categoria || p.category || "General",
-                        imagen: p.imagen || p.image || p.img || "https://via.placeholder.com/400x300?text=Sin+Imagen",
-                        img: p.img || p.imagen || "",
+                        imagen: p.imagen || p.image || p.imagem || p.img || "https://via.placeholder.com/400x300?text=Sin+Imagen",
+                        img: p.img || p.imagen || p.imagem || p.image || "",
                         id: p.id || idx.toString()
                     }));
 
